@@ -18,10 +18,12 @@ var (
 )
 
 func main() {
+	// flags for passing in values in run.bat after exe/binary compilation
 	flag.StringVar(&obsPort, "port", "45", "OBS WebSocket Port")
 	flag.StringVar(&obsPass, "password", "pwd", "OBS WebSocket Password")
 	flag.Parse()
 
+	// connect to OBS WebSocket Server
 	client, err = goobs.New(fmt.Sprintf("localhost:%s", obsPort), goobs.WithPassword(obsPass))
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error connecting to OBS Websocket: %s\n", err.Error())
@@ -50,14 +52,33 @@ func main() {
 
 	// start Mux Server
 	mux := http.NewServeMux()
-	// add OBS-related Handler functions
+
+	// add OBS general Handler functions
 	mux.HandleFunc("GET /version/obs", GetVersion)
+
+	// add Scene Handler functions
 	mux.HandleFunc("GET /scene/all", GetAllScenes)
 	mux.HandleFunc("GET /scene/current", GetCurrentSceneName)
-	mux.HandleFunc("POST /scene/set/{name}", ChangeCurrentScene)
+	mux.HandleFunc("GET /scene/change/{name}", ChangeCurrentScene)
+	mux.HandleFunc("POST /scene/create", CreateNewScene) // {SceneName: string}
+
+	// add Input Handler functions
+	mux.HandleFunc("GET /input/kinds", GetInputKindList)
+	mux.HandleFunc("GET /input/{kind}", GetInputList)
+	mux.HandleFunc("POST /input/create", CreateNewInput) // {SceneName: string, InputKind: string, InputName: string, SceneItemEnabled: bool}
+
+	// add SceneItem Handler functions
+	mux.HandleFunc("GET /sceneItems/{name}", GetSceneItems)
+	mux.HandleFunc("POST /sceneItems/create", CreateNewSceneItem) // {SceneName: string, SceneItemEnabled: bool, SourceName: string}
+
+	// add RecordingDirectory Handler functions
 	mux.HandleFunc("GET /directory", GetCurrentRecordingDirectory)
-	mux.HandleFunc("POST /directory/set/{dir}", SetNewRecordingDirectory)
+	mux.HandleFunc("POST /directory", SetNewRecordingDirectory) // {RecordDirectory: string}
+
+	// add Record Handler functions
 	mux.HandleFunc("POST /record/start", StartRecording)
+	mux.HandleFunc("POST /record/pause", PauseRecording)
+	mux.HandleFunc("POST /record/resume", ResumeRecording)
 	mux.HandleFunc("POST /record/stop", StopRecording)
 
 	// Run server
