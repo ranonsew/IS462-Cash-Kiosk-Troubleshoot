@@ -6,6 +6,8 @@ set password="scriptingpasswordtest123"
 :: Set the directory based on your "obs64.exe" install location
 set directory="C:\Program Files\obs-studio\bin\64bit"
 
+:: Open chrome?
+
 :: Check if OBS Studio is open, if not, start OBS Studio exe
 tasklist | findstr "obs64.exe" >nul
 if not errorlevel 1 goto StartAPI

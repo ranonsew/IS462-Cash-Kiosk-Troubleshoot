@@ -60,20 +60,25 @@ func main() {
 	mux.HandleFunc("GET /scene/all", GetAllScenes)
 	mux.HandleFunc("GET /scene/current", GetCurrentSceneName)
 	mux.HandleFunc("GET /scene/change/{name}", ChangeCurrentScene)
-	mux.HandleFunc("POST /scene/create", CreateNewScene) // {SceneName: string}
+	mux.HandleFunc("POST /scene/create", CreateNewScene) // {"SceneName": ""}
 
 	// add Input Handler functions
 	mux.HandleFunc("GET /input/kinds", GetInputKindList)
 	mux.HandleFunc("GET /input/{kind}", GetInputList)
-	mux.HandleFunc("POST /input/create", CreateNewInput) // {SceneName: string, InputKind: string, InputName: string, SceneItemEnabled: bool}
+	mux.HandleFunc("POST /input/create", CreateNewInput) // {"SceneName": "", "InputKind": "", "InputName": "", "SceneItemEnabled": true}
+	mux.HandleFunc("GET /input/settings/{inputName}", GetCurrentInputSettings)
+	mux.HandleFunc("POST /input/settings", SetCurrentInputSettings) // {"InputName": "", "InputSettings": {"": ""}}
+
+	// add Monitor Handler functions
+	mux.HandleFunc("GET /monitor/all", GetMonitorList)
 
 	// add SceneItem Handler functions
 	mux.HandleFunc("GET /sceneItems/{name}", GetSceneItems)
-	mux.HandleFunc("POST /sceneItems/create", CreateNewSceneItem) // {SceneName: string, SceneItemEnabled: bool, SourceName: string}
+	mux.HandleFunc("POST /sceneItems/create", CreateNewSceneItem) // {"SceneName": "", "SceneItemEnabled": true, "SourceName": ""}
 
 	// add RecordingDirectory Handler functions
 	mux.HandleFunc("GET /directory", GetCurrentRecordingDirectory)
-	mux.HandleFunc("POST /directory", SetNewRecordingDirectory) // {RecordDirectory: string}
+	mux.HandleFunc("POST /directory", SetNewRecordingDirectory) // {"RecordDirectory": ""}
 
 	// add Record Handler functions
 	mux.HandleFunc("POST /record/start", StartRecording)
@@ -83,7 +88,7 @@ func main() {
 
 	// Run server
 	fmt.Println("HTTP Server started at http://127.0.0.1:45713")
-	fmt.Println("Press Ctrl+C to exit...")
+	// fmt.Println("Press Ctrl+C to exit...")
 	if err := http.ListenAndServe(":45713", mux); err != nil {
 		fmt.Printf("Error: %s\n", err.Error())
 	}

@@ -63,3 +63,41 @@ func CreateNewInput(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusCreated)
 	json.NewEncoder(w).Encode(map[string]any{"data": res})
 }
+
+// Get the input settings
+func GetCurrentInputSettings(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	inputName := r.PathValue("inputName")
+
+	res, err := client.Inputs.GetInputSettings(&inputs.GetInputSettingsParams{InputName: &inputName})
+	if err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		json.NewEncoder(w).Encode(map[string]any{"message": err.Error()})
+		return
+	}
+
+	w.WriteHeader(http.StatusOK)
+	json.NewEncoder(w).Encode(map[string]any{"data": res})
+}
+
+// Set the input settings
+func SetCurrentInputSettings(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+
+	var tmp inputs.SetInputSettingsParams
+	if err := json.NewDecoder(r.Body).Decode(&tmp); err != nil {
+		w.WriteHeader(http.StatusBadRequest)
+		json.NewEncoder(w).Encode(map[string]any{"message": err.Error()})
+		return
+	}
+
+	res, err := client.Inputs.SetInputSettings(&tmp)
+	if err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		json.NewEncoder(w).Encode(map[string]any{"message": err.Error()})
+		return
+	}
+
+	w.WriteHeader(http.StatusOK)
+	json.NewEncoder(w).Encode(map[string]any{"data": res})
+}
