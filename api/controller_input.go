@@ -30,8 +30,8 @@ func GetInputKindList(w http.ResponseWriter, r *http.Request) {
 func GetInputList(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	kind := r.PathValue("kind")
-
-	res, err := client.Inputs.GetInputList(&inputs.GetInputListParams{InputKind: &kind})
+	params := inputs.NewGetInputListParams().WithInputKind(kind)
+	res, err := client.Inputs.GetInputList(params)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		json.NewEncoder(w).Encode(map[string]any{"message": err.Error()})
@@ -68,8 +68,8 @@ func CreateNewInput(w http.ResponseWriter, r *http.Request) {
 func GetCurrentInputSettings(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	inputName := r.PathValue("inputName")
-
-	res, err := client.Inputs.GetInputSettings(&inputs.GetInputSettingsParams{InputName: &inputName})
+	params := inputs.NewGetInputSettingsParams().WithInputName(inputName)
+	res, err := client.Inputs.GetInputSettings(params)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		json.NewEncoder(w).Encode(map[string]any{"message": err.Error()})
@@ -92,6 +92,24 @@ func SetCurrentInputSettings(w http.ResponseWriter, r *http.Request) {
 	}
 
 	res, err := client.Inputs.SetInputSettings(&tmp)
+	if err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		json.NewEncoder(w).Encode(map[string]any{"message": err.Error()})
+		return
+	}
+
+	w.WriteHeader(http.StatusOK)
+	json.NewEncoder(w).Encode(map[string]any{"data": res})
+}
+
+// Get the input properties list for the given input (so we can set the settings).
+// it's really long, idk why
+func GetInputPropertiesListPropertyItems(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	inputName := r.PathValue("inputName")
+	propertyName := r.PathValue("propertyName")
+	params := inputs.NewGetInputPropertiesListPropertyItemsParams().WithInputName(inputName).WithPropertyName(propertyName)
+	res, err := client.Inputs.GetInputPropertiesListPropertyItems(params)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		json.NewEncoder(w).Encode(map[string]any{"message": err.Error()})

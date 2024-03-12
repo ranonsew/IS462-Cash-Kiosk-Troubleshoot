@@ -30,7 +30,6 @@ func GetCurrentRecordingDirectory(w http.ResponseWriter, r *http.Request) {
 // Set a new recording output directory - {RecordDirectory: string}
 func SetNewRecordingDirectory(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
-	dir := r.PathValue("dir")
 
 	var tmp config.SetRecordDirectoryParams
 	if err := json.NewDecoder(r.Body).Decode(&tmp); err != nil {
@@ -47,5 +46,5 @@ func SetNewRecordingDirectory(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.WriteHeader(http.StatusOK)
-	json.NewEncoder(w).Encode(map[string]any{"message": fmt.Sprintf("Recording Output Directory set to: %s", dir)})
+	json.NewEncoder(w).Encode(map[string]any{"message": fmt.Sprintf("Recording Output Directory set to: %s", *tmp.RecordDirectory)})
 }

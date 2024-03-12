@@ -46,8 +46,8 @@ func GetCurrentSceneName(w http.ResponseWriter, r *http.Request) {
 func ChangeCurrentScene(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	name := r.PathValue("name")
-
-	_, err := client.Scenes.SetCurrentProgramScene(&scenes.SetCurrentProgramSceneParams{SceneName: &name})
+	params := scenes.NewSetCurrentProgramSceneParams().WithSceneName(name)
+	_, err := client.Scenes.SetCurrentProgramScene(params)
 	if err != nil {
 		w.WriteHeader(http.StatusBadRequest)
 		json.NewEncoder(w).Encode(map[string]any{"message": err.Error()})
@@ -68,7 +68,7 @@ func CreateNewScene(w http.ResponseWriter, r *http.Request) {
 		json.NewEncoder(w).Encode(map[string]any{"message": err.Error()})
 		return
 	}
-	
+
 	res, err := client.Scenes.CreateScene(&tmp)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
