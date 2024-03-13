@@ -23,7 +23,7 @@ func GetInputKindList(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.WriteHeader(http.StatusOK)
-	json.NewEncoder(w).Encode(map[string]any{"data": res})
+	json.NewEncoder(w).Encode(res)
 }
 
 // Get input list
@@ -39,7 +39,7 @@ func GetInputList(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.WriteHeader(http.StatusOK)
-	json.NewEncoder(w).Encode(map[string]any{"data": res})
+	json.NewEncoder(w).Encode(res)
 }
 
 // Create new Input - {SceneName: string, InputKind: string, InputName: string, SceneItemEnabled: bool}
@@ -61,7 +61,7 @@ func CreateNewInput(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.WriteHeader(http.StatusCreated)
-	json.NewEncoder(w).Encode(map[string]any{"data": res})
+	json.NewEncoder(w).Encode(res)
 }
 
 // Get the input settings
@@ -77,7 +77,7 @@ func GetCurrentInputSettings(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.WriteHeader(http.StatusOK)
-	json.NewEncoder(w).Encode(map[string]any{"data": res})
+	json.NewEncoder(w).Encode(res)
 }
 
 // Set the input settings
@@ -91,7 +91,7 @@ func SetCurrentInputSettings(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	res, err := client.Inputs.SetInputSettings(&tmp)
+	_, err := client.Inputs.SetInputSettings(&tmp)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		json.NewEncoder(w).Encode(map[string]any{"message": err.Error()})
@@ -99,7 +99,7 @@ func SetCurrentInputSettings(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.WriteHeader(http.StatusOK)
-	json.NewEncoder(w).Encode(map[string]any{"data": res})
+	json.NewEncoder(w).Encode(map[string]any{"message": "Settings set successfully"})
 }
 
 // Get the input properties list for the given input (so we can set the settings).
@@ -117,5 +117,5 @@ func GetInputPropertiesListPropertyItems(w http.ResponseWriter, r *http.Request)
 	}
 
 	w.WriteHeader(http.StatusOK)
-	json.NewEncoder(w).Encode(map[string]any{"data": res})
+	json.NewEncoder(w).Encode(res)
 }

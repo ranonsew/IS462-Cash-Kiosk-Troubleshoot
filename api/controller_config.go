@@ -24,7 +24,7 @@ func GetCurrentRecordingDirectory(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.WriteHeader(http.StatusOK)
-	json.NewEncoder(w).Encode(map[string]any{"data": res})
+	json.NewEncoder(w).Encode(res)
 }
 
 // Set a new recording output directory - {RecordDirectory: string}

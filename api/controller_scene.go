@@ -24,7 +24,7 @@ func GetAllScenes(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.WriteHeader(http.StatusOK)
-	json.NewEncoder(w).Encode(map[string]any{"data": res})
+	json.NewEncoder(w).Encode(res)
 }
 
 // get the current program scene
@@ -39,7 +39,7 @@ func GetCurrentSceneName(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.WriteHeader(http.StatusOK)
-	json.NewEncoder(w).Encode(map[string]any{"data": res})
+	json.NewEncoder(w).Encode(res)
 }
 
 // switch to a specific scene via its name
@@ -77,5 +77,5 @@ func CreateNewScene(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.WriteHeader(http.StatusCreated)
-	json.NewEncoder(w).Encode(map[string]any{"data": res})
+	json.NewEncoder(w).Encode(res)
 }

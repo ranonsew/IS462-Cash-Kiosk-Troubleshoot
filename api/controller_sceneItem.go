@@ -24,7 +24,7 @@ func GetSceneItems(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.WriteHeader(http.StatusOK)
-	json.NewEncoder(w).Encode(map[string]any{"data": res})
+	json.NewEncoder(w).Encode(res)
 }
 
 // create a scene item - {SceneName: string, SceneItemEnabled: bool, SourceName: string}
@@ -46,5 +46,5 @@ func CreateNewSceneItem(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.WriteHeader(http.StatusCreated)
-	json.NewEncoder(w).Encode(map[string]any{"data": res})
+	json.NewEncoder(w).Encode(res)
 }

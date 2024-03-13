@@ -70,9 +70,6 @@ func main() {
 	mux.HandleFunc("POST /input/settings", SetCurrentInputSettings) // {"InputName": "", "InputSettings": {"key": ""}}
 	mux.HandleFunc("GET /input/{inputName}/properties/{propertyName}", GetInputPropertiesListPropertyItems)
 
-	// add Monitor Handler functions
-	mux.HandleFunc("GET /monitor/all", GetMonitorList)
-
 	// add SceneItem Handler functions
 	mux.HandleFunc("GET /sceneItems/{name}", GetSceneItems)
 	mux.HandleFunc("POST /sceneItems/create", CreateNewSceneItem) // {"SceneName": "", "SceneItemEnabled": true, "SourceName": ""}
