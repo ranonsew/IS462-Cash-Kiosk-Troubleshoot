@@ -44,6 +44,8 @@ func main() {
 				fmt.Printf("Recording? %t.\nRecording State changed to: %s\n", e.OutputActive, e.OutputState)
 			case *events.ExitStarted:
 				fmt.Println("Exit started")
+			case *events.InputCreated:
+				fmt.Printf("Input %s created\n", e.InputName)
 			default:
 				fmt.Printf("unhandled: %T\n", event)
 			}

@@ -13,6 +13,8 @@ def test1():
   inputPropertyName = "monitor_id"
 
   try:
+    # 0.5. Check for scene
+
     # 1. Create a new scene
     res1 = requests.post(f"{baseURL}/scene/create", json={"SceneName": sceneName})
     res1.raise_for_status() # Check if the request was successful
@@ -22,6 +24,8 @@ def test1():
     res2 = requests.get(f"{baseURL}/scene/change/" + sceneName)
     res2.raise_for_status() # Check if the request was successful
     print("Scene Changed", end="\n")
+
+    # 2.5 Check for input (if have, skip to 4.)
 
     # 3. Add an input (source --> display capture in this example)
     res3 = requests.post(f"{baseURL}/input/create", json={"SceneName": sceneName, "InputKind": inputKind, "InputName": inputName, "SceneItemEnabled": sceneItemEnabled})
@@ -33,6 +37,8 @@ def test1():
     res4.raise_for_status() # Check if the request was successful
     monitor_id = res4.json()["propertyItems"][0]["itemValue"]
     print(f"Monitor ID: {monitor_id}", end="\n")
+
+    # 4.5 or 3.5, check for settings
 
     # 5. Change the settings with a selected property
     res5 = requests.post(f"{baseURL}/input/settings", json={"InputName": inputName, "InputSettings": {inputPropertyName: monitor_id}})

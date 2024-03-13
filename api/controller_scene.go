@@ -71,7 +71,7 @@ func CreateNewScene(w http.ResponseWriter, r *http.Request) {
 
 	res, err := client.Scenes.CreateScene(&tmp)
 	if err != nil {
-		w.WriteHeader(http.StatusInternalServerError)
+		w.WriteHeader(http.StatusBadRequest)
 		json.NewEncoder(w).Encode(map[string]any{"message": err.Error()})
 		return
 	}
