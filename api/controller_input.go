@@ -26,22 +26,6 @@ func GetInputKindList(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(res)
 }
 
-// Get input list
-func GetInputList(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json")
-	kind := r.PathValue("kind")
-	params := inputs.NewGetInputListParams().WithInputKind(kind)
-	res, err := client.Inputs.GetInputList(params)
-	if err != nil {
-		w.WriteHeader(http.StatusInternalServerError)
-		json.NewEncoder(w).Encode(map[string]any{"message": err.Error()})
-		return
-	}
-
-	w.WriteHeader(http.StatusOK)
-	json.NewEncoder(w).Encode(res)
-}
-
 // Create new Input - {SceneName: string, InputKind: string, InputName: string, SceneItemEnabled: bool}
 func CreateNewInput(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
