@@ -62,22 +62,23 @@ func main() {
 	mux.HandleFunc("GET /scene/all", GetAllScenes)
 	mux.HandleFunc("GET /scene/current", GetCurrentSceneName)
 	mux.HandleFunc("GET /scene/change/{name}", ChangeCurrentScene)
-	mux.HandleFunc("POST /scene/create", CreateNewScene) // {"SceneName": ""}
+	mux.HandleFunc("POST /scene/create", CreateNewScene) // {"sceneName": string}
 
 	// add Input Handler functions
 	mux.HandleFunc("GET /input/kinds", GetInputKindList)
-	mux.HandleFunc("POST /input/create", CreateNewInput) // {"SceneName": "", "InputKind": "", "InputName": "", "SceneItemEnabled": true}
+	mux.HandleFunc("POST /input/create", CreateNewInput) // {"sceneName": string, "inputKind": string, "inputName": string, "sceneItemEnabled": bool}
 	mux.HandleFunc("GET /input/settings/{inputName}", GetCurrentInputSettings)
-	mux.HandleFunc("POST /input/settings", SetCurrentInputSettings) // {"InputName": "", "InputSettings": {"key": ""}}
+	mux.HandleFunc("POST /input/settings", SetCurrentInputSettings) // {"inputName": string, "inputSettings": {"key": "value"}}
 	mux.HandleFunc("GET /input/{inputName}/properties/{propertyName}", GetInputPropertiesListPropertyItems)
 
 	// add SceneItem Handler functions
 	mux.HandleFunc("GET /sceneItems/{name}", GetSceneItems)
-	mux.HandleFunc("POST /sceneItems/create", CreateNewSceneItem) // {"SceneName": "", "SceneItemEnabled": true, "SourceName": ""}
+	mux.HandleFunc("POST /sceneItems/create", CreateNewSceneItem) // {"sceneName": string, "sceneItemEnabled": bool, "sourceName": string}
+	mux.HandleFunc("POST /sceneItems/setEnabled", SetSceneItemEnabled) // {"sceneName": string, "sceneItemEnabled": bool, "sceneItemId": int}
 
 	// add RecordingDirectory Handler functions
 	mux.HandleFunc("GET /directory", GetCurrentRecordingDirectory)
-	mux.HandleFunc("POST /directory", SetNewRecordingDirectory) // {"RecordDirectory": ""}
+	mux.HandleFunc("POST /directory", SetNewRecordingDirectory) // {"recordDirectory": ""}
 
 	// add Record Handler functions
 	mux.HandleFunc("POST /record/start", StartRecording)

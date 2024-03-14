@@ -14,6 +14,8 @@ def test1():
 
   try:
     # 0.5. Check for scene
+    # /scene/all
+    # requests.get(f"{baseURL}/scene/all")
 
     # 1. Create a new scene
     res1 = requests.post(f"{baseURL}/scene/create", json={"SceneName": sceneName})
@@ -21,16 +23,20 @@ def test1():
     print("Scene Created", end="\n")
 
     # 2. Change to the new scene
-    res2 = requests.get(f"{baseURL}/scene/change/" + sceneName)
+    res2 = requests.get(f"{baseURL}/scene/change/{sceneName}")
     res2.raise_for_status() # Check if the request was successful
     print("Scene Changed", end="\n")
 
     # 2.5 Check for input (if have, skip to 4.)
+    # requests.get(f"{baseURL}/sceneItems/{sceneName}")
 
     # 3. Add an input (source --> display capture in this example)
     res3 = requests.post(f"{baseURL}/input/create", json={"SceneName": sceneName, "InputKind": inputKind, "InputName": inputName, "SceneItemEnabled": sceneItemEnabled})
     res3.raise_for_status() # Check if the request was successful
     print("Display Capture Added", end="\n")
+
+    # 4.5 or 3.5, check for settings
+    # requests.get(f"{baseURL}/input/settings/{inputName}")
 
     # 4. Get the properties (monitor id in this example)
     res4 = requests.get(f"{baseURL}/input/{inputName}/properties/{inputPropertyName}")
@@ -38,7 +44,6 @@ def test1():
     monitor_id = res4.json()["propertyItems"][0]["itemValue"]
     print(f"Monitor ID: {monitor_id}", end="\n")
 
-    # 4.5 or 3.5, check for settings
 
     # 5. Change the settings with a selected property
     res5 = requests.post(f"{baseURL}/input/settings", json={"InputName": inputName, "InputSettings": {inputPropertyName: monitor_id}})

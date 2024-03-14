@@ -1,9 +1,9 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"net/http"
-	"encoding/json"
 
 	"github.com/andreykaipov/goobs/api/requests/scenes"
 )
@@ -13,6 +13,7 @@ import (
 */
 
 // get all available scenes
+// @returns {"Scenes": [{"sceneIndex": 0, "sceneName": ""}]}
 func GetAllScenes(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 
@@ -24,7 +25,7 @@ func GetAllScenes(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.WriteHeader(http.StatusOK)
-	json.NewEncoder(w).Encode(res)
+	json.NewEncoder(w).Encode(map[string]any{"Scenes": res.Scenes})
 }
 
 // get the current program scene
@@ -43,6 +44,7 @@ func GetCurrentSceneName(w http.ResponseWriter, r *http.Request) {
 }
 
 // switch to a specific scene via its name
+// @returns {"message": ""}
 func ChangeCurrentScene(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	name := r.PathValue("name")
@@ -59,6 +61,7 @@ func ChangeCurrentScene(w http.ResponseWriter, r *http.Request) {
 }
 
 // create a new scene - {SceneName: string}
+// @returns {"sceneUuid": ""}
 func CreateNewScene(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 

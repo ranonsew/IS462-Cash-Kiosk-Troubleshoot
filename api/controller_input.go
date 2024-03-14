@@ -26,7 +26,7 @@ func GetInputKindList(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(res)
 }
 
-// Create new Input - {SceneName: string, InputKind: string, InputName: string, SceneItemEnabled: bool}
+// Create new Input - {sceneName: string, inputKind: string, inputName: string, sceneItemEnabled: bool}
 func CreateNewInput(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 
