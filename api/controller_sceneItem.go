@@ -16,7 +16,7 @@ import (
 // @returns {"sceneItems": [{"inputKind": string, "isGroup": bool, "sceneItemBlendMode": string, "sceneItemEnabled": bool, "sceneItemId": int, "sceneItemIndex": int, "sceneItemLocked": bool, "sceneItemTransform": SceneItemTransform, "sourceName": string, "sourceType": string
 func GetSceneItems(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
-	name := r.PathValue("name")
+	name := r.PathValue("sceneName")
 	params := sceneitems.NewGetSceneItemListParams().WithSceneName(name)
 	res, err := client.SceneItems.GetSceneItemList(params)
 	if err != nil {

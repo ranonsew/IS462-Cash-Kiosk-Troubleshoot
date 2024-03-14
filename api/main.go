@@ -61,18 +61,20 @@ func main() {
 	// add Scene Handler functions
 	mux.HandleFunc("GET /scene/all", GetAllScenes)
 	mux.HandleFunc("GET /scene/current", GetCurrentSceneName)
-	mux.HandleFunc("GET /scene/change/{name}", ChangeCurrentScene)
+	mux.HandleFunc("GET /scene/change/{sceneName}", ChangeCurrentScene)
 	mux.HandleFunc("POST /scene/create", CreateNewScene) // {"sceneName": string}
+	mux.HandleFunc("DELETE /scene/delete/{sceneName}", RemoveScene)
 
 	// add Input Handler functions
 	mux.HandleFunc("GET /input/kinds", GetInputKindList)
 	mux.HandleFunc("POST /input/create", CreateNewInput) // {"sceneName": string, "inputKind": string, "inputName": string, "sceneItemEnabled": bool}
+	mux.HandleFunc("DELETE /input/delete/{inputName}", RemoveInput)
 	mux.HandleFunc("GET /input/settings/{inputName}", GetCurrentInputSettings)
 	mux.HandleFunc("POST /input/settings", SetCurrentInputSettings) // {"inputName": string, "inputSettings": {"key": "value"}}
 	mux.HandleFunc("GET /input/{inputName}/properties/{propertyName}", GetInputPropertiesListPropertyItems)
 
 	// add SceneItem Handler functions
-	mux.HandleFunc("GET /sceneItems/{name}", GetSceneItems)
+	mux.HandleFunc("GET /sceneItems/{sceneName}", GetSceneItems)
 	mux.HandleFunc("POST /sceneItems/create", CreateNewSceneItem) // {"sceneName": string, "sceneItemEnabled": bool, "sourceName": string}
 	mux.HandleFunc("POST /sceneItems/setEnabled", SetSceneItemEnabled) // {"sceneName": string, "sceneItemEnabled": bool, "sceneItemId": int}
 

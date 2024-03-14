@@ -27,6 +27,7 @@ func GetInputKindList(w http.ResponseWriter, r *http.Request) {
 }
 
 // Create new Input - {sceneName: string, inputKind: string, inputName: string, sceneItemEnabled: bool}
+// @returns {inputUuid: string, sceneItemId: int}
 func CreateNewInput(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 
@@ -46,6 +47,23 @@ func CreateNewInput(w http.ResponseWriter, r *http.Request) {
 
 	w.WriteHeader(http.StatusCreated)
 	json.NewEncoder(w).Encode(res)
+}
+
+// Remove an existing input - {sceneName: string}
+// @returns {"message": string}
+func RemoveInput(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	name := r.PathValue("inputName")
+	params := inputs.NewRemoveInputParams().WithInputName(name)
+	_, err := client.Inputs.RemoveInput(params)
+	if err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		json.NewEncoder(w).Encode(map[string]any{"message": err.Error()})
+		return
+	}
+
+	w.WriteHeader(http.StatusOK)
+	json.NewEncoder(w).Encode(map[string]any{"message": "Successfully removed!"})
 }
 
 // Get the input settings

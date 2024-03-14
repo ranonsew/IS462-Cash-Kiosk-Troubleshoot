@@ -47,7 +47,7 @@ func GetCurrentSceneName(w http.ResponseWriter, r *http.Request) {
 // @returns {"message": ""}
 func ChangeCurrentScene(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
-	name := r.PathValue("name")
+	name := r.PathValue("sceneName")
 	params := scenes.NewSetCurrentProgramSceneParams().WithSceneName(name)
 	_, err := client.Scenes.SetCurrentProgramScene(params)
 	if err != nil {
@@ -81,4 +81,21 @@ func CreateNewScene(w http.ResponseWriter, r *http.Request) {
 
 	w.WriteHeader(http.StatusCreated)
 	json.NewEncoder(w).Encode(res)
+}
+
+// remove scene
+// @returns {"message": string}
+func RemoveScene(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	name := r.PathValue("sceneName")
+	params := scenes.NewRemoveSceneParams().WithSceneName(name)
+	_, err := client.Scenes.RemoveScene(params)
+	if err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		json.NewEncoder(w).Encode(map[string]any{"message": err.Error()})
+		return
+	}
+
+	w.WriteHeader(http.StatusOK)
+	json.NewEncoder(w).Encode(map[string]any{"message": "Scene removed successfully."})
 }
