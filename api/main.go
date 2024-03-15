@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"flag"
 	"fmt"
 	"net/http"
@@ -8,6 +9,9 @@ import (
 
 	"github.com/andreykaipov/goobs"
 	"github.com/andreykaipov/goobs/api/events"
+	"github.com/andreykaipov/goobs/api/requests/inputs"
+	"github.com/andreykaipov/goobs/api/requests/sceneitems"
+	"github.com/andreykaipov/goobs/api/requests/scenes"
 )
 
 var (
@@ -55,6 +59,127 @@ func main() {
 	// start Mux Server
 	mux := http.NewServeMux()
 
+	// Display Capture Handler
+	mux.HandleFunc("GET /connect-display-capture", func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "application/json")
+		sceneName := "Unity_SceneCapture"
+		inputName := "Unity_InputCapture"
+		inputKind := "monitor_capture"
+		propertyName := "monitor_id"
+
+		sceneList, err := client.Scenes.GetSceneList()
+		if err != nil {
+			w.WriteHeader(http.StatusInternalServerError)
+			json.NewEncoder(w).Encode(map[string]any{"message": err.Error()})
+			return
+		}
+		fmt.Println("Got scene list")
+
+		hasScene := false
+		for _, scene := range sceneList.Scenes {
+			if scene.SceneName == sceneName {
+				hasScene = true
+				break
+			}
+		}
+
+		if !hasScene {
+			createSceneParams := scenes.NewCreateSceneParams().WithSceneName(sceneName)
+			_, err := client.Scenes.CreateScene(createSceneParams)
+			if err != nil {
+				w.WriteHeader(http.StatusInternalServerError)
+				json.NewEncoder(w).Encode(map[string]any{"message": err.Error()})
+				return
+			}
+			fmt.Println("Created Scene")
+		}
+
+		changeSceneParams := scenes.NewSetCurrentProgramSceneParams().WithSceneName(sceneName)
+		_, err = client.Scenes.SetCurrentProgramScene(changeSceneParams)
+		if err != nil {
+			w.WriteHeader(http.StatusInternalServerError)
+			json.NewEncoder(w).Encode(map[string]any{"message": err.Error()})
+			return
+		}
+
+		sceneItemListParams := sceneitems.NewGetSceneItemListParams().WithSceneName(sceneName)
+		sceneItemList, err := client.SceneItems.GetSceneItemList(sceneItemListParams)
+		if err != nil {
+			w.WriteHeader(http.StatusInternalServerError)
+			json.NewEncoder(w).Encode(map[string]any{"message": err.Error()})
+			return
+		}
+
+		inputNameExists := false
+		inputKindExists := false
+		sceneItemEnabled := false
+		sceneItemId := 0
+		if sceneItemList.SceneItems != nil {
+			for _, sceneItem := range sceneItemList.SceneItems {
+				if sceneItem.SourceName == inputName {
+					inputNameExists = true
+					if sceneItem.InputKind == inputKind {
+						inputKindExists = true
+						sceneItemEnabled = sceneItem.SceneItemEnabled
+						sceneItemId = sceneItem.SceneItemID
+						break
+					}
+					break // break if sourceName is inputName, but incorrect inputKind
+				}
+			}
+		}
+
+		if inputKindExists {
+			if !sceneItemEnabled {
+				setSceneItemEnabledParams := sceneitems.NewSetSceneItemEnabledParams().WithSceneName(sceneName).WithSceneItemId(sceneItemId).WithSceneItemEnabled(true)
+				_, err := client.SceneItems.SetSceneItemEnabled(setSceneItemEnabledParams)
+				if err != nil {
+					w.WriteHeader(http.StatusInternalServerError)
+					json.NewEncoder(w).Encode(map[string]any{"message": err.Error()})
+					return
+				}
+			}
+		} else {
+			if inputNameExists {
+				removeInputParams := inputs.NewRemoveInputParams().WithInputName(inputName)
+				_, err := client.Inputs.RemoveInput(removeInputParams)
+				if err != nil {
+					w.WriteHeader(http.StatusInternalServerError)
+					json.NewEncoder(w).Encode(map[string]any{"message": err.Error()})
+					return
+				}
+			}
+
+			createInputParams := inputs.NewCreateInputParams().WithSceneName(sceneName).WithInputName(inputName).WithInputKind(inputKind).WithSceneItemEnabled(true)
+			_, err := client.Inputs.CreateInput(createInputParams)
+			if err != nil {
+				w.WriteHeader(http.StatusInternalServerError)
+				json.NewEncoder(w).Encode(map[string]any{"message": err.Error()})
+				return
+			}
+		}
+
+		getInputPropertiesListPropertyItemsParams := inputs.NewGetInputPropertiesListPropertyItemsParams().WithInputName(inputName).WithPropertyName(propertyName)
+		inputPropertiesListPropertyItems, err := client.Inputs.GetInputPropertiesListPropertyItems(getInputPropertiesListPropertyItemsParams)
+		if err != nil {
+			w.WriteHeader(http.StatusInternalServerError)
+			json.NewEncoder(w).Encode(map[string]any{"message": err.Error()})
+			return
+		}
+		monitor_id := inputPropertiesListPropertyItems.PropertyItems[0].ItemValue
+
+		setInputSettingsParams := inputs.NewSetInputSettingsParams().WithInputName(inputName).WithInputSettings(map[string]any{propertyName: monitor_id})
+		_, err = client.Inputs.SetInputSettings(setInputSettingsParams)
+		if err != nil {
+			w.WriteHeader(http.StatusInternalServerError)
+			json.NewEncoder(w).Encode(map[string]any{"message": err.Error()})
+			return
+		}
+
+		w.WriteHeader(http.StatusOK)
+		json.NewEncoder(w).Encode(map[string]any{"message": "Connected OBS display capture successfully!"})
+	})
+
 	// add OBS general Handler functions
 	mux.HandleFunc("GET /version/obs", GetVersion)
 
@@ -75,7 +200,7 @@ func main() {
 
 	// add SceneItem Handler functions
 	mux.HandleFunc("GET /sceneItems/{sceneName}", GetSceneItems)
-	mux.HandleFunc("POST /sceneItems/create", CreateNewSceneItem) // {"sceneName": string, "sceneItemEnabled": bool, "sourceName": string}
+	mux.HandleFunc("POST /sceneItems/create", CreateNewSceneItem)      // {"sceneName": string, "sceneItemEnabled": bool, "sourceName": string}
 	mux.HandleFunc("POST /sceneItems/setEnabled", SetSceneItemEnabled) // {"sceneName": string, "sceneItemEnabled": bool, "sceneItemId": int}
 
 	// add RecordingDirectory Handler functions
