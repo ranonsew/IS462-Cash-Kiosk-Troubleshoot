@@ -17,49 +17,33 @@
 
 ### API Routes
 
-GET /version/obs
-- get version of OBS (that we connected to)
-
-GET /scene/all
-- get list of all scenes
-GET /scene/current
-- get current scene
-GET /scene/change/{name}
-- change to scene {name}
-POST /scene/create --json '{"SceneName": ""}'
-- create new scene
-
-GET /input/kinds
-- get list of input kinds (source types)
-GET /input/{kind}
-- get details of specific kind of input
-POST /input/create --json '{"SceneName": "", "InputKind": "", "InputName": "", "SceneItemEnabled": true}'
-- create a new input kind for a scene
-GET /input/settings/{inputName}
-- get input settings for a specific input (source)
-POST /input/settings --json '{"InputName": "", "InputSettings": {"key": ""}}'
-- edit settings of a specific input
-GET /input/{inputName}/properties/{propertyName}
-- get the properties of a specific input (based on a property name)
-
-GET /sceneItems/{name}
-- get the scene items of a scene
-POST /sceneItems/create --json '{"SceneName": "", "SceneItemEnabled": true, "SourceName": ""}'
-- create a new scene item for a scene
+GET /connect-display-capture
+- all in one get function that to connect to OBS Studio and ensure there is a display capture setup with "Unity\_" prefix
+- @returns {"message": string}
 
 GET /directory
 - get recording output directory
-POST /directory --json '{"RecordDirectory": ""}'
+- @returns {"recordDirectory": string}
+
+POST /directory --json '{"recordDirectory": string}'
 - set recording output directory
+- @returns {"message": string}
 
 POST /record/start
 - start recording
+- @returns {"message": string}
+
 POST /record/pause
 - pause recording
+- @returns {"message": string}
+
 POST /record/resume
 - resume recording
+- @returns {"message": string}
+
 POST /record/stop
 - stop recording
+- @returns {"message": string}
 
 ---
 
