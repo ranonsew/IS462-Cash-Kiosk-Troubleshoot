@@ -9,13 +9,9 @@ using UnityEditor;
 using System.Collections.Generic;
 
 
-[Serializable]
-public class Media{
-public List<String> data;
-}
 
 [Serializable]
-public class Media2{
+public class Media{
     public string directory;
 public List<String> files;
 }
@@ -25,16 +21,13 @@ public class Videoplayer : MonoBehaviour
 {
 
 
-        Media2 getFiles(){
+        Media getFiles(){
         HttpWebRequest request = (HttpWebRequest)WebRequest.Create(String.Format("http://127.0.0.1:45713/directory"));
         HttpWebResponse response = (HttpWebResponse)request.GetResponse();
         StreamReader reader = new StreamReader(response.GetResponseStream());
         string jsonResponse = reader.ReadToEnd();
-        Media2 info = JsonUtility.FromJson<Media2>(jsonResponse);
-        Debug.Log("this is the weather info: " + info.files);
-        foreach (var money in info.files) {
-            Debug.Log("item:" + money);
-            }
+        Media info = JsonUtility.FromJson<Media>(jsonResponse);
+        // Debug.Log("this is the weather info: " + info.files);
         Debug.Log("Upload ended ");
         return info;
 
@@ -62,9 +55,9 @@ public class Videoplayer : MonoBehaviour
 
         // Set the video to play. URL supports local absolute or relative paths.
         // Here, using absolute.
-        Media2 files = getFiles();
+        Media files = getFiles();
         // videoPlayer.url = "Assets/5 Minutes of Funny Cats and Dogs 🐱🐕🐈 Funny Videos.mp4";
-        videoPlayer.url = files.directory + "/" + files.files[2];
+        videoPlayer.url = files.directory + "/" + files.files[0];
 
         // Skip the first 100 frames.
         videoPlayer.frame = 100;
