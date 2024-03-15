@@ -12,6 +12,7 @@ import (
 	"github.com/andreykaipov/goobs/api/requests/inputs"
 	"github.com/andreykaipov/goobs/api/requests/sceneitems"
 	"github.com/andreykaipov/goobs/api/requests/scenes"
+	"github.com/andreykaipov/goobs/api/requests/config"
 )
 
 var (
@@ -180,38 +181,94 @@ func main() {
 		json.NewEncoder(w).Encode(map[string]any{"message": "Connected OBS display capture successfully!"})
 	})
 
-	// add OBS general Handler functions
-	mux.HandleFunc("GET /version/obs", GetVersion)
-
-	// add Scene Handler functions
-	mux.HandleFunc("GET /scene/all", GetAllScenes)
-	mux.HandleFunc("GET /scene/current", GetCurrentSceneName)
-	mux.HandleFunc("GET /scene/change/{sceneName}", ChangeCurrentScene)
-	mux.HandleFunc("POST /scene/create", CreateNewScene) // {"sceneName": string}
-	mux.HandleFunc("DELETE /scene/delete/{sceneName}", RemoveScene)
-
-	// add Input Handler functions
-	mux.HandleFunc("GET /input/kinds", GetInputKindList)
-	mux.HandleFunc("POST /input/create", CreateNewInput) // {"sceneName": string, "inputKind": string, "inputName": string, "sceneItemEnabled": bool}
-	mux.HandleFunc("DELETE /input/delete/{inputName}", RemoveInput)
-	mux.HandleFunc("GET /input/settings/{inputName}", GetCurrentInputSettings)
-	mux.HandleFunc("POST /input/settings", SetCurrentInputSettings) // {"inputName": string, "inputSettings": {"key": "value"}}
-	mux.HandleFunc("GET /input/{inputName}/properties/{propertyName}", GetInputPropertiesListPropertyItems)
-
-	// add SceneItem Handler functions
-	mux.HandleFunc("GET /sceneItems/{sceneName}", GetSceneItems)
-	mux.HandleFunc("POST /sceneItems/create", CreateNewSceneItem)      // {"sceneName": string, "sceneItemEnabled": bool, "sourceName": string}
-	mux.HandleFunc("POST /sceneItems/setEnabled", SetSceneItemEnabled) // {"sceneName": string, "sceneItemEnabled": bool, "sceneItemId": int}
-
 	// add RecordingDirectory Handler functions
-	mux.HandleFunc("GET /directory", GetCurrentRecordingDirectory)
-	mux.HandleFunc("POST /directory", SetNewRecordingDirectory) // {"recordDirectory": ""}
-
+	mux.HandleFunc("GET /directory", func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "application/json")
+	
+		res, err := client.Config.GetRecordDirectory()
+		if err != nil {
+			w.WriteHeader(http.StatusInternalServerError)
+			json.NewEncoder(w).Encode(map[string]any{"message": err.Error()})
+			return
+		}
+	
+		w.WriteHeader(http.StatusOK)
+		json.NewEncoder(w).Encode(res)
+	})
+	mux.HandleFunc("POST /directory", func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "application/json")
+	
+		var tmp config.SetRecordDirectoryParams
+		if err := json.NewDecoder(r.Body).Decode(&tmp); err != nil {
+			w.WriteHeader(http.StatusBadRequest)
+			json.NewEncoder(w).Encode(map[string]any{"message": err.Error()})
+			return
+		}
+	
+		_, err := client.Config.SetRecordDirectory(&tmp)
+		if err != nil {
+			w.WriteHeader(http.StatusInternalServerError)
+			json.NewEncoder(w).Encode(map[string]any{"message": err.Error()})
+			return
+		}
+	
+		w.WriteHeader(http.StatusOK)
+		json.NewEncoder(w).Encode(map[string]any{"message": fmt.Sprintf("Recording Output Directory set to: %s", *tmp.RecordDirectory)})
+	}) // {"recordDirectory": ""}
+	
 	// add Record Handler functions
-	mux.HandleFunc("POST /record/start", StartRecording)
-	mux.HandleFunc("POST /record/pause", PauseRecording)
-	mux.HandleFunc("POST /record/resume", ResumeRecording)
-	mux.HandleFunc("POST /record/stop", StopRecording)
+	mux.HandleFunc("POST /record/start", func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "application/json")
+	
+		_, err := client.Record.StartRecord()
+		if err != nil {
+			w.WriteHeader(http.StatusInternalServerError)
+			json.NewEncoder(w).Encode(map[string]any{"message": err.Error()})
+			return
+		}
+	
+		w.WriteHeader(http.StatusOK)
+		json.NewEncoder(w).Encode(map[string]any{"message": "Recording started!"})
+	})
+	mux.HandleFunc("POST /record/pause", func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "application/json")
+	
+		_, err := client.Record.PauseRecord()
+		if err != nil {
+			w.WriteHeader(http.StatusInternalServerError)
+			json.NewEncoder(w).Encode(map[string]any{"message": err.Error()})
+			return
+		}
+	
+		w.WriteHeader(http.StatusOK)
+		json.NewEncoder(w).Encode(map[string]any{"message": "Recording paused!"})
+	})
+	mux.HandleFunc("POST /record/resume", func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "application/json")
+	
+		_, err := client.Record.ResumeRecord()
+		if err != nil {
+			w.WriteHeader(http.StatusInternalServerError)
+			json.NewEncoder(w).Encode(map[string]any{"message": err.Error()})
+			return
+		}
+	
+		w.WriteHeader(http.StatusOK)
+		json.NewEncoder(w).Encode(map[string]any{"message": "Recording resumed!"})
+	})
+	mux.HandleFunc("POST /record/stop", func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "application/json")
+	
+		res, err := client.Record.StopRecord()
+		if err != nil {
+			w.WriteHeader(http.StatusInternalServerError)
+			json.NewEncoder(w).Encode(map[string]any{"message": err.Error()})
+			return
+		}
+	
+		w.WriteHeader(http.StatusOK)
+		json.NewEncoder(w).Encode(map[string]any{"message": fmt.Sprintf("Recording stopped! Saved to: %s", res.OutputPath)})
+	})
 
 	// Run server
 	fmt.Println("HTTP Server started at http://127.0.0.1:45713")
