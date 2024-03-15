@@ -4,15 +4,19 @@ import (
 	"encoding/json"
 	"flag"
 	"fmt"
+	"io/ioutil"
+	"log"
 	"net/http"
 	"os"
+	"reflect"
+	"strings"
 
 	"github.com/andreykaipov/goobs"
 	"github.com/andreykaipov/goobs/api/events"
+	"github.com/andreykaipov/goobs/api/requests/config"
 	"github.com/andreykaipov/goobs/api/requests/inputs"
 	"github.com/andreykaipov/goobs/api/requests/sceneitems"
 	"github.com/andreykaipov/goobs/api/requests/scenes"
-	"github.com/andreykaipov/goobs/api/requests/config"
 )
 
 var (
@@ -25,11 +29,11 @@ var (
 func main() {
 	// flags for passing in values in run.bat after exe/binary compilation
 	flag.StringVar(&obsPort, "port", "45", "OBS WebSocket Port")
-	flag.StringVar(&obsPass, "password", "pwd", "OBS WebSocket Password")
+	flag.StringVar(&obsPass, "password", "hmr6zCE8jsk7IiEK", "OBS WebSocket Password")
 	flag.Parse()
 
 	// connect to OBS WebSocket Server
-	client, err = goobs.New(fmt.Sprintf("localhost:%s", obsPort), goobs.WithPassword(obsPass))
+	client, err = goobs.New(fmt.Sprintf("10.124.31.120:%s", obsPort), goobs.WithPassword(obsPass))
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error connecting to OBS Websocket: %s\n", err.Error())
 		os.Exit(1)
@@ -184,88 +188,105 @@ func main() {
 	// add RecordingDirectory Handler functions
 	mux.HandleFunc("GET /directory", func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
-	
+
 		res, err := client.Config.GetRecordDirectory()
 		if err != nil {
 			w.WriteHeader(http.StatusInternalServerError)
 			json.NewEncoder(w).Encode(map[string]any{"message": err.Error()})
 			return
 		}
-	
+
+		files, err := ioutil.ReadDir(res.RecordDirectory)
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		var s []string
+		for _, file := range files {
+			fmt.Println(file.Name(), file.IsDir())
+			if strings.HasSuffix(file.Name(), ".mov") {
+				s = append(s, file.Name())
+			}
+		}
+		fmt.Printf("%+v\n", res.RecordDirectory)
+
+		fmt.Println(reflect.TypeOf(res))
 		w.WriteHeader(http.StatusOK)
-		json.NewEncoder(w).Encode(res)
+		// json.NewEncoder(w).Encode(res)
+		json.NewEncoder(w).Encode(map[string]any{"directory": res.RecordDirectory,
+			"files": s})
 	})
 	mux.HandleFunc("POST /directory", func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
-	
+
 		var tmp config.SetRecordDirectoryParams
 		if err := json.NewDecoder(r.Body).Decode(&tmp); err != nil {
 			w.WriteHeader(http.StatusBadRequest)
 			json.NewEncoder(w).Encode(map[string]any{"message": err.Error()})
 			return
 		}
-	
+
 		_, err := client.Config.SetRecordDirectory(&tmp)
 		if err != nil {
 			w.WriteHeader(http.StatusInternalServerError)
 			json.NewEncoder(w).Encode(map[string]any{"message": err.Error()})
 			return
 		}
-	
+
 		w.WriteHeader(http.StatusOK)
 		json.NewEncoder(w).Encode(map[string]any{"message": fmt.Sprintf("Recording Output Directory set to: %s", *tmp.RecordDirectory)})
 	}) // {"recordDirectory": ""}
-	
+
 	// add Record Handler functions
 	mux.HandleFunc("POST /record/start", func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
-	
+
 		_, err := client.Record.StartRecord()
 		if err != nil {
 			w.WriteHeader(http.StatusInternalServerError)
 			json.NewEncoder(w).Encode(map[string]any{"message": err.Error()})
 			return
 		}
-	
+
 		w.WriteHeader(http.StatusOK)
 		json.NewEncoder(w).Encode(map[string]any{"message": "Recording started!"})
 	})
 	mux.HandleFunc("POST /record/pause", func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
-	
+
 		_, err := client.Record.PauseRecord()
 		if err != nil {
 			w.WriteHeader(http.StatusInternalServerError)
 			json.NewEncoder(w).Encode(map[string]any{"message": err.Error()})
 			return
 		}
-	
+
 		w.WriteHeader(http.StatusOK)
 		json.NewEncoder(w).Encode(map[string]any{"message": "Recording paused!"})
 	})
 	mux.HandleFunc("POST /record/resume", func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
-	
+
 		_, err := client.Record.ResumeRecord()
 		if err != nil {
 			w.WriteHeader(http.StatusInternalServerError)
 			json.NewEncoder(w).Encode(map[string]any{"message": err.Error()})
 			return
 		}
-	
+
 		w.WriteHeader(http.StatusOK)
 		json.NewEncoder(w).Encode(map[string]any{"message": "Recording resumed!"})
 	})
 	mux.HandleFunc("POST /record/stop", func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
-	
+
 		res, err := client.Record.StopRecord()
 		if err != nil {
 			w.WriteHeader(http.StatusInternalServerError)
 			json.NewEncoder(w).Encode(map[string]any{"message": err.Error()})
 			return
 		}
-	
+
 		w.WriteHeader(http.StatusOK)
 		json.NewEncoder(w).Encode(map[string]any{"message": fmt.Sprintf("Recording stopped! Saved to: %s", res.OutputPath)})
 	})

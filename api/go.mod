@@ -1,6 +1,6 @@
 module github.com/ranonsew/second-go/ScriptingOBS
 
-go 1.22.0
+go 1.22
 
 require github.com/andreykaipov/goobs v1.2.3
 
