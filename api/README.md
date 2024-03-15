@@ -63,3 +63,11 @@ POST /record/stop
 ### .bat
 
 - ideally, to test like user, open file explorer and double click on run.bat
+
+### Run instructions without having .bat file
+1. ensure OBS is open
+  a. go into "OBS Studio > Tools > WebSocket Server Settings", and Enable WebSocket Server (checkbox) and apply settings
+  b. take note of the server port (<port>)
+  c. generate/type a server password, then copy (<pwd>)
+2. in the cmd:
+  a. go run . -port="<port>" -password="<pwd>"

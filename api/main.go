@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"flag"
 	"fmt"
-	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
@@ -196,7 +195,7 @@ func main() {
 			return
 		}
 
-		files, err := ioutil.ReadDir(res.RecordDirectory)
+		files, err := os.ReadDir(res.RecordDirectory)
 		if err != nil {
 			log.Fatal(err)
 		}
