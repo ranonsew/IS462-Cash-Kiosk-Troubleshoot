@@ -29,19 +29,19 @@ POST /directory --json '{"recordDirectory": string}'
 - set recording output directory
 - @returns {"message": string}
 
-POST /record/start
+GET /record/start
 - start recording
 - @returns {"message": string}
 
-POST /record/pause
+GET /record/pause
 - pause recording
 - @returns {"message": string}
 
-POST /record/resume
+GET /record/resume
 - resume recording
 - @returns {"message": string}
 
-POST /record/stop
+GET /record/stop
 - stop recording
 - @returns {"message": string}
 

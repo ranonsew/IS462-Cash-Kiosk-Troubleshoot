@@ -32,7 +32,7 @@ func main() {
 	flag.Parse()
 
 	// connect to OBS WebSocket Server
-	client, err = goobs.New(fmt.Sprintf("10.124.31.120:%s", obsPort), goobs.WithPassword(obsPass))
+	client, err = goobs.New(fmt.Sprintf("localhost:%s", obsPort), goobs.WithPassword(obsPass))
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error connecting to OBS Websocket: %s\n", err.Error())
 		os.Exit(1)
@@ -237,7 +237,7 @@ func main() {
 	}) // {"recordDirectory": ""}
 
 	// add Record Handler functions
-	mux.HandleFunc("POST /record/start", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("GET /record/start", func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
 
 		_, err := client.Record.StartRecord()
@@ -250,7 +250,7 @@ func main() {
 		w.WriteHeader(http.StatusOK)
 		json.NewEncoder(w).Encode(map[string]any{"message": "Recording started!"})
 	})
-	mux.HandleFunc("POST /record/pause", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("GET /record/pause", func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
 
 		_, err := client.Record.PauseRecord()
@@ -263,7 +263,7 @@ func main() {
 		w.WriteHeader(http.StatusOK)
 		json.NewEncoder(w).Encode(map[string]any{"message": "Recording paused!"})
 	})
-	mux.HandleFunc("POST /record/resume", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("GET /record/resume", func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
 
 		_, err := client.Record.ResumeRecord()
@@ -276,7 +276,7 @@ func main() {
 		w.WriteHeader(http.StatusOK)
 		json.NewEncoder(w).Encode(map[string]any{"message": "Recording resumed!"})
 	})
-	mux.HandleFunc("POST /record/stop", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("GET /record/stop", func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
 
 		res, err := client.Record.StopRecord()
