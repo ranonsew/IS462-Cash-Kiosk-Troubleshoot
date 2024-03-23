@@ -14,6 +14,7 @@ import (
 	"github.com/andreykaipov/goobs/api/events"
 	"github.com/andreykaipov/goobs/api/requests/config"
 	"github.com/andreykaipov/goobs/api/requests/inputs"
+	"github.com/andreykaipov/goobs/api/requests/outputs"
 	"github.com/andreykaipov/goobs/api/requests/sceneitems"
 	"github.com/andreykaipov/goobs/api/requests/scenes"
 )
@@ -203,7 +204,7 @@ func main() {
 		var s []string
 		for _, file := range files {
 			fmt.Println(file.Name(), file.IsDir())
-			if strings.HasSuffix(file.Name(), ".mov") {
+			if strings.HasSuffix(file.Name(), ".mkv") { // .mkv is the default obs file extension output type
 				s = append(s, file.Name())
 			}
 		}
@@ -288,6 +289,38 @@ func main() {
 
 		w.WriteHeader(http.StatusOK)
 		json.NewEncoder(w).Encode(map[string]any{"message": fmt.Sprintf("Recording stopped! Saved to: %s", res.OutputPath)})
+	})
+
+	// Output settings Handler Functions
+	mux.HandleFunc("GET /output/all", func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "application/json")
+
+		res, err := client.Outputs.GetOutputList()
+		if err != nil {
+			w.WriteHeader(http.StatusInternalServerError)
+			json.NewEncoder(w).Encode(map[string]any{"message": err.Error()})
+			return
+		}
+
+		w.WriteHeader(http.StatusOK)
+		json.NewEncoder(w).Encode(res)
+	})
+	mux.HandleFunc("GET /output/settings/{outputName}", func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "application/json")
+		outputName := r.PathValue("outputName")
+		params := outputs.NewGetOutputSettingsParams().WithOutputName(outputName)
+		res, err := client.Outputs.GetOutputSettings(params)
+		if err != nil {
+			w.WriteHeader(http.StatusInternalServerError)
+			json.NewEncoder(w).Encode(map[string]any{"message": err.Error()})
+			return
+		}
+
+		w.WriteHeader(http.StatusOK)
+		json.NewEncoder(w).Encode(res)
+	})
+	mux.HandleFunc("POST /output/settings", func(w http.ResponseWriter, r *http.Request) {
+
 	})
 
 	// Run server
