@@ -11,13 +11,16 @@ public class MaterialManager : MonoBehaviour
     private int index = 0;
     public Rigidbody rigidbody_kiosk_front_door;
     public Rigidbody rigidbody_notes_front_door;
+
+    public Rigidbody rigidbody_notes_internal_door;
+
     void Start()
     {
         // // Set color as Random here upon clicking it will be blue as a way of fixing the lights:
         int color = Random.Range(0, 2);
         index = color;
         Debug.Log("color"+ index.ToString());
-        // ballObject.GetComponent<MeshRenderer>().material = materials[index];
+
     }
 
     // Update is called once per frame
@@ -27,20 +30,26 @@ public class MaterialManager : MonoBehaviour
     }
     public void changeMaterial(){
         Debug.Log("Change material triggered");
-    //  if(index + 1 < materials.Length) {
-    //     index += 1;
-    //  }else{ index = 0; }; //Checking the material is in the list
-    index = 1;
-    ballObject.GetComponent<MeshRenderer>().material = materials[1];
+        index = 1;
+        ballObject.GetComponent<MeshRenderer>().material = materials[1];
 }
 
     public void openKioskDoor(){
-         Debug.Log("openKioskDoor adding torque");
+        Debug.Log("openKioskDoor adding torque");
         rigidbody_kiosk_front_door.AddTorque(Vector3.up * 1000);
     }
 
     public void openNotesDoor(){
-         Debug.Log("openNotesDoor adding torque");
+        Debug.Log("openNotesDoor adding torque");
         rigidbody_notes_front_door.AddTorque(Vector3.up * 1000);
     }
+
+    public void openNotesInternalDoor(){
+        Debug.Log("openNotesInternalDoor adding torque");
+        rigidbody_notes_internal_door.AddTorque(Vector3.up * 1000);
+    }
+
+
+
+
 }
