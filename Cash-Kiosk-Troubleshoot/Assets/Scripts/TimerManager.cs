@@ -11,7 +11,7 @@ public class TimerManager : MonoBehaviour
     public TMP_Text messageText;
     public bool WinnerTriggered = false;
     // public GameObject winnieNPC;
-    // public Animator animator;
+    // private Animator animator;
  
     // Start is called before the first frame update
     void Start()
@@ -39,9 +39,9 @@ public class TimerManager : MonoBehaviour
 
     void TriggerWinner(){
         Debug.Log("WinnieTriggered");
-        // // animator = GetComponent<Animator>(); 
+        // animator = GetComponent<Animator>(); 
         // winnieNPC = GetComponent<GameObject>(); 
-        // // animator = winnieNPC.GetComponent<Animator>();
+        // animator = winnieNPC.GetComponent<Animator>();
         // winnieNPC.GetComponent<Animator>().Play("Defeated");
         // // WinnieNPCController.showDefeated();
     }

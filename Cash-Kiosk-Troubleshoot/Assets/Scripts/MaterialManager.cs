@@ -9,6 +9,8 @@ public class MaterialManager : MonoBehaviour
     public Material[] materials = new Material[2]; //for 3 materials
     // Start is called before the first frame update
     private int index = 0;
+    public Rigidbody rigidbody_kiosk_front_door;
+    public Rigidbody rigidbody_notes_front_door;
     void Start()
     {
         // // Set color as Random here upon clicking it will be blue as a way of fixing the lights:
@@ -31,4 +33,14 @@ public class MaterialManager : MonoBehaviour
     index = 1;
     ballObject.GetComponent<MeshRenderer>().material = materials[1];
 }
+
+    public void openKioskDoor(){
+         Debug.Log("openKioskDoor adding torque");
+        rigidbody_kiosk_front_door.AddTorque(Vector3.up * 1000);
+    }
+
+    public void openNotesDoor(){
+         Debug.Log("openNotesDoor adding torque");
+        rigidbody_notes_front_door.AddTorque(Vector3.up * 1000);
+    }
 }
