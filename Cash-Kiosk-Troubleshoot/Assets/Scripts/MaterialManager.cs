@@ -13,6 +13,7 @@ public class MaterialManager : MonoBehaviour
     public Rigidbody rigidbody_notes_front_door;
 
     public Rigidbody rigidbody_notes_internal_door;
+    public TMPro.TMP_Text messageText;
 
     void Start()
     {
@@ -32,6 +33,7 @@ public class MaterialManager : MonoBehaviour
         Debug.Log("Change material triggered");
         index = 1;
         ballObject.GetComponent<MeshRenderer>().material = materials[1];
+        checkSteps();
 }
 
     public void openKioskDoor(){
@@ -47,6 +49,11 @@ public class MaterialManager : MonoBehaviour
     public void openNotesInternalDoor(){
         Debug.Log("openNotesInternalDoor adding torque");
         rigidbody_notes_internal_door.AddTorque(Vector3.up * 1000);
+    }
+
+    public void checkSteps(){
+        messageText.SetText("No errors");
+        messageText.color = Color.green;
     }
 
 

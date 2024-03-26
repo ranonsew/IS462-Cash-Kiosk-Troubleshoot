@@ -11,7 +11,7 @@ public class TimerManager : MonoBehaviour
     public TMP_Text messageText;
     public bool WinnerTriggered = false;
     public GameObject npc;
-    public Transform blueballLocation;
+    public Transform npcSpawnLocation;
 
     // Start is called before the first frame update
     void Start()
@@ -39,6 +39,6 @@ public class TimerManager : MonoBehaviour
 
     void TriggerWinner(){
         Debug.Log("WinnieTriggered");
-        GameObject b = Instantiate(npc, blueballLocation.position, blueballLocation.rotation);
+        GameObject b = Instantiate(npc, npcSpawnLocation.position, npcSpawnLocation.rotation);
     }
 }
