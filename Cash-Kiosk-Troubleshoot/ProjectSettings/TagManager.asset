@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - door
+  - Notes
+  - RejectedNote
   layers:
   - Default
   - TransparentFX
@@ -16,8 +18,8 @@ TagManager:
   - 
   - XR Teleport
   - Post-Processing
-  - 
-  - 
+  - Grab
+  - Player
   - 
   - 
   - 
