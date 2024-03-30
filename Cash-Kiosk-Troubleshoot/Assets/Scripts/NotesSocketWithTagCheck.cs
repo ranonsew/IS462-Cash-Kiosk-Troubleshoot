@@ -33,14 +33,33 @@ public class NotesSocketWithTagCheck : XRSocketInteractor
         return tagMatch;
     }
 
-    public void DestroyPlacedObject(SelectEnterEventArgs args) {
-        XRBaseInteractable XRBaseInteractable = args.interactableObject as XRBaseInteractable;
-        originalPosition = XRBaseInteractable.gameObject.transform.position;
-        Destroy(XRBaseInteractable.gameObject);
+    public void DestroyPlacedObject(SelectEnterEventArgs args)
+    {
+        // Start the coroutine for delaying
+        StartCoroutine(DelayAndDestroy(args.interactableObject as XRBaseInteractable));
+    }
+
+    private IEnumerator DelayAndDestroy(XRBaseInteractable objToDestroyXRBaseInteractable)
+    {
+        yield return new WaitForSeconds(0.2f);
+
+        // Now continue with the destruction process
+        GameObject objToDestroy = objToDestroyXRBaseInteractable.gameObject;
+        originalPosition = objToDestroy.transform.position;
+        Destroy(objToDestroyXRBaseInteractable.gameObject);
+        Debug.Log("destry");
     }
 
     public void CreateObject(SelectEnterEventArgs args)
     {
+        // Start the coroutine for delaying
+        StartCoroutine(DelayAndCreate(args));
+    }
+
+    public IEnumerator DelayAndCreate(SelectEnterEventArgs args)
+    {
+        yield return new WaitForSeconds(0.25f);
+        Debug.Log("createobj");
         GameObject stackOfNotes = Instantiate(stackOfNotesPrefab, originalPosition, Quaternion.identity);
 
         // Remove XR Grab Interactable component from the instantiated object
@@ -65,10 +84,10 @@ public class NotesSocketWithTagCheck : XRSocketInteractor
         }
 
         // Start moving notes
-        StartCoroutine(MoveNotes());
+        StartCoroutine(MoveNotes(stackOfNotes));
     }
 
-    IEnumerator MoveNotes()
+    IEnumerator MoveNotes(GameObject stackOfNotes)
     {
         // Iterate through each note in the stack
         for (int i = notes.Length - 1; i >= 0; i--)
@@ -86,5 +105,7 @@ public class NotesSocketWithTagCheck : XRSocketInteractor
             // Delay before moving the next note
             yield return new WaitForSeconds(noteDelay);
         }
+
+        Destroy(stackOfNotes);
     }
 }
