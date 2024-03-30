@@ -12,6 +12,7 @@ public class NotesSocketWithTagCheck : XRSocketInteractor
 
     private Vector3 originalPosition;
     private GameObject[] notes;
+    private string objectTag;
 
     public override bool CanHover(IXRHoverInteractable interactable) {
         return base.CanHover(interactable) && MatchUsingTag(interactable);
@@ -46,6 +47,7 @@ public class NotesSocketWithTagCheck : XRSocketInteractor
         // Now continue with the destruction process
         GameObject objToDestroy = objToDestroyXRBaseInteractable.gameObject;
         originalPosition = objToDestroy.transform.position;
+        objectTag = objToDestroy.transform.tag;
         Destroy(objToDestroyXRBaseInteractable.gameObject);
         Debug.Log("destry");
     }
@@ -59,35 +61,65 @@ public class NotesSocketWithTagCheck : XRSocketInteractor
     public IEnumerator DelayAndCreate(SelectEnterEventArgs args)
     {
         yield return new WaitForSeconds(0.25f);
-        Debug.Log("createobj");
-        GameObject stackOfNotes = Instantiate(stackOfNotesPrefab, originalPosition, Quaternion.identity);
-
-        // Remove XR Grab Interactable component from the instantiated object
-        XRGrabInteractable grabInteractable = stackOfNotes.GetComponent<XRGrabInteractable>();
-        if (grabInteractable != null)
+        if (objectTag == "Notes")
         {
-            Destroy(grabInteractable);
-        }
+            GameObject stackOfNotes = Instantiate(stackOfNotesPrefab, originalPosition, Quaternion.identity);
 
-        // disable physics on the instantiated object if it's not needed
-        Rigidbody rb = stackOfNotes.GetComponent<Rigidbody>();
-        if (rb != null)
+            // Remove XR Grab Interactable component from the instantiated object
+            XRGrabInteractable grabInteractable = stackOfNotes.GetComponent<XRGrabInteractable>();
+            if (grabInteractable != null)
+            {
+                Destroy(grabInteractable);
+            }
+
+            // disable physics on the instantiated object if it's not needed
+            Rigidbody rb = stackOfNotes.GetComponent<Rigidbody>();
+            if (rb != null)
+            {
+                rb.isKinematic = true;
+            }
+
+            // Get all the notes in the stack
+            notes = new GameObject[stackOfNotes.transform.childCount];
+            for (int i = 0; i < stackOfNotes.transform.childCount; i++)
+            {
+                notes[i] = stackOfNotes.transform.GetChild(i).gameObject;
+            }
+
+            // Start moving notes
+            StartCoroutine(MoveStackOfNotes(stackOfNotes));
+        }
+        else if (objectTag == "RejectedNote")
         {
-            rb.isKinematic = true;
-        }
+            //GameObject rejectdNote = Instantiate(rejectedNotePrefab, originalPosition, Quaternion.identity);
 
-        // Get all the notes in the stack
-        notes = new GameObject[stackOfNotes.transform.childCount];
-        for (int i = 0; i < stackOfNotes.transform.childCount; i++)
-        {
-            notes[i] = stackOfNotes.transform.GetChild(i).gameObject;
-        }
+            //// Remove XR Grab Interactable component from the instantiated object
+            //XRGrabInteractable grabInteractable = stackOfNotes.GetComponent<XRGrabInteractable>();
+            //if (grabInteractable != null)
+            //{
+            //    Destroy(grabInteractable);
+            //}
 
-        // Start moving notes
-        StartCoroutine(MoveNotes(stackOfNotes));
+            //// disable physics on the instantiated object if it's not needed
+            //Rigidbody rb = stackOfNotes.GetComponent<Rigidbody>();
+            //if (rb != null)
+            //{
+            //    rb.isKinematic = true;
+            //}
+
+            //// Get all the notes in the stack
+            //notes = new GameObject[stackOfNotes.transform.childCount];
+            //for (int i = 0; i < stackOfNotes.transform.childCount; i++)
+            //{
+            //    notes[i] = stackOfNotes.transform.GetChild(i).gameObject;
+            //}
+
+            //// Start moving notes
+            //StartCoroutine(MoveStackOfNotes(stackOfNotes));
+        }
     }
 
-    IEnumerator MoveNotes(GameObject stackOfNotes)
+    IEnumerator MoveStackOfNotes(GameObject stackOfNotes)
     {
         // Iterate through each note in the stack
         for (int i = notes.Length - 1; i >= 0; i--)
