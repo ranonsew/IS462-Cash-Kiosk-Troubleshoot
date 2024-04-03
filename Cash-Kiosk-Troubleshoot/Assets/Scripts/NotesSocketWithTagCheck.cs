@@ -7,6 +7,8 @@ public class NotesSocketWithTagCheck : XRSocketInteractor
 {
     public string[] targetTag;
     public GameObject stackOfNotesPrefab;
+    public GameObject rejectedNotePrefab;
+    public Transform rejectionPosition;
     public float noteMoveSpeed = 10f;
     public float noteDelay = 0.1f;
 
@@ -14,15 +16,18 @@ public class NotesSocketWithTagCheck : XRSocketInteractor
     private GameObject[] notes;
     private string objectTag;
 
-    public override bool CanHover(IXRHoverInteractable interactable) {
+    public override bool CanHover(IXRHoverInteractable interactable)
+    {
         return base.CanHover(interactable) && MatchUsingTag(interactable);
     }
 
-    public override bool CanSelect(IXRSelectInteractable interactable) {
+    public override bool CanSelect(IXRSelectInteractable interactable)
+    {
         return base.CanSelect(interactable) && MatchUsingTag(interactable);
     }
 
-    private bool MatchUsingTag(IXRInteractable interactable) {
+    private bool MatchUsingTag(IXRInteractable interactable)
+    {
         XRBaseInteractable XRBaseInteractable = interactable as XRBaseInteractable;
         if (XRBaseInteractable == null) return false;
 
@@ -49,7 +54,6 @@ public class NotesSocketWithTagCheck : XRSocketInteractor
         originalPosition = objToDestroy.transform.position;
         objectTag = objToDestroy.transform.tag;
         Destroy(objToDestroyXRBaseInteractable.gameObject);
-        Debug.Log("destry");
     }
 
     public void CreateObject(SelectEnterEventArgs args)
@@ -91,31 +95,31 @@ public class NotesSocketWithTagCheck : XRSocketInteractor
         }
         else if (objectTag == "RejectedNote")
         {
-            //GameObject rejectdNote = Instantiate(rejectedNotePrefab, originalPosition, Quaternion.identity);
+            GameObject rejectedNote = Instantiate(rejectedNotePrefab, originalPosition, Quaternion.identity);
 
-            //// Remove XR Grab Interactable component from the instantiated object
-            //XRGrabInteractable grabInteractable = stackOfNotes.GetComponent<XRGrabInteractable>();
-            //if (grabInteractable != null)
-            //{
-            //    Destroy(grabInteractable);
-            //}
+            // Remove XR Grab Interactable component from the instantiated object
+            XRGrabInteractable grabInteractable = rejectedNote.GetComponent<XRGrabInteractable>();
+            if (grabInteractable != null)
+            {
+                Destroy(grabInteractable);
+            }
 
-            //// disable physics on the instantiated object if it's not needed
-            //Rigidbody rb = stackOfNotes.GetComponent<Rigidbody>();
-            //if (rb != null)
-            //{
-            //    rb.isKinematic = true;
-            //}
+            // disable physics on the instantiated object if it's not needed
+            Rigidbody rb = rejectedNote.GetComponent<Rigidbody>();
+            if (rb != null)
+            {
+                rb.isKinematic = true;
+            }
 
-            //// Get all the notes in the stack
-            //notes = new GameObject[stackOfNotes.transform.childCount];
-            //for (int i = 0; i < stackOfNotes.transform.childCount; i++)
-            //{
-            //    notes[i] = stackOfNotes.transform.GetChild(i).gameObject;
-            //}
+            // Get all the notes in the stack
+            notes = new GameObject[rejectedNote.transform.childCount];
+            for (int i = 0; i < rejectedNote.transform.childCount; i++)
+            {
+                notes[i] = rejectedNote.transform.GetChild(i).gameObject;
+            }
 
-            //// Start moving notes
-            //StartCoroutine(MoveStackOfNotes(stackOfNotes));
+            // Start moving notes
+            StartCoroutine(MoveRejectedNote(rejectedNote));
         }
     }
 
@@ -134,10 +138,49 @@ public class NotesSocketWithTagCheck : XRSocketInteractor
                 yield return null;
             }
 
+            RejectNote(0.1f);
+
             // Delay before moving the next note
             yield return new WaitForSeconds(noteDelay);
         }
 
         Destroy(stackOfNotes);
+    }
+
+    IEnumerator MoveRejectedNote(GameObject rejectedNote)
+    {
+        // Calculate the destination x position
+        float destinationX = rejectedNote.transform.position.x - 0.5f; // Adjust the offset as needed
+
+        // Move the note towards the destination x position
+        while (rejectedNote.transform.position.x > destinationX)
+        {
+            rejectedNote.transform.Translate(Vector3.left * noteMoveSpeed * Time.deltaTime);
+            yield return null;
+        }
+
+        RejectNote(1f);
+
+        // Delay before moving the next note
+        yield return new WaitForSeconds(noteDelay);
+
+
+        Destroy(rejectedNote);
+    }
+
+    private void RejectNote(float chance)
+    {
+        Debug.Log("rejection note spawn");
+        if (Random.value <= chance)
+        {
+            GameObject rejectedNote = Instantiate(rejectedNotePrefab, rejectionPosition.position, rejectionPosition.rotation);
+
+            // Disable Rigidbody initially so that it doesn't fall
+            Rigidbody rigidbody = rejectedNote.GetComponent<Rigidbody>();
+            if (rigidbody != null)
+            {
+                rigidbody.isKinematic = true;
+            }
+        }
     }
 }
