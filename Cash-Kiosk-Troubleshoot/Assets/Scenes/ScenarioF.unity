@@ -11663,7 +11663,7 @@ PrefabInstance:
       addedObject: {fileID: 8264423447417119919}
     - targetCorrespondingSourceObject: {fileID: 4474692805382379000, guid: 6c9957b64c957aa4580a2798a6115796, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8264423447417119924}
+      addedObject: {fileID: 8264423447417119925}
     - targetCorrespondingSourceObject: {fileID: -2498397521261905916, guid: 6c9957b64c957aa4580a2798a6115796, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1712785658}
@@ -51499,27 +51499,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 124
   m_CollisionDetection: 0
---- !u!65 &8264423447417119924
-BoxCollider:
+--- !u!138 &8264423447417119925
+FixedJoint:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 826229699}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.0052364017, y: 0.0057550957, z: 0.0059979716}
-  m_Center: {x: -0.006381798, y: -0.002877548, z: -0.006427954}
+  m_ConnectedBody: {fileID: 2759851083049079424}
+  m_ConnectedArticulationBody: {fileID: 0}
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_EnableCollision: 0
+  m_EnablePreprocessing: 1
+  m_MassScale: 1
+  m_ConnectedMassScale: 1
 --- !u!23 &8265611798988079391
 MeshRenderer:
   m_ObjectHideFlags: 0
