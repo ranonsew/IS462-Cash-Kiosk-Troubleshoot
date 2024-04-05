@@ -8,7 +8,7 @@ using TMPro;
 
 public class PointsManager : MonoBehaviour
 {
-    // completion - percentage, number of errors, time factor, overall take into account both
+    // completion - percentage, number of errors, time factor, overall take into account all factors
     // sceneC{
     //     percentCompletion: 20,
     //     numErrors: 20,

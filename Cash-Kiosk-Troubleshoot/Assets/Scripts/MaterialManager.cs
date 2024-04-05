@@ -15,8 +15,12 @@ public class MaterialManager : MonoBehaviour
     public Rigidbody rigidbody_notes_internal_door;
     public TMPro.TMP_Text messageText;
 
-    public int totalStepsSceneC = 3;
+    public int totalStepsSceneC = 6;
     public int currentStepsSceneC;
+    public bool internalDoorOpen = false;
+    public bool notesDoorOpen = false;
+    public bool kioskDoorOpen = false;
+    
 
     void Start()
     {
@@ -40,10 +44,38 @@ public class MaterialManager : MonoBehaviour
         checkSteps();
 }
 
+
+    public void operateKioskDoor(){
+        if (kioskDoorOpen){
+            closeKioskDoor();
+            kioskDoorOpen = !kioskDoorOpen;
+        }else{
+            openKioskDoor();
+            kioskDoorOpen = !kioskDoorOpen;
+        }
+    }
+
+
     public void openKioskDoor(){
         Debug.Log("openKioskDoor adding torque");
         rigidbody_kiosk_front_door.AddTorque(Vector3.up * 1000);
         currentStepsSceneC += 1;
+    }
+
+    public void closeKioskDoor(){
+        Debug.Log("closeKioskDoor adding torque");
+        rigidbody_kiosk_front_door.AddTorque(Vector3.down * 1000);
+        currentStepsSceneC += 1;
+    }
+
+    public void operateNotesDoor(){
+        if (notesDoorOpen){
+            closeNotesDoor();
+            notesDoorOpen = !notesDoorOpen;
+        }else{
+            openNotesDoor();
+            notesDoorOpen = !notesDoorOpen;
+        }
     }
 
     public void openNotesDoor(){
@@ -52,9 +84,33 @@ public class MaterialManager : MonoBehaviour
         currentStepsSceneC += 1;
     }
 
+    public void closeNotesDoor(){
+        Debug.Log("closeNotesDoor adding torque");
+        rigidbody_notes_front_door.AddTorque(Vector3.down * 1000);
+        currentStepsSceneC += 1;
+    }
+
+    public void operateNotesInternalDoor(){
+        if (internalDoorOpen){
+            closeNotesInternalDoor();
+            internalDoorOpen = !internalDoorOpen;
+        }else{
+            openNotesInternalDoor();
+            internalDoorOpen = !internalDoorOpen;
+        }
+    }
+
+
     public void openNotesInternalDoor(){
         Debug.Log("openNotesInternalDoor adding torque");
         rigidbody_notes_internal_door.AddTorque(Vector3.up * 1000);
+        currentStepsSceneC += 1;
+        
+    }
+
+    public void closeNotesInternalDoor(){
+        Debug.Log("closeNotesInternalDoor adding torque");
+        rigidbody_notes_internal_door.AddTorque(Vector3.down * 1000);
         currentStepsSceneC += 1;
     }
 
@@ -63,6 +119,8 @@ public class MaterialManager : MonoBehaviour
         messageText.color = Color.green;
         PointsManager.instance.updateScoreCompletion("SceneC", (currentStepsSceneC/totalStepsSceneC));
         Debug.Log("completionRate: " + PointsManager.instance.points[0][0]);
+
+        
         
     }
 

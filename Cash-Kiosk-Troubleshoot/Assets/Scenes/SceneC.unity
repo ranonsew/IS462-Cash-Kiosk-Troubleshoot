@@ -5073,7 +5073,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 818854675}
         m_TargetAssemblyTypeName: MaterialManager, Assembly-CSharp
-        m_MethodName: openNotesDoor
+        m_MethodName: operateNotesDoor
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5929,6 +5929,9 @@ MonoBehaviour:
   messageText: {fileID: 1616125613}
   totalStepsSceneC: 3
   currentStepsSceneC: 0
+  internalDoorOpen: 0
+  notesDoorOpen: 0
+  kioskDoorOpen: 0
 --- !u!114 &818854676
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9533,7 +9536,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 818854675}
         m_TargetAssemblyTypeName: MaterialManager, Assembly-CSharp
-        m_MethodName: openKioskDoor
+        m_MethodName: operateKioskDoor
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -12719,6 +12722,9 @@ MonoBehaviour:
   messageText: {fileID: 0}
   totalStepsSceneC: 3
   currentStepsSceneC: 0
+  internalDoorOpen: 0
+  notesDoorOpen: 0
+  kioskDoorOpen: 0
 --- !u!1 &1901289903
 GameObject:
   m_ObjectHideFlags: 0
@@ -14369,7 +14375,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 818854675}
         m_TargetAssemblyTypeName: MaterialManager, Assembly-CSharp
-        m_MethodName: openNotesInternalDoor
+        m_MethodName: operateNotesInternalDoor
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
