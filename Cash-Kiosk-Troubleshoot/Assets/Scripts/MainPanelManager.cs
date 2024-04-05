@@ -12,7 +12,7 @@ public class MainPanelManager : MonoBehaviour
     public TextMeshProUGUI dateText;
     public TextMeshProUGUI timeText;
 
-    //public RebootMachine rebootManager;
+    public ChangeLightColour changeLightColour;
 
     public ScreenManager screenManager;
     public GameObject nextScreenPanel;
@@ -63,7 +63,7 @@ public class MainPanelManager : MonoBehaviour
         else if (rebootActive & text.text == "Yes")
         {
             Debug.Log("cycling machine time");
-            //rebootManager.rebooting();
+            changeLightColour.blueToYellow(true, true);
         }
     }
 

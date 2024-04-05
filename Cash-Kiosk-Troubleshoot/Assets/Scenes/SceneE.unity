@@ -2537,6 +2537,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dateText: {fileID: 1837146975}
   timeText: {fileID: 573165356}
+  changeLightColour: {fileID: 0}
   screenManager: {fileID: 2034941986}
   nextScreenPanel: {fileID: 0}
   rebootPanel: {fileID: 267318938}
@@ -7189,34 +7190,13 @@ GameObject:
   - component: {fileID: 743872391}
   - component: {fileID: 743872390}
   - component: {fileID: 743872389}
-  - component: {fileID: 743872388}
   m_Layer: 0
-  m_Name: notes_working_lights
+  m_Name: Notes_light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &743872388
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 743872387}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fe9415161c0a427a84ee6e3818bb4ad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ballObject: {fileID: 743872387}
-  materials:
-  - {fileID: 2100000, guid: b17ca54439366044aa1c7b8e1b912e33, type: 2}
-  - {fileID: 2100000, guid: 802a17d968d674fd09300899aac0a157, type: 2}
-  rigidbody_kiosk_front_door: {fileID: 1295793420}
-  rigidbody_notes_front_door: {fileID: 1828813010}
-  rigidbody_notes_internal_door: {fileID: 2092777488}
-  messageText: {fileID: 1616125613}
 --- !u!114 &743872389
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7268,7 +7248,7 @@ MonoBehaviour:
   m_SelectEntered:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 743872388}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: MaterialManager, Assembly-CSharp
         m_MethodName: changeMaterial
         m_Mode: 1
@@ -7410,12 +7390,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 743872387}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -2.48171, y: 1.72211, z: 2.2343}
-  m_LocalScale: {x: 0.16166416, y: 0.008400956, z: -0.02160256}
+  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -0.004490137, y: 0, z: -0.45360017}
+  m_LocalScale: {x: 0.16166414, y: 0.008400956, z: -0.021602558}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 2065063423}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &758274332
 GameObject:
@@ -7845,7 +7825,7 @@ GameObject:
   - component: {fileID: 818854676}
   - component: {fileID: 818854675}
   m_Layer: 0
-  m_Name: coins_working_lights
+  m_Name: Coins_light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7871,6 +7851,12 @@ MonoBehaviour:
   rigidbody_notes_front_door: {fileID: 1828813010}
   rigidbody_notes_internal_door: {fileID: 2092777488}
   messageText: {fileID: 1616125613}
+  totalStepsSceneC: 7
+  currentStepsSceneC: 0
+  internalDoorOpen: 0
+  notesDoorOpen: 0
+  kioskDoorOpen: 0
+  p: {fileID: 0}
 --- !u!114 &818854676
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8064,12 +8050,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 818854674}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -2.48171, y: 1.72211, z: 2.6879}
-  m_LocalScale: {x: 0.16166416, y: 0.008400956, z: -0.02160256}
+  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.16166414, y: 0.008400956, z: -0.021602558}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 2065063423}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &820213054
 GameObject:
@@ -8540,6 +8526,9 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6c9957b64c957aa4580a2798a6115796, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2065063423}
     - targetCorrespondingSourceObject: {fileID: -3523636241256661161, guid: 6c9957b64c957aa4580a2798a6115796, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1369146063}
@@ -12214,6 +12203,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dateText: {fileID: 1513334240}
   timeText: {fileID: 1376405622}
+  changeLightColour: {fileID: 0}
   screenManager: {fileID: 2034941986}
   nextScreenPanel: {fileID: 276188032}
   rebootPanel: {fileID: 267318938}
@@ -16085,6 +16075,17 @@ MonoBehaviour:
   rigidbody_notes_front_door: {fileID: 0}
   rigidbody_notes_internal_door: {fileID: 0}
   messageText: {fileID: 0}
+  totalStepsSceneC: 7
+  currentStepsSceneC: 0
+  internalDoorOpen: 0
+  notesDoorOpen: 0
+  kioskDoorOpen: 0
+  p: {fileID: 0}
+--- !u!4 &1890570706 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6c9957b64c957aa4580a2798a6115796, type: 3}
+  m_PrefabInstance: {fileID: 826229698}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1901289903
 GameObject:
   m_ObjectHideFlags: 0
@@ -17941,6 +17942,57 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2036960127}
   m_CullTransparentMesh: 1
+--- !u!1 &2065063421
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2065063423}
+  - component: {fileID: 2065063424}
+  m_Layer: 0
+  m_Name: Lights
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2065063423
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2065063421}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.2146375, y: 2.1526375, z: 0.99737513}
+  m_LocalScale: {x: 1.25, y: 1.25, z: 1.25}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 818854681}
+  - {fileID: 743872393}
+  m_Father: {fileID: 1890570706}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2065063424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2065063421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5af513b28244f4998cbbb2f23715dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coinLight: {fileID: 818854674}
+  noteLight: {fileID: 743872387}
+  materials:
+  - {fileID: 2100000, guid: b17ca54439366044aa1c7b8e1b912e33, type: 2}
+  - {fileID: 2100000, guid: 802a17d968d674fd09300899aac0a157, type: 2}
 --- !u!1 &2072681136
 GameObject:
   m_ObjectHideFlags: 0
@@ -46118,8 +46170,6 @@ SceneRoots:
   - {fileID: 1870827321}
   - {fileID: 1545583394}
   - {fileID: 876633607}
-  - {fileID: 818854681}
-  - {fileID: 743872393}
   - {fileID: 2106163829}
   - {fileID: 2013378628}
   - {fileID: 2034941985}
