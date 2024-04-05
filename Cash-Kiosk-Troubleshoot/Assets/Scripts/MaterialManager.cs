@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit.UI.BodyUI;
 
 public class MaterialManager : MonoBehaviour
 {
@@ -15,11 +16,13 @@ public class MaterialManager : MonoBehaviour
     public Rigidbody rigidbody_notes_internal_door;
     public TMPro.TMP_Text messageText;
 
-    public int totalStepsSceneC = 6;
+    public int totalStepsSceneC = 7;
     public int currentStepsSceneC;
     public bool internalDoorOpen = false;
     public bool notesDoorOpen = false;
     public bool kioskDoorOpen = false;
+
+    public ParticleSystem p;
     
 
     void Start()
@@ -29,6 +32,8 @@ public class MaterialManager : MonoBehaviour
         index = color;
         Debug.Log("color"+ index.ToString());
         currentStepsSceneC = 0;
+        var emission = p.emission; // Stores the module in a local variable
+        emission.enabled = false; // Applies the new value directly to the Particle System
 
     }
 
@@ -66,6 +71,16 @@ public class MaterialManager : MonoBehaviour
         Debug.Log("closeKioskDoor adding torque");
         rigidbody_kiosk_front_door.AddTorque(Vector3.down * 1000);
         currentStepsSceneC += 1;
+
+
+        // Follow these stops at the end:
+        PointsManager.instance.updateScoreCompletion("SceneC", (currentStepsSceneC/totalStepsSceneC));
+        Debug.Log("completionRate: " + PointsManager.instance.points[0][0]);
+
+        if (PointsManager.instance.points[0][0] >= 1){
+            var emission = p.emission; // Stores the module in a local variable
+            emission.enabled = true; // Applies the new value directly to the Particle System
+        }
     }
 
     public void operateNotesDoor(){
@@ -117,10 +132,7 @@ public class MaterialManager : MonoBehaviour
     public void checkSteps(){
         messageText.SetText("No errors");
         messageText.color = Color.green;
-        PointsManager.instance.updateScoreCompletion("SceneC", (currentStepsSceneC/totalStepsSceneC));
-        Debug.Log("completionRate: " + PointsManager.instance.points[0][0]);
-
-        
+        currentStepsSceneC += 1;
         
     }
 
