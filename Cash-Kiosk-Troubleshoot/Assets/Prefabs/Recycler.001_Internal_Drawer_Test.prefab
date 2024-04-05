@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8076177664412339318}
   - component: {fileID: 7508330777578504960}
   m_Layer: 0
-  m_Name: Knob_Placeholder_1_base
+  m_Name: Knob_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -121,7 +121,7 @@ GameObject:
   - component: {fileID: 4746098951186914132}
   - component: {fileID: 2147726187015974768}
   m_Layer: 0
-  m_Name: Knob_Placeholder_2
+  m_Name: Knob_Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -652,7 +652,7 @@ GameObject:
   - component: {fileID: 6791076486711809117}
   - component: {fileID: 3741634604224286991}
   m_Layer: 0
-  m_Name: Knob_Placeholder_2_base
+  m_Name: Knob_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -927,7 +927,7 @@ GameObject:
   - component: {fileID: 3073568990444976529}
   - component: {fileID: 6817743101915117742}
   m_Layer: 0
-  m_Name: Knob_Placeholder_1
+  m_Name: Knob_Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
