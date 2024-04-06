@@ -16,6 +16,7 @@ public class MainPanelManager : MonoBehaviour
 
     public ScreenManager screenManager;
     public GameObject nextScreenPanel;
+    public GameObject loginPanel;
 
     public GameObject rebootPanel; 
     public bool rebootActive = false;
@@ -28,7 +29,6 @@ public class MainPanelManager : MonoBehaviour
 
     void Start()
     {
-        // get which main screen it is on
         GameObject attachedGameObject = gameObject;
 
         if (attachedGameObject == mainPanel2)
@@ -60,9 +60,18 @@ public class MainPanelManager : MonoBehaviour
             rebootActive = true;
             rebootPanel.SetActive(rebootActive);
         } 
+        else if (checkLogout(text.text))
+        {
+            screenManager.SwitchScreen(loginPanel);
+        }
         else if (rebootActive & text.text == "Yes")
         {
             Debug.Log("cycling machine time");
+            rebootActive = false;
+            rebootPanel.SetActive(rebootActive);
+
+            // add time delay random 15 - 20s
+
             changeLightColour.blueToYellow(true, true);
         }
     }
@@ -75,6 +84,11 @@ public class MainPanelManager : MonoBehaviour
     public bool checkReboot(string str)
     {
         return str == "Reboot PC";
+    }
+
+    public bool checkLogout(string str)
+    {
+        return str == "Logout";
     }
 
 
