@@ -13,6 +13,7 @@ public class MainPanelManager : MonoBehaviour
     public TextMeshProUGUI timeText;
 
     public ChangeLightColour changeLightColour;
+    public LightPulseManager lightPulseManager;
 
     public ScreenManager screenManager;
     public GameObject nextScreenPanel;
@@ -44,7 +45,6 @@ public class MainPanelManager : MonoBehaviour
         string date = dt.ToString("dd/MM/yyyy");
         dateText.text = "Login Date: " + date;
 
-
         string time = dt.ToString("HH:mm:ss");
         timeText.text = "Login Time: " + time;
     }
@@ -69,10 +69,7 @@ public class MainPanelManager : MonoBehaviour
             Debug.Log("cycling machine time");
             rebootActive = false;
             rebootPanel.SetActive(rebootActive);
-
-            // add time delay random 15 - 20s
-
-            changeLightColour.blueToYellow(true, true);
+            StartCoroutine(DelayTimer());
         }
     }
 
@@ -91,5 +88,17 @@ public class MainPanelManager : MonoBehaviour
         return str == "Logout";
     }
 
+    private IEnumerator DelayTimer()
+    {
+        // make the light pulse
+        lightPulseManager.StartPulsating();
 
+        // wait for 10 to 15s, then stop and change to yellow
+        float waitTime = UnityEngine.Random.Range(10f, 15f);
+        Debug.Log(waitTime);
+        yield return new WaitForSeconds(waitTime);
+
+        lightPulseManager.StopPulsating();
+        changeLightColour.blueToYellow(true, true);
+    }
 }
