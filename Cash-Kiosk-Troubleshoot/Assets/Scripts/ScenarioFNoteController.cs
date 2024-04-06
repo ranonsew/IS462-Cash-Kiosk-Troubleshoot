@@ -19,6 +19,8 @@ public class ScenarioFNoteController : MonoBehaviour
     /// </summary>
     public RejectedNote noteStuck;
 
+    // -0.2389 | inspector
+    // -3.183544 | code
     private float notePosMin = -0.671f;
     private float notePosMax = 0.671f;
 
@@ -26,7 +28,8 @@ public class ScenarioFNoteController : MonoBehaviour
     void Start()
     {
         dialKnob.onValueChange.AddListener(UpdateNotePosition);
-        Debug.Log($"Val: {dialKnob.value}");
+        Debug.Log($"Value: {dialKnob.value}");
+        Debug.Log($"NoteX: {noteStuck.transform.position.x}");
     }
 
     // Update is called once per frame
