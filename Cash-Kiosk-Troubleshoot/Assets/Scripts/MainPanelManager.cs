@@ -69,7 +69,9 @@ public class MainPanelManager : MonoBehaviour
             Debug.Log("cycling machine time");
             rebootActive = false;
             rebootPanel.SetActive(rebootActive);
-            StartCoroutine(DelayTimer());
+
+            // reboot machine
+            StartCoroutine(RebootMachine());
         }
     }
 
@@ -88,7 +90,7 @@ public class MainPanelManager : MonoBehaviour
         return str == "Logout";
     }
 
-    private IEnumerator DelayTimer()
+    private IEnumerator RebootMachine()
     {
         // make the light pulse
         lightPulseManager.StartPulsating();
