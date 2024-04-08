@@ -672,7 +672,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &44869112
 Transform:
   m_ObjectHideFlags: 0
@@ -1796,6 +1796,7 @@ GameObject:
   - component: {fileID: 134911309}
   - component: {fileID: 134911308}
   - component: {fileID: 134911307}
+  - component: {fileID: 134911311}
   m_Layer: 0
   m_Name: Recycler.001_Cover
   m_TagString: Untagged
@@ -1889,6 +1890,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 543450652907545641}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &134911311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 134911306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cb4f974fe579574682bec3c586a7ce4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scenarioFController: {fileID: 1142078209}
 --- !u!1 &152922261
 GameObject:
   m_ObjectHideFlags: 0
