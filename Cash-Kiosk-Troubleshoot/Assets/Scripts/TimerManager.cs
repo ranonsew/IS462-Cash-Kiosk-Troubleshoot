@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using TMPro;
 using Unity.Mathematics;
 using Unity.VisualScripting;
@@ -16,7 +18,10 @@ public class TimerManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+         Debug.Log(PointsManager.instance.points.ToString());
+{
+    // do something with entry.Value or entry.Key
+}
     }
 
     void Update()
@@ -33,7 +38,7 @@ public class TimerManager : MonoBehaviour
                 TriggerWinner();
             }
         }else{
-            Debug.Log("Time has run out!");
+            // Debug.Log("Time has run out!");
         }
     }
 
