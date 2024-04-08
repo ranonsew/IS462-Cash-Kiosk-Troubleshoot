@@ -28,6 +28,9 @@ public class MainPanelManager : MonoBehaviour
     public GameObject mainPanel2;
     public bool mainPanel2Active = false;
 
+    public TextMeshProUGUI errorText;
+    public bool errorTextActive = true;
+
     void Start()
     {
         GameObject attachedGameObject = gameObject;
@@ -38,9 +41,15 @@ public class MainPanelManager : MonoBehaviour
             mainPanel2Active = true;
         }
 
+        if (errorTextActive)
+        {
+            errorText.text = "Machine not connected";
+        }
+
         rebootPanel.SetActive(rebootActive);
         mainPanel1.SetActive(mainPanel1Active);
         mainPanel2.SetActive(mainPanel2Active);
+        errorText.gameObject.SetActive(errorTextActive);
 
         string date = dt.ToString("dd/MM/yyyy");
         dateText.text = "Login Date: " + date;
