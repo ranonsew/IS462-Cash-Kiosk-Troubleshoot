@@ -14,6 +14,8 @@ public class ScenarioFNoteController : MonoBehaviour
     [Tooltip("LowerDialKnob thingy ")]
     public XRKnob dialKnob;
 
+    public GameObject drawerLock;
+
     /// <summary>
     /// Couldn't get regular note prefab to work, but can with RejectedNote prefab
     /// </summary>
@@ -25,14 +27,30 @@ public class ScenarioFNoteController : MonoBehaviour
     // -2.944644 | difference
     
 
-    private float notePosMin = -0.671f;
-    private float notePosMax = 0.671f;
-    private float noteTrackMax;
+    private readonly float notePosMinX = -0.671f;
+    private readonly float notePosMaxX = 0.671f;
+    private float maxRangeX;
+
+    private readonly float notePosMinY = 0.521f;
+    private readonly float notePosMaxY = 0.983f;
+    private float maxRangeY;
+
+    private readonly float notePosMinZ = -0.49f;
+    private readonly float notePosMaxZ = 0.49f;
+    private float maxRangeZ;
 
     // Start is called before the first frame update
     void Start()
     {
         dialKnob.onValueChange.AddListener(UpdateNotePosition);
+        maxRangeX = notePosMaxX - notePosMinX;
+        maxRangeY = notePosMaxY - notePosMinY;
+        maxRangeZ = notePosMaxZ - notePosMinZ;
+        Debug.Log($"Max Range: {maxRangeX}, {maxRangeY}, {maxRangeZ}");
+
+
+        // set randomized note position & default knob position
+        noteStuck.transform.localPosition = new Vector3(Random.Range(notePosMinX, notePosMaxX), 0.535f, 0f); // randomized X position
         Debug.Log($"Value: {dialKnob.value}");
         Debug.Log($"NoteX: {noteStuck.transform.position.x}");
     }
@@ -40,7 +58,29 @@ public class ScenarioFNoteController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // using Update() to check on the local position of the note, if within bounds of the machine
+        // note must be within bounds of -0.671 <= x <= 0.671, -0.49 <= z <= 0.49, 0.521 <= y <= 0.983 
+    }
 
+    /// <summary>
+    /// Update the knob rotation based on location of the note
+    /// </summary>
+    private void UpdateKnobRotation()
+    {
+        float x = noteStuck.transform.localPosition.x;
+        float y = noteStuck.transform.localPosition.y;
+        float z = noteStuck.transform.localPosition.z;
+
+        bool withinX = x >= notePosMinX && x <= notePosMaxX;
+        bool withinY = y >= notePosMinY && y <= notePosMaxY;
+        bool withinZ = z >= notePosMinZ && z <= notePosMaxZ;
+
+        // if within X, Y, Z boundaries
+        if (withinX && withinY && withinZ)
+        {
+            dialKnob.value = (noteStuck.transform.localPosition.x - notePosMinX) / maxRangeX; // update to match x position
+        }
+        
     }
 
     /// <summary>
@@ -50,42 +90,25 @@ public class ScenarioFNoteController : MonoBehaviour
     private void UpdateNotePosition(float val)
     {
         Debug.Log($"Knob value: {val}");
-        float maxRange = notePosMax - notePosMin;
-        Debug.Log($"MAX RANGE: {maxRange}");
-        float newX = (maxRange * val) + notePosMin;
+        float newX = (maxRangeX * val) + notePosMinX;
         Debug.Log($"Note new X pos: {newX}");
 
         noteStuck.transform.localPosition = new Vector3(newX, noteStuck.transform.localPosition.y, noteStuck.transform.localPosition.z);
+    }
 
-        /*
-         * -0.671 --- 0
-         *  0.671 --- 1
-         * 
-         * max len: 1.342
-         * 
-         * (1.342 * val) - 0.671
-         */
+    /// <summary>
+    /// Unlock Drawer Function (for screen to use) -- attach ScenarioFController obj to the screen button that unlocks the drawer
+    /// </summary>
+    public void UnlockDrawer()
+    {
+        drawerLock.SetActive(false);
+    }
 
-        // emulate end of track, preventing from getting too stuck
-        // min: -0.671
-        // max: 0.671
-
-        //if (newX >= notePosMin && newX <= notePosMax)
-        //{
-        //    noteStuck.transform.position = new Vector3(newX, noteStuck.transform.position.y, noteStuck.transform.position.z);
-        //}
-
-        //if (newX < notePosMin || newX > notePosMax)
-        //{
-        //    Debug.Log("Note going out of bounds, stop!!");
-        //}
-
-
-
-        /*
-         * Issue new: on value change
-         * triggering on any click or slight movement
-         * 
-         */
+    /// <summary>
+    /// Lock Drawer Function (for RecyclerCover to use)
+    /// </summary>
+    public void LockDrawer()
+    {
+        drawerLock.SetActive(true);
     }
 }

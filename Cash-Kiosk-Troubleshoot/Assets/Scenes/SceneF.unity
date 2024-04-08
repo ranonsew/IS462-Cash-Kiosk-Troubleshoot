@@ -656,6 +656,59 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 29008140}
   m_CullTransparentMesh: 1
+--- !u!1 &44869111
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 44869112}
+  - component: {fileID: 44869113}
+  m_Layer: 0
+  m_Name: Drawer_Lock
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &44869112
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 44869111}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.765, y: 1.763, z: 0.413}
+  m_LocalScale: {x: 1.25, y: 1.25, z: 1.25}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 543450652907545641}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &44869113
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 44869111}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.026978731, y: 0.43576896, z: 0.43433523}
+  m_Center: {x: -0.04687679, y: 0.07994896, z: 0.0076327324}
 --- !u!1 &47619229
 GameObject:
   m_ObjectHideFlags: 0
@@ -8177,6 +8230,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5499335135219327604, guid: e101eab2884cfce41aada70ec6b1d801, type: 3}
+      propertyPath: m_Constraints
+      value: 112
+      objectReference: {fileID: 0}
+    - target: {fileID: 5499335135219327604, guid: e101eab2884cfce41aada70ec6b1d801, type: 3}
       propertyPath: m_IsKinematic
       value: 1
       objectReference: {fileID: 0}
@@ -8202,11 +8259,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8448106269176633170, guid: e101eab2884cfce41aada70ec6b1d801, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.56
+      value: 0.535
       objectReference: {fileID: 0}
     - target: {fileID: 8448106269176633170, guid: e101eab2884cfce41aada70ec6b1d801, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.004
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8448106269176633170, guid: e101eab2884cfce41aada70ec6b1d801, type: 3}
       propertyPath: m_LocalRotation.w
@@ -11649,7 +11706,7 @@ PrefabInstance:
     - target: {fileID: 2722549385910692821, guid: 6c9957b64c957aa4580a2798a6115796, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: f52e5473ca121094492af06a201f3a37, type: 2}
+      objectReference: {fileID: 2100000, guid: d29dd1762c01e1d49bd9ceb8654b5be2, type: 2}
     - target: {fileID: 4378108185478091425, guid: 6c9957b64c957aa4580a2798a6115796, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -11740,6 +11797,9 @@ PrefabInstance:
       addedObject: {fileID: 745027364}
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6c9957b64c957aa4580a2798a6115796, type: 3}
       insertIndex: 16
+      addedObject: {fileID: 44869112}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6c9957b64c957aa4580a2798a6115796, type: 3}
+      insertIndex: 17
       addedObject: {fileID: 1143688897}
     - targetCorrespondingSourceObject: {fileID: -3523636241256661161, guid: 6c9957b64c957aa4580a2798a6115796, type: 3}
       insertIndex: -1
@@ -14047,7 +14107,7 @@ GameObject:
   - component: {fileID: 1142078210}
   - component: {fileID: 1142078209}
   m_Layer: 0
-  m_Name: ScenarioFNoteController
+  m_Name: ScenarioFController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14066,6 +14126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialKnob: {fileID: 274637457}
+  drawerLock: {fileID: 44869111}
   noteStuck: {fileID: 639699405}
 --- !u!4 &1142078210
 Transform:
