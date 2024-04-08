@@ -51,6 +51,7 @@ public class ScenarioFNoteController : MonoBehaviour
 
         // set randomized note position & default knob position
         noteStuck.transform.localPosition = new Vector3(Random.Range(notePosMinX, notePosMaxX), 0.535f, 0f); // randomized X position
+        UpdateKnobRotation();
         Debug.Log($"Value: {dialKnob.value}");
         Debug.Log($"NoteX: {noteStuck.transform.position.x}");
     }
@@ -59,7 +60,8 @@ public class ScenarioFNoteController : MonoBehaviour
     void Update()
     {
         // using Update() to check on the local position of the note, if within bounds of the machine
-        // note must be within bounds of -0.671 <= x <= 0.671, -0.49 <= z <= 0.49, 0.521 <= y <= 0.983 
+        // note must be within bounds of -0.671 <= x <= 0.671, -0.49 <= z <= 0.49, 0.521 <= y <= 0.983
+        //UpdateKnobRotation();
     }
 
     /// <summary>
@@ -109,6 +111,7 @@ public class ScenarioFNoteController : MonoBehaviour
     /// </summary>
     public void LockDrawer()
     {
-        drawerLock.SetActive(true);
+        //drawerLock.SetActive(true);
+        Debug.Log("Locky");
     }
 }
