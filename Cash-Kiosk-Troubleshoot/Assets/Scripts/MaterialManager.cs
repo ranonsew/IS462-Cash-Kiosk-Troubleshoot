@@ -38,6 +38,43 @@ public class MaterialManager : MonoBehaviour
     {
         
     }
+
+    public void operateKioskDoor2(){
+        Debug.Log("operateKioskDoor2");
+        // Debug.Log(rigidbody_kiosk_front_door.angularVelocity);
+         if (kioskDoorOpen){
+            closeKioskDoor2();
+            kioskDoorOpen = !kioskDoorOpen;
+        }else{
+            openKioskDoor2();
+            kioskDoorOpen = !kioskDoorOpen;
+        }
+    }
+
+        public void openKioskDoor2(){
+        Debug.Log("openKioskDoor adding torque");
+        // rigidbody_kiosk_front_door.AddTorque(Vector3.up * 1000);
+        currentStepsSceneC += 1;
+    }
+
+    public void closeKioskDoor2(){
+        Debug.Log("closeKioskDoor adding torque");
+        // rigidbody_kiosk_front_door.AddTorque(Vector3.down * 1000);
+        currentStepsSceneC += 1;
+        // Follow these stops at the end:
+        // SceneC, SceneD, SceneE, SceneF
+// // completionRate, numErrors, timeInSec, overall
+// updateScore(string sceneName, string metric, int metricRate)
+// currentStepsSceneC/totalStepsSceneC
+        PointsManager.instance.updateScore("SceneC", "completionRate", 1);
+        Debug.Log("completionRate: " + PointsManager.instance.points[0][0]);
+
+    }
+
+    public void goResultsPageTest(){
+    PointsManager.instance.updateScore("SceneC", "completionRate", 1);
+}
+
     public void changeMaterial(){
         Debug.Log("Change material triggered");
         index = 1;

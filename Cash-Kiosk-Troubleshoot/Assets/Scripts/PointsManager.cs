@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 using Unity.VisualScripting;
 using TMPro;
 using Palmmedia.ReportGenerator.Core.Parser.Analysis;
+using UnityEngine.SceneManagement;
 
 public class PointsManager : MonoBehaviour
 {
@@ -90,9 +91,15 @@ public class PointsManager : MonoBehaviour
             yield return new WaitForSeconds(6);
             
             emission.enabled = false; // Applies the new value directly to the Particle System
+            yield return new WaitForSeconds(2);
+            loadResultsScene();
     }
 
 
+
+public void loadResultsScene(){
+    SceneManager.LoadScene("SceneResults");
+}
 
 
 
