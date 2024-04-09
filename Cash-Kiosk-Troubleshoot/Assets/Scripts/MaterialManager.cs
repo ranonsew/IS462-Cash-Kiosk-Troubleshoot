@@ -80,9 +80,6 @@ public class MaterialManager : MonoBehaviour
         PointsManager.instance.updateScore("SceneC", "completionRate", (currentStepsSceneC/totalStepsSceneC));
         Debug.Log("completionRate: " + PointsManager.instance.points[0][0]);
 
-        // if (PointsManager.instance.points[0][0] >= 1){
-        //     PointsManager.instance.StartConfetti();
-        // }
     }
 
     public void operateNotesDoor(){
