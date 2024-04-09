@@ -21,8 +21,6 @@ public class MaterialManager : MonoBehaviour
     public bool internalDoorOpen = false;
     public bool notesDoorOpen = false;
     public bool kioskDoorOpen = false;
-
-    public ParticleSystem p;
     
 
     void Start()
@@ -32,8 +30,6 @@ public class MaterialManager : MonoBehaviour
         index = color;
         Debug.Log("color"+ index.ToString());
         currentStepsSceneC = 0;
-        var emission = p.emission; // Stores the module in a local variable
-        emission.enabled = false; // Applies the new value directly to the Particle System
 
     }
 
