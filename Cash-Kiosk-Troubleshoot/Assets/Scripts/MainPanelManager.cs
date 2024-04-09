@@ -7,8 +7,6 @@ using System;
 
 public class MainPanelManager : MonoBehaviour
 {
-    DateTime dt = System.DateTime.Now;
-
     public TextMeshProUGUI dateText;
     public TextMeshProUGUI timeText;
 
@@ -29,7 +27,7 @@ public class MainPanelManager : MonoBehaviour
     public bool mainPanel2Active = false;
 
     public TextMeshProUGUI errorText;
-    public bool errorTextActive = true;
+    public bool errorActive = StorageManager.errorTextActive;
 
     void Start()
     {
@@ -41,21 +39,18 @@ public class MainPanelManager : MonoBehaviour
             mainPanel2Active = true;
         }
 
-        if (errorTextActive)
+        if (errorActive)
         {
-            errorText.text = "Machine not connected";
+            errorText.text = StorageManager.errorType;
         }
 
         rebootPanel.SetActive(rebootActive);
         mainPanel1.SetActive(mainPanel1Active);
         mainPanel2.SetActive(mainPanel2Active);
-        errorText.gameObject.SetActive(errorTextActive);
+        errorText.gameObject.SetActive(errorActive);
 
-        string date = dt.ToString("dd/MM/yyyy");
-        dateText.text = "Login Date: " + date;
-
-        string time = dt.ToString("HH:mm:ss");
-        timeText.text = "Login Time: " + time;
+        dateText.text = StorageManager.dateString;
+        timeText.text = StorageManager.timeString;
     }
 
     public void buttonClick(TextMeshProUGUI text)

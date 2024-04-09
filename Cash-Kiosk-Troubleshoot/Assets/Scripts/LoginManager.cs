@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -99,6 +100,13 @@ public class LoginManager : MonoBehaviour
             else if (checkLoginUser(login.text) & checkLoginPassword(password.text)) 
             {
                 Debug.Log("Login Success");
+
+                DateTime dt = System.DateTime.Now;
+
+                StorageManager.dateString = "Login Date: " + dt.ToString("dd/MM/yyyy");
+                StorageManager.timeString = "Login Time: " + dt.ToString("HH:mm:ss");
+                StorageManager.userString = "Login ID: 3333";
+
                 screenManager.SwitchScreen(nextScreenPanel);
             }
             else if (!checkLoginPassword(password.text) || !checkLoginUser(login.text))

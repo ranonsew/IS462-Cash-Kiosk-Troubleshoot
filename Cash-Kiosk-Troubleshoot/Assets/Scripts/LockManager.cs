@@ -6,7 +6,6 @@ using UnityEngine.TextCore.Text;
 public class LockManager : MonoBehaviour
 {
     public string password = string.Empty;
-    public bool armActive = true;
     public int wrongAttempts = 0;
 
     public AudioSource audioSource;
@@ -32,14 +31,14 @@ public class LockManager : MonoBehaviour
         // check with winnie on how this is armed/disarmed
         else if (character == "ARM" & checkInput(password))
         {
-            armActive = true;
+            StorageManager.armActive = true;
             clearInput();
             audioSource.clip = lockedSound;
             audioSource.Play();
         }
         else if ((character == "OFF" || character == "#") & checkInput(password))
         {
-            armActive = false;
+            StorageManager.armActive = false;
             clearInput();
             audioSource.clip = unlockedSound;
             audioSource.Play();
