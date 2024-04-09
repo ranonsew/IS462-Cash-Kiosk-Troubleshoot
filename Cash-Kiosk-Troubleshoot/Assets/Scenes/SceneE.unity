@@ -1369,6 +1369,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: XR Device Simulator
       objectReference: {fileID: 0}
+    - target: {fileID: 6598815579406187037, guid: 18ddb545287c546e19cc77dc9fbb2189, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1863,7 +1867,6 @@ MonoBehaviour:
   internalDoorOpen: 0
   notesDoorOpen: 0
   kioskDoorOpen: 0
-  p: {fileID: 0}
 --- !u!1 &1901289903
 GameObject:
   m_ObjectHideFlags: 0
