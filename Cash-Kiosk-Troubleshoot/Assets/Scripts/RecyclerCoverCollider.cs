@@ -23,6 +23,5 @@ public class RecyclerCoverCollider : MonoBehaviour
         if (collision.gameObject.CompareTag("RecyclerDrawer")) {
             scenarioFController.LockDrawer();
         }
-        
     }
 }

@@ -20,8 +20,10 @@ public class ScenarioFNoteController : MonoBehaviour
     public GameObject drawerLock;
     public GameObject noteRecycler001;
     [HideInInspector] public bool allowLock = false; // disallow locking by default (see LockDrawer() for more info)
-
     public GameObject fillerCube;
+
+    public ChangeLightColour changeLightColor;
+    public LightPulseManager lightPulseManager;
 
     /// <summary>
     /// Couldn't get regular note prefab to work, but can with RejectedNote prefab
@@ -44,6 +46,8 @@ public class ScenarioFNoteController : MonoBehaviour
     void Start()
     {
         dialKnob.onValueChange.AddListener(UpdateNotePosition);
+
+        changeLightColor.blueToYellow(true, true); // change to yellow default
 
         // set randomized note position & default knob position
         float x = Random.Range(notePosMinX, notePosMaxX);
@@ -114,7 +118,21 @@ public class ScenarioFNoteController : MonoBehaviour
         {
             drawerLock.GetComponent<BoxCollider>().isTrigger = false;
             allowLock = false; // prep for next lock/unlock cycle if there is
+            StartCoroutine(FlashingLightsRebootEmulator());
             Debug.Log("Lock allowed, proceeding...");
         }
+    }
+
+    IEnumerator FlashingLightsRebootEmulator()
+    {
+        changeLightColor.yellowToBlue(true, true);
+
+        lightPulseManager.StartPulsating();
+
+        yield return new WaitForSeconds(3f);
+
+        lightPulseManager.StopPulsating();
+
+        changeLightColor.blueToYellow(true, true);
     }
 }
