@@ -15,6 +15,9 @@ public class NotesSocketWithTagCheck : XRSocketInteractor
     private Vector3 originalPosition;
     private GameObject[] notes;
     private string objectTag;
+    //private Dictionary<string,int> stepsRequired = new Dictionary<string, int> { {"stack", 1}, { "rotate", 4 }, { "call", 1 } };
+    //public int totalStepsSceneD = 4;
+    //public int currentStepsSceneD = 0;
 
     public override bool CanHover(IXRHoverInteractable interactable)
     {
@@ -43,6 +46,9 @@ public class NotesSocketWithTagCheck : XRSocketInteractor
     {
         // Start the coroutine for delaying
         StartCoroutine(DelayAndDestroy(args.interactableObject as XRBaseInteractable));
+
+        //PointsManager.instance.updateScoreCompletion("SceneD", (currentStepsSceneD / totalStepsSceneD));
+        //Debug.Log("completionRate: " + PointsManager.instance.points[0][0]);
     }
 
     private IEnumerator DelayAndDestroy(XRBaseInteractable objToDestroyXRBaseInteractable)
