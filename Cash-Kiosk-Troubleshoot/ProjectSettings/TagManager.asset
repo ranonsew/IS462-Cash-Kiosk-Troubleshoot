@@ -8,6 +8,8 @@ TagManager:
   - Notes
   - RejectedNote
   - ScreenPanel
+  - RecyclerDrawer
+  - RecyclerHead
   layers:
   - Default
   - TransparentFX

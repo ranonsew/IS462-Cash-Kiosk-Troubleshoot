@@ -12,7 +12,11 @@ public class RecyclerCoverCollider : MonoBehaviour
     /// <param name="collision"></param>
     private void OnCollisionEnter(Collision collision)
     {
+        Debug.Log($"Cover Collision tag: {collision.gameObject.tag}");
         Debug.Log("Drawer Collided with back");
-        scenarioFController.LockDrawer();
+        if (collision.gameObject.CompareTag("RecyclerDrawer")) {
+            scenarioFController.LockDrawer();
+        }
+        
     }
 }
