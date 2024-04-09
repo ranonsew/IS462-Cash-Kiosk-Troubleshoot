@@ -14,6 +14,12 @@ public class RecyclerCoverCollider : MonoBehaviour
     {
         Debug.Log($"Cover Collision tag: {collision.gameObject.tag}");
         Debug.Log("Drawer Collided with back");
+
+        if (collision.gameObject.CompareTag("RejectedNote"))
+        {
+            Physics.IgnoreCollision(collision.collider, GetComponent<BoxCollider>());
+        }
+
         if (collision.gameObject.CompareTag("RecyclerDrawer")) {
             scenarioFController.LockDrawer();
         }
