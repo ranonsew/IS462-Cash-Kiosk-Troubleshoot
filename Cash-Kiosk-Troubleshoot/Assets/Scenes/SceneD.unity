@@ -21656,6 +21656,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 174425366577892082, guid: a2f037800c273134db39956f0199f3a2, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 473f277ac3e299349b2fe6b372e2f10d, type: 3}
     - target: {fileID: 1345215260727237283, guid: a2f037800c273134db39956f0199f3a2, type: 3}
       propertyPath: m_Camera
       value: 
@@ -21708,6 +21712,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6654221418416789731, guid: a2f037800c273134db39956f0199f3a2, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 25fe311f5afeff545a836d40e7e341ad, type: 3}
     - target: {fileID: 6915187068623915543, guid: a2f037800c273134db39956f0199f3a2, type: 3}
       propertyPath: m_Name
       value: Phone
