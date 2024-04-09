@@ -14,74 +14,71 @@ public class ScenarioFNoteController : MonoBehaviour
     [Tooltip("LowerDialKnob thingy ")]
     public XRKnob dialKnob;
 
+    /// <summary>
+    /// For locking/unlocking of drawer mechanic
+    /// </summary>
     public GameObject drawerLock;
+    public GameObject noteRecycler001;
+    [HideInInspector] public bool allowLock = false; // disallow locking by default (see LockDrawer() for more info)
+
+    public GameObject fillerCube;
 
     /// <summary>
     /// Couldn't get regular note prefab to work, but can with RejectedNote prefab
     /// </summary>
     public RejectedNote noteStuck;
 
-    // as of current machine/note positions
-    // -0.2389 | inspector
-    // -3.183544 | code
-    // -2.944644 | difference
-    
+    private static readonly float notePosMinX = -0.671f;
+    private static readonly float notePosMaxX = 0.671f;
+    private float maxRangeX = notePosMaxX - notePosMinX;
 
-    private readonly float notePosMinX = -0.671f;
-    private readonly float notePosMaxX = 0.671f;
-    private float maxRangeX;
+    private static readonly float notePosMinY = 0.521f;
+    private static readonly float notePosMaxY = 0.983f;
+    private float maxRangeY = notePosMaxY - notePosMinY;
 
-    private readonly float notePosMinY = 0.521f;
-    private readonly float notePosMaxY = 0.983f;
-    private float maxRangeY;
-
-    private readonly float notePosMinZ = -0.49f;
-    private readonly float notePosMaxZ = 0.49f;
-    private float maxRangeZ;
+    private static readonly float notePosMinZ = -0.49f;
+    private static readonly float notePosMaxZ = 0.49f;
+    private float maxRangeZ = notePosMaxZ - notePosMinZ;
 
     // Start is called before the first frame update
     void Start()
     {
         dialKnob.onValueChange.AddListener(UpdateNotePosition);
-        maxRangeX = notePosMaxX - notePosMinX;
-        maxRangeY = notePosMaxY - notePosMinY;
-        maxRangeZ = notePosMaxZ - notePosMinZ;
-        Debug.Log($"Max Range: {maxRangeX}, {maxRangeY}, {maxRangeZ}");
-
 
         // set randomized note position & default knob position
-        noteStuck.transform.localPosition = new Vector3(Random.Range(notePosMinX, notePosMaxX), 0.535f, 0f); // randomized X position
-        UpdateKnobRotation();
-        Debug.Log($"Value: {dialKnob.value}");
-        Debug.Log($"NoteX: {noteStuck.transform.position.x}");
+        float x = Random.Range(notePosMinX, notePosMaxX);
+        float y = 0.535f;
+        float z = 0f;
+        noteStuck.transform.localPosition = new Vector3(x, y, z); // randomized X position
+        UpdateKnobRotation(x, y, z);
+        //Debug.Log($"Value: {dialKnob.value}");
+        //Debug.Log($"NoteX: {noteStuck.transform.position.x}");
     }
 
     // Update is called once per frame
     void Update()
     {
-        // using Update() to check on the local position of the note, if within bounds of the machine
-        // note must be within bounds of -0.671 <= x <= 0.671, -0.49 <= z <= 0.49, 0.521 <= y <= 0.983
-        //UpdateKnobRotation();
+
     }
 
     /// <summary>
     /// Update the knob rotation based on location of the note
     /// </summary>
-    private void UpdateKnobRotation()
+    private void UpdateKnobRotation(float x, float y, float z)
     {
-        float x = noteStuck.transform.localPosition.x;
-        float y = noteStuck.transform.localPosition.y;
-        float z = noteStuck.transform.localPosition.z;
-
-        bool withinX = x >= notePosMinX && x <= notePosMaxX;
-        bool withinY = y >= notePosMinY && y <= notePosMaxY;
-        bool withinZ = z >= notePosMinZ && z <= notePosMaxZ;
+        bool withinX = x >= notePosMinX & x <= notePosMaxX;
+        bool withinY = y >= notePosMinY & y <= notePosMaxY;
+        bool withinZ = z >= notePosMinZ & z <= notePosMaxZ;
 
         // if within X, Y, Z boundaries
-        if (withinX && withinY && withinZ)
+        if (withinX & withinY & withinZ)
         {
-            dialKnob.value = (noteStuck.transform.localPosition.x - notePosMinX) / maxRangeX; // update to match x position
+            float val = (noteStuck.transform.localPosition.x - notePosMinX) / maxRangeX;
+            Debug.Log($"Updated Knob value: {val}");
+            dialKnob.value = val; // update to match x position
         }
+
+        Debug.Log("Huh");
         
     }
 
@@ -103,7 +100,8 @@ public class ScenarioFNoteController : MonoBehaviour
     /// </summary>
     public void UnlockDrawer()
     {
-        drawerLock.SetActive(false);
+        drawerLock.GetComponent<BoxCollider>().isTrigger = true;
+        allowLock = false;
     }
 
     /// <summary>
@@ -111,7 +109,12 @@ public class ScenarioFNoteController : MonoBehaviour
     /// </summary>
     public void LockDrawer()
     {
-        //drawerLock.SetActive(true);
-        Debug.Log("Locky");
+        Debug.Log(allowLock);
+        if (allowLock)
+        {
+            drawerLock.GetComponent<BoxCollider>().isTrigger = false;
+            allowLock = false; // prep for next lock/unlock cycle if there is
+            Debug.Log("Lock allowed, proceeding...");
+        }
     }
 }
