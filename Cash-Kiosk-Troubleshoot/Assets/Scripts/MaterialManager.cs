@@ -74,13 +74,15 @@ public class MaterialManager : MonoBehaviour
 
 
         // Follow these stops at the end:
-        PointsManager.instance.updateScoreCompletion("SceneC", (currentStepsSceneC/totalStepsSceneC));
+        // SceneC, SceneD, SceneE, SceneF
+// // completionRate, numErrors, timeInSec, overall
+// updateScore(string sceneName, string metric, int metricRate)
+        PointsManager.instance.updateScore("SceneC", "completionRate", (currentStepsSceneC/totalStepsSceneC));
         Debug.Log("completionRate: " + PointsManager.instance.points[0][0]);
 
-        if (PointsManager.instance.points[0][0] >= 1){
-            var emission = p.emission; // Stores the module in a local variable
-            emission.enabled = true; // Applies the new value directly to the Particle System
-        }
+        // if (PointsManager.instance.points[0][0] >= 1){
+        //     PointsManager.instance.StartConfetti();
+        // }
     }
 
     public void operateNotesDoor(){

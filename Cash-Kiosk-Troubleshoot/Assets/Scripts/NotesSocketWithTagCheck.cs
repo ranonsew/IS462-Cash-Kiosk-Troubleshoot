@@ -42,6 +42,7 @@ public class NotesSocketWithTagCheck : XRSocketInteractor
     public void DestroyPlacedObject(SelectEnterEventArgs args)
     {
         // Start the coroutine for delaying
+        
         StartCoroutine(DelayAndDestroy(args.interactableObject as XRBaseInteractable));
     }
 
