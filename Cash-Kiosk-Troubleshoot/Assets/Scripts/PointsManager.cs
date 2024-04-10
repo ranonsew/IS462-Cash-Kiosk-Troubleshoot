@@ -5,7 +5,6 @@ using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.InputSystem;
 using Unity.VisualScripting;
 using TMPro;
-using Palmmedia.ReportGenerator.Core.Parser.Analysis;
 using UnityEngine.SceneManagement;
 
 public class PointsManager : MonoBehaviour
