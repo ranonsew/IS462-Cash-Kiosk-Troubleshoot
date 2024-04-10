@@ -4530,6 +4530,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &504984214
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 504984215}
+  m_Layer: 0
+  m_Name: GlobalInstance
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &504984215
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 504984214}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.6644502, y: 2.0064998, z: 2.4465}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &526731585
 GameObject:
   m_ObjectHideFlags: 0
@@ -7235,7 +7266,6 @@ MonoBehaviour:
   internalDoorOpen: 0
   notesDoorOpen: 0
   kioskDoorOpen: 0
-  m: {fileID: 0}
 --- !u!114 &818854676
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7652,7 +7682,7 @@ PrefabInstance:
     - target: {fileID: 4655044927293516145, guid: 184e6ff1875724e459a0063bf6d78192, type: 3}
       propertyPath: m
       value: 
-      objectReference: {fileID: 1465905711}
+      objectReference: {fileID: 0}
     - target: {fileID: 4655044927293516145, guid: 184e6ff1875724e459a0063bf6d78192, type: 3}
       propertyPath: rigidbody_kiosk_front_door
       value: 
@@ -7756,7 +7786,7 @@ PrefabInstance:
     - target: {fileID: 6522097097622978542, guid: 184e6ff1875724e459a0063bf6d78192, type: 3}
       propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1282612237}
     - target: {fileID: 6522097097622978542, guid: 184e6ff1875724e459a0063bf6d78192, type: 3}
       propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -11584,6 +11614,7 @@ GameObject:
   - component: {fileID: 1282612236}
   - component: {fileID: 1282612237}
   - component: {fileID: 1282612238}
+  - component: {fileID: 1282612239}
   m_Layer: 0
   m_Name: FlowManager
   m_TagString: Untagged
@@ -11631,7 +11662,6 @@ MonoBehaviour:
   internalDoorOpen: 0
   notesDoorOpen: 0
   kioskDoorOpen: 0
-  m: {fileID: 1465905711}
 --- !u!82 &1282612238
 AudioSource:
   m_ObjectHideFlags: 0
@@ -11728,6 +11758,28 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1282612239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1282612235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b80c162c61bd5149a7516b1d47b454a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clips:
+  - {fileID: 8300000, guid: 4f43dffe29f3aa64bb6ff09058cd2414, type: 3}
+  - {fileID: 8300000, guid: e9ff9e2b4424d47499b6b843f1956987, type: 3}
+  - {fileID: 8300000, guid: b9837e6a94f6fa547b0d01798cea03c1, type: 3}
+  displayInstructions: {fileID: 1770978690}
+  instructions:
+  - Hi welcome to the game
+  - Open all the doors and check if all of them are closed inside
+  - 'Remember to close all of the doors. check the screen for errors and see if the
+    blue lights are yellow. '
 --- !u!1 &1282728388
 GameObject:
   m_ObjectHideFlags: 0
@@ -13300,157 +13352,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6803edce0201f574f923fd9d10e5b30a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1465905708
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1465905710}
-  - component: {fileID: 1465905711}
-  - component: {fileID: 1465905712}
-  m_Layer: 0
-  m_Name: InstructionManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1465905710
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1465905708}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.0950005, y: 1.805108, z: 3.0527985}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1465905711
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1465905708}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b80c162c61bd5149a7516b1d47b454a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  clips:
-  - {fileID: 8300000, guid: 3e3c79e3dcc0549e09718ad323ecb9b2, type: 3}
-  - {fileID: 8300000, guid: 2c29271401c167742a85062c93c73aa3, type: 3}
-  - {fileID: 8300000, guid: 4bf4695f99abb1b45b8f27a2e6974b75, type: 3}
-  displayInstructions: {fileID: 1770978690}
-  instructions:
-  - Hi welcome to the game
-  - Open all the doors and check if all of them are closed inside
-  - 'Remember to close all of the doors. check the screen for errors and see if the
-    blue lights are yellow. '
---- !u!82 &1465905712
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1465905708}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!1 &1467283838
 GameObject:
   m_ObjectHideFlags: 0
@@ -16467,7 +16368,6 @@ MonoBehaviour:
   internalDoorOpen: 0
   notesDoorOpen: 0
   kioskDoorOpen: 0
-  m: {fileID: 0}
 --- !u!1 &1879991519
 GameObject:
   m_ObjectHideFlags: 0
@@ -46939,6 +46839,6 @@ SceneRoots:
   - {fileID: 1793911346}
   - {fileID: 2142273234}
   - {fileID: 759813305}
-  - {fileID: 1465905710}
   - {fileID: 1282612236}
   - {fileID: 340640872}
+  - {fileID: 504984215}

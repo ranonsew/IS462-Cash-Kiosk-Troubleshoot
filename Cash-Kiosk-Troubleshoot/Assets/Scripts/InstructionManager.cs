@@ -27,7 +27,7 @@ public class InstructionManager : MonoBehaviour
     }
 
     public void LoadNextInstructions(){
-
+        if (clipIndex < instructions.Length & clipIndex < clips.Length ){
 
         Debug.Log("loading next instructions");
         audio = GetComponent<AudioSource>();
@@ -35,7 +35,7 @@ public class InstructionManager : MonoBehaviour
         displayInstructions.text = instructions[clipIndex];
         clipIndex++;
         audio.Play();
-
+        }
     }
 
 

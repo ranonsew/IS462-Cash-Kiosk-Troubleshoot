@@ -1,6 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+// using System.Collections;
+// using System.Collections.Generic;
+// using UnityEngine;
 
 // public class Table : MonoBehaviour
 // {
@@ -22,26 +22,43 @@ using UnityEngine;
 using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System.Collections.Generic;
 using TMPro;
         public class Table : MonoBehaviour {
         public TextMeshPro row;
         public Transform rowLocation;
-
-
+        public string[] names = new string[]{ "Shane", "Jane", "Jake", "Joseph", "Olivia", "Ron", "John", "Simon", "Minnie", "Mickey", "Warren"};
         void Start(){
         int startNum = Random.Range(50, 200);
         TextMeshPro c;
-        for (int i = startNum-5; i < startNum; i++){
+        row.text = "";
+        // int mainPlayerScore = (int) PointsManager.instance.fetchScores("SceneC", "overall");
+        int mainPlayerScore = 3000;
+        int newPlayerScore = 0;
+
+        List<int> list = new List<int>();
+        list.Add(mainPlayerScore);
+        for (int i = 0; i < 5; i++){
+                list.Add(Random.Range(0, mainPlayerScore - 1));
+                list.Add(Random.Range( mainPlayerScore + 1, mainPlayerScore + 2000));
+        }
+        list.Sort((a, b) => b.CompareTo(a)); // descending sort
+
+        for (int i = startNum-5; i < startNum+5; i++){
             // Debug.Log("i:" + (i - (startNum-5)));
-            c = Instantiate(row, rowLocation.position + new Vector3 (0, -3 * (i - (startNum-5)), 0), Quaternion.Euler (0,0,0));
+            c = Instantiate(row, rowLocation.position + new Vector3 (4, -3 * (i - (startNum-5)), -4), Quaternion.Euler (0,0,0));
             c.transform.SetParent(rowLocation.transform, false);
-            c.text = "1. Ron 2000";
+            
+            // if (i < startNum){ newPlayerScore = Random.Range(0, mainPlayerScore - 1);
+            // }else if (i > startNum){  newPlayerScore = Random.Range( mainPlayerScore + 1, mainPlayerScore + 2000);
+            // }else{ newPlayerScore = mainPlayerScore; }
+            c.text = i.ToString()+". "+ names[i - (startNum-5)] + " " + list[i - (startNum-5)].ToString();
+
+            string htmlValue = "#F68918";
+            if (i == startNum) htmlValue = "#1CDF41";
+            Color newCol;
+            if (ColorUtility.TryParseHtmlString(htmlValue, out newCol)){ c.color = newCol; }
             }
-//         string formatString = "{0,10}. {}\n";
-// int value1 = 16932;
-// int value2 = 15421;
-// string result = String.Format(formatString, 
-//                               value1, "helloooo");
         }
 
     }
