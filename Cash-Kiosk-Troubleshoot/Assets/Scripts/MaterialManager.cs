@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit.UI.BodyUI;
+using TMPro;
 
+// #pragma strict
+// @script RequireComponent(AudioSource)
 public class MaterialManager : MonoBehaviour
 {
     public GameObject ballObject;
@@ -21,7 +24,7 @@ public class MaterialManager : MonoBehaviour
     public bool internalDoorOpen = false;
     public bool notesDoorOpen = false;
     public bool kioskDoorOpen = false;
-    
+    InstructionManager m;
 
     void Start()
     {
@@ -30,7 +33,7 @@ public class MaterialManager : MonoBehaviour
         index = color;
         Debug.Log("color"+ index.ToString());
         currentStepsSceneC = 0;
-
+        m = GetComponent<InstructionManager>();
     }
 
     // Update is called once per frame
@@ -52,12 +55,14 @@ public class MaterialManager : MonoBehaviour
     }
 
         public void openKioskDoor2(){
+            m.LoadNextInstructions();
         Debug.Log("openKioskDoor adding torque");
         // rigidbody_kiosk_front_door.AddTorque(Vector3.up * 1000);
         currentStepsSceneC += 1;
     }
 
     public void closeKioskDoor2(){
+        m.LoadNextInstructions();
         Debug.Log("closeKioskDoor adding torque");
         // rigidbody_kiosk_front_door.AddTorque(Vector3.down * 1000);
         currentStepsSceneC += 1;
