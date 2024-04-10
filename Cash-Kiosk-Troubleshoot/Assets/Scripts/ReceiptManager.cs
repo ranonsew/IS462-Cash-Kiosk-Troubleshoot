@@ -31,9 +31,9 @@ $ 1.00  :    7           $ 7.00";
         printReceipt(content);
     }
 
-    public void containerRemovedReceipt(string containerType)
+    public void collectionReceipt(string collectionType)
     {
-        if (containerType == "CoinContainer")
+        if (collectionType == "Coins")
         {
             string content = @"Collection Details
 Coins
@@ -49,7 +49,7 @@ TOTAL       29         $ 12.70
 
             printReceipt(content);
         }
-        else if (containerType == "NoteContainer")
+        else if (collectionType == "Notes")
         {
             string content = @"Collection Details
 Notes
