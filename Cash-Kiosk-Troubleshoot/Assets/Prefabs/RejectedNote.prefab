@@ -222,7 +222,6 @@ GameObject:
   - component: {fileID: 7518110766519270353}
   - component: {fileID: 5499335135219327604}
   - component: {fileID: 8506612638760896316}
-  - component: {fileID: 5503849747285051623}
   - component: {fileID: 8637013684291581285}
   m_Layer: 10
   m_Name: RejectedNote
@@ -460,18 +459,6 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
---- !u!114 &5503849747285051623
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5002464551559177510}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29d487242817d584bbc725b4f710ff31, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &8637013684291581285
 MonoBehaviour:
   m_ObjectHideFlags: 0

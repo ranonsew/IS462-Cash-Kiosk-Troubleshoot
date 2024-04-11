@@ -139,7 +139,7 @@ public class PointsManager : MonoBehaviour
 
 
     public void updateScore(string sceneName, string metric, float metricRate){
-        
+        previousScene = sceneName;
         int sceneIdx = 0;
         int metricIdx = 0;
         if (sceneName == "SceneC"){
