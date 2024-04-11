@@ -5545,6 +5545,7 @@ MonoBehaviour:
   mainPanel2: {fileID: 425166205}
   mainPanel2Active: 1
   errorText: {fileID: 0}
+  loading: {fileID: 0}
 --- !u!114 &425166208
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10590,6 +10591,7 @@ MonoBehaviour:
   mainPanel2: {fileID: 425166205}
   mainPanel2Active: 0
   errorText: {fileID: 567788330}
+  loading: {fileID: 0}
 --- !u!114 &767838881
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -55350,7 +55352,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &9119396368642461745
