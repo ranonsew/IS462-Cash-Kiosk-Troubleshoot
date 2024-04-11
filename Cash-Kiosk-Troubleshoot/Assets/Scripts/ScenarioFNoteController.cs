@@ -37,7 +37,7 @@ public class ScenarioFNoteController : MonoBehaviour
     /// </summary>
     public RejectedNote noteStuck;
 
-    private static readonly float notePosMinX = -0.671f;
+    private static readonly float notePosMinX = -0.596f;
     private static readonly float notePosMaxX = 0.671f;
     private float maxRangeX = notePosMaxX - notePosMinX;
 
