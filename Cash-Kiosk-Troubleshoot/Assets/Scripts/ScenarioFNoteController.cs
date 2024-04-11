@@ -40,7 +40,7 @@ public class ScenarioFNoteController : MonoBehaviour
     private bool noteInSeal = false;
     private bool machineRebooted = false;
 
-    private static readonly float notePosMinX = -0.596f;
+    private static readonly float notePosMinX = -0.434f;
     private static readonly float notePosMaxX = 0.671f;
     private float maxRangeX = notePosMaxX - notePosMinX;
 
