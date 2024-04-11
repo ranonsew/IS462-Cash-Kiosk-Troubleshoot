@@ -4,6 +4,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using UnityEngine.SceneManagement;
+using JetBrains.Annotations;
 //using System.Diagnostics;
 
 public class MainPanelManager : MonoBehaviour
@@ -31,9 +33,10 @@ public class MainPanelManager : MonoBehaviour
     public TextMeshProUGUI errorText;
     public GameObject loading;
 
-
     public ReceiptManager receiptScript;
-    
+
+    public InstructionManager i;
+
     void Start()
     {
 
@@ -93,6 +96,7 @@ public class MainPanelManager : MonoBehaviour
         if (checkNextPage(text.text))
         {
             screenManager.SwitchScreen(nextScreenPanel);
+
         }
         else if (checkReboot(text.text)) 
         {
@@ -149,5 +153,14 @@ public class MainPanelManager : MonoBehaviour
         changeLightColour.blueToYellow(true, true);
 
         HeartbeatCheck.heartbeatFailure = false;
+
+        StorageManager.errorType = "Machine connected";
+        errorText.text = StorageManager.errorType;
+        errorText.color = Color.green;
+        s
+        if (SceneManager.GetActiveScene().name == "SceneE")
+        {
+            i.LoadNextInstructions();
+        }
     }
 }
