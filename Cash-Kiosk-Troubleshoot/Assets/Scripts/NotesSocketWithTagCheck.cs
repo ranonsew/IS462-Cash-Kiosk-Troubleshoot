@@ -216,20 +216,28 @@ public class NotesSocketWithTagCheck : XRSocketInteractor
 
     private int RejectNote(float chance)
     {
-        if (Random.value <= chance)
+        if (SceneManager.GetActiveScene().name == "CashCollection")
         {
-            GameObject rejectedNote = Instantiate(rejectedNotePrefab, rejectionPosition.position, rejectionPosition.rotation);
-
-            // Disable Rigidbody initially so that it doesn't fall
-            Rigidbody rigidbody = rejectedNote.GetComponent<Rigidbody>();
-            if (rigidbody != null)
+            if (Random.value <= chance)
             {
-                rigidbody.isKinematic = true;
+                GameObject rejectedNote = Instantiate(rejectedNotePrefab, rejectionPosition.position, rejectionPosition.rotation);
+
+                // Disable Rigidbody initially so that it doesn't fall
+                Rigidbody rigidbody = rejectedNote.GetComponent<Rigidbody>();
+                if (rigidbody != null)
+                {
+                    rigidbody.isKinematic = true;
+                }
+
+                return 1;
             }
-
-            return 1;
         }
-
+        
         return 0;
+    }
+
+    public void ActivateNoteSocket()
+    {
+        gameObject.SetActive(true);
     }
 }
