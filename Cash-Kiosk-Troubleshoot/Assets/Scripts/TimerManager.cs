@@ -29,7 +29,7 @@ public class TimerManager : MonoBehaviour
 
     void Update()
     {
-        PointsManager.instance.updateScore(sceneTitle, "timeInSec", (float) totalTime); // previously "SceneC"
+        // PointsManager.instance.updateScore(sceneTitle, "timeInSec", (float) totalTime); // previously "SceneC"
         if (timeRemaining > 0)
         {
             timeRemaining -= Time.deltaTime;
