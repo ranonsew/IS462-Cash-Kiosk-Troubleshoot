@@ -157,7 +157,7 @@ public class MainPanelManager : MonoBehaviour
         StorageManager.errorType = "Machine connected";
         errorText.text = StorageManager.errorType;
         errorText.color = Color.green;
-        s
+        
         if (SceneManager.GetActiveScene().name == "SceneE")
         {
             i.LoadNextInstructions();
