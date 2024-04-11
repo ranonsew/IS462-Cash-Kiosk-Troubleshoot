@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using System;
 using System.Diagnostics;
 
 public class MainPanelManager : MonoBehaviour
@@ -28,11 +27,13 @@ public class MainPanelManager : MonoBehaviour
     public bool mainPanel2Active = false;
 
     public TextMeshProUGUI errorText;
+    public GameObject loading;
     
     void Start()
     {
         GameObject attachedGameObject = gameObject;
         bool errorActive = StorageManager.errorTextActive;
+
 
         if (attachedGameObject == mainPanel2)
         {
@@ -57,7 +58,7 @@ public class MainPanelManager : MonoBehaviour
     public void buttonClick(TextMeshProUGUI text)
     {
 
-        Debug.Log("Clicked text! view inventory?" + text.text);
+        UnityEngine.Debug.Log("Clicked text! view inventory?" + text.text);
 
         if (text.text == "View Inventory"){
             
@@ -84,6 +85,10 @@ public class MainPanelManager : MonoBehaviour
             UnityEngine.Debug.Log("cycling machine time");
             rebootActive = false;
             rebootPanel.SetActive(rebootActive);
+
+            loading.SetActive(true);
+
+            changeLightColour.yellowToBlue(true, true);
 
             // reboot machine
             StartCoroutine(RebootMachine());
@@ -114,6 +119,8 @@ public class MainPanelManager : MonoBehaviour
         float waitTime = UnityEngine.Random.Range(10f, 15f);
         UnityEngine.Debug.Log(waitTime);
         yield return new WaitForSeconds(waitTime);
+
+        loading.SetActive(false);
 
         lightPulseManager.StopPulsating();
         changeLightColour.blueToYellow(true, true);
