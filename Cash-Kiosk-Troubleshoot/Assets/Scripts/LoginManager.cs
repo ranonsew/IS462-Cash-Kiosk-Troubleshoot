@@ -92,10 +92,16 @@ public class LoginManager : MonoBehaviour
         {
             if (loginActive)
             {
-                loginActive = false;
-                passwordActive = true;
-                login.gameObject.SetActive(loginActive);
-                password.gameObject.SetActive(passwordActive);
+                if (checkLoginUser(login.text)) {
+                    loginActive = false;
+                    passwordActive = true;
+                    login.gameObject.SetActive(loginActive);
+                    password.gameObject.SetActive(passwordActive);
+                }
+                else
+                {
+                    wrongScreen.SetActive(true);
+                }
             }
             else if (checkLoginUser(login.text) & checkLoginPassword(password.text)) 
             {
