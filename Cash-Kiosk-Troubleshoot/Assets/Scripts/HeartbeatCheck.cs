@@ -17,12 +17,5 @@ public class HeartbeatCheck : MonoBehaviour
             StorageManager.errorTextActive = true;
             StorageManager.errorType = "Machine not connected";
         }
-
-        Debug.Log("test hf");
-    }
-
-    public static void updateHeartbeatFailure(bool boolen)
-    {
-        heartbeatFailure = boolen;
     }
 }

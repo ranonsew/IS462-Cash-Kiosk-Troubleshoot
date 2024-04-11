@@ -11,7 +11,7 @@ public class LightPulseManager : MonoBehaviour
 
     private Color originalEmissionColor;
 
-    private bool isPulsating = true;
+    private bool isPulsating = false;
 
     public void StartPulsating()
     {

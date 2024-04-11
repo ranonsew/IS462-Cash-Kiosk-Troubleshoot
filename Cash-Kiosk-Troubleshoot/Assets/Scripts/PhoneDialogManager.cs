@@ -27,6 +27,7 @@ public class PhoneDialogManager : MonoBehaviour
         {
             dialogs.Add(entry.name, entry.dialogObject);
             entry.dialogObject.SetActive(false);
+            Debug.Log(entry.name);  
         }
     }
 
@@ -47,7 +48,20 @@ public class PhoneDialogManager : MonoBehaviour
     {
         if (switchTo == "heartbeatCheck")
         {
+            dialogs["start"].SetActive(false);
+
             // check if hearbeat is successful
+            if (!HeartbeatCheck.heartbeatFailure)
+            {
+                currentDialog = "heartbeatCheckSuccess";
+            } 
+            else
+            {
+                currentDialog = "heartbeatCheckFail";
+            }
+
+            dialogs[currentDialog].SetActive(true);
+
         }
         else
         {
