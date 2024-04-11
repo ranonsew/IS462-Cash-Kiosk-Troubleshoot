@@ -21,7 +21,7 @@ public class TimerManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-         Debug.Log(PointsManager.instance.points.ToString());
+        //  Debug.Log(PointsManager.instance.points.ToString());
 {
     // do something with entry.Value or entry.Key
 }
@@ -29,8 +29,12 @@ public class TimerManager : MonoBehaviour
 
     void Update()
     {
-        // PointsManager.instance.updateScore(sceneTitle, "timeInSec", (float) totalTime); // previously "SceneC"
-        if (timeRemaining > 0)
+
+        if (PointsManager.instance != null){
+            PointsManager.instance.updateScore(sceneTitle, "timeInSec", (float) totalTime/1000); // previously "SceneC"
+        }
+        
+        if (timeRemaining > 0 + Time.deltaTime)
         {
             timeRemaining -= Time.deltaTime;
             messageText.SetText(timeRemaining.ToString("F2"));
@@ -49,7 +53,7 @@ public class TimerManager : MonoBehaviour
     }
 
     void TriggerWinner(){
-        Debug.Log("WinnieTriggered");
-        GameObject b = Instantiate(npc, npcSpawnLocation.position, npcSpawnLocation.rotation);
+        // Debug.Log("WinnieTriggered");
+        // GameObject b = Instantiate(npc, npcSpawnLocation.position, npcSpawnLocation.rotation);
     }
 }

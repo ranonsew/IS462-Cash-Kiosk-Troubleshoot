@@ -32,8 +32,10 @@ using TMPro;
         int startNum = Random.Range(50, 200);
         TextMeshPro c;
         row.text = "";
-        // int mainPlayerScore = (int) PointsManager.instance.fetchScores("SceneC", "overall");
         int mainPlayerScore = 3000;
+        if (PointsManager.instance != null){
+            mainPlayerScore = (int) PointsManager.instance.fetchScores("SceneC", "overall");
+        }
         int newPlayerScore = 0;
 
         List<int> list = new List<int>();
@@ -45,13 +47,8 @@ using TMPro;
         list.Sort((a, b) => b.CompareTo(a)); // descending sort
 
         for (int i = startNum-5; i < startNum+5; i++){
-            // Debug.Log("i:" + (i - (startNum-5)));
             c = Instantiate(row, rowLocation.position + new Vector3 (4, -3 * (i - (startNum-5)), -4), Quaternion.Euler (0,0,0));
             c.transform.SetParent(rowLocation.transform, false);
-            
-            // if (i < startNum){ newPlayerScore = Random.Range(0, mainPlayerScore - 1);
-            // }else if (i > startNum){  newPlayerScore = Random.Range( mainPlayerScore + 1, mainPlayerScore + 2000);
-            // }else{ newPlayerScore = mainPlayerScore; }
             c.text = i.ToString()+". "+ names[i - (startNum-5)] + " " + list[i - (startNum-5)].ToString();
 
             string htmlValue = "#F68918";

@@ -9,16 +9,7 @@ using UnityEngine.SceneManagement;
 
 public class PointsManager : MonoBehaviour
 {
-    // completion - percentage, number of errors, time factor, overall take into account all factors
-    // sceneC{
-    //     percentCompletion: 20,
-    //     numErrors: 20,
-    //     timeInSec: 10,
-    //     overallScore: 100,
-    // }
-    // public static PointsManager instance;
     public float[][] points;
-    // public ParticleSystem p;
 
     public TextMeshPro pointsDisplay;
 
@@ -30,20 +21,6 @@ public class PointsManager : MonoBehaviour
     #region Init / Gestion du singleton
  
     public static PointsManager instance;
-    // public static PointsManager Instance(){
-    //     // get
-    //     // {
-    //         if (instance == null)
-    //         {
-    //             Debug.Log("Getting new instance");
-    //             instance = new PointsManager();
-    //         }
-
-    //         Debug.Log("Getting existing instance");
- 
-    //         return instance;
-    //     // };
-    // }
  
     #endregion
  
@@ -54,13 +31,8 @@ public class PointsManager : MonoBehaviour
 
     void Start(){
 
-        // if (instance == null)
-        //     instance = this;
-        // else
-        //     Destroy(gameObject);
-
         if (PointsManager.instance == null){
-            instance = this;  
+            instance = this;
         }
 
 
@@ -73,24 +45,8 @@ public class PointsManager : MonoBehaviour
         };}
 
         string result = ArrayToString(points);
-        pointsString = result.Replace(",}", "}").Substring(1);
-        // if (this.instance.previousScene == "SceneC"){
-        //     pointsString = "yayyyy";
-        // }
+        pointsString = result.Replace(",}", "}").Substring(1);}
 
-
-        Debug.Log("this.instance.previousScene:" + PointsManager.instance.previousScene);
-         Debug.Log("this.instance.points:" + PointsManager.instance.points);
-
-        // if (p != null){
-        // var emission = p.emission; // Stores the module in a local variable
-        // emission.enabled = false; // Applies the new value directly to the Particle System}
-    // }
-    }
-
-// // SceneC, SceneD, SceneE, SceneF
-// // completionRate, numErrors, timeInSec, overall
-// updateScore(string sceneName, string metric, int metricRate)
     public float fetchScores(string sceneName, string metric){
 
         Debug.Log("getting score here: " + sceneName + " --- ");
@@ -102,7 +58,7 @@ public class PointsManager : MonoBehaviour
             sceneIdx = 1;
         }else if(sceneName == "SceneE"){
             sceneIdx = 2;
-        }else{
+        }else if(sceneName == "SceneF"){
             sceneIdx = 3;
         }
         if (metric == "completionRate"){
@@ -113,11 +69,15 @@ public class PointsManager : MonoBehaviour
             metricIdx = 2;
         }else{
             metricIdx = 3;
+
+            return (points[sceneIdx][0] * 500 + 500 / (points[sceneIdx][2]/1000)  - 500 * (points[sceneIdx][1])) / 10;
         }
 
         Debug.Log("hereee: "+ sceneIdx.ToString() + ", otehr one: " + metricIdx.ToString() + " points: " + points);
         return points[sceneIdx][metricIdx];
     }
+
+
 
     public string ArrayToString(float[][] points){
             var result = string.Empty;
@@ -148,7 +108,7 @@ public class PointsManager : MonoBehaviour
             sceneIdx = 1;
         }else if(sceneName == "SceneE"){
             sceneIdx = 2;
-        }else{
+        }else if(sceneName == "SceneF"){
             sceneIdx = 3;
         }
         if (metric == "completionRate"){
@@ -165,8 +125,7 @@ public class PointsManager : MonoBehaviour
         // shower confetti if completion done:
         if (points[sceneIdx][0] >= 1){
             waitLoadResultsScene();
-            // loadResultsScene();
-            // StartConfetti();
+
         }
 
         pointsString = ArrayToString(points);
@@ -175,33 +134,12 @@ public class PointsManager : MonoBehaviour
     void Update()
     {}
 
-
-    // public void StartConfetti()
-    // {
-    //     StartCoroutine(createConfetti());
-    // }
-
-
-        void waitLoadResultsScene(){
+        public void waitLoadResultsScene(){
             StartCoroutine(loadResultsScene());
         }
 
-
-    // IEnumerator createConfetti(){
-    //         var emission = p.emission; // Stores the module in a local variable
-    //         emission.enabled = true; // Applies the new value directly to the Particle System
-    //         //Wait for 2 seconds
-    //         yield return new WaitForSeconds(6);
-            
-    //         emission.enabled = false; // Applies the new value directly to the Particle System
-    //         yield return new WaitForSeconds(2);
-
-    // }
-
-
-
 IEnumerator loadResultsScene(){
-    yield return new WaitForSeconds(3);
+    yield return new WaitForSeconds(6);
     SceneManager.LoadScene("SceneResults");
 }
 

@@ -2,18 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
-
+using TMPro;
 public class SceneC3DoorController : MonoBehaviour
 {
     private HingeJoint hingeJoint;
     private bool isOpen = false;
     private float closedAngle = 0f;
-    private float openAngle = 90f;
+    public float openAngle = 110f;
+    public TextMeshPro instructions;
+    public TextMeshPro errorMessage;
+        public ParticleSystem p;
+    public Transform pLocation;
+    // public GameObject lights;
+    // public Material[] materials;
+    // public bool blueOrYellow = true;
+
     private XRSimpleInteractable xrInteractable;
 
+    
     // Start is called before the first frame update
     void Start()
     {
+        p = Instantiate(p, pLocation.position, pLocation.rotation);
+            var emission = p.emission; // Stores the module in a local variable
+            emission.enabled = false; // Applies the new value directly to the Particle System}
+
         hingeJoint = GetComponent<HingeJoint>();
         xrInteractable = GetComponent<XRSimpleInteractable>();
 
@@ -26,18 +39,43 @@ public class SceneC3DoorController : MonoBehaviour
         
     }
 
+
+
     private void DoorSwingWrapper(SelectEnterEventArgs args)
     {
-        if (isOpen)
+        SceneCvariables.instance.KioskDoorCheck = true;
+        Debug.Log("SceneCvariables.instance.InternalNotesDoorOpen: " + SceneCvariables.instance.InternalNotesDoorOpen);
+        if (isOpen & SceneCvariables.instance.NotesDoorOpen == false & SceneCvariables.instance.InternalNotesDoorOpen == false)
         {
             SetDoorAngle(closedAngle);
             isOpen = false;
+            SceneCvariables.instance.KioskDoorOpen = false;
+            // if all closed then trigger ending scene here and confetti!: IF not show on instruction to recheck all the doors
+            if (SceneCvariables.instance.KioskDoorOpen == false & SceneCvariables.instance.NotesDoorOpen == false & 
+            SceneCvariables.instance.InternalNotesDoorOpen == false){
+
+                Debug.Log("Yyyyyy");
+                PointsManager.instance.updateScore("SceneC", "completionRate", (1));
+                PointsManager.instance.updateScore("SceneC", "numErrors", (float) (SceneCvariables.instance.KioskDoorCheck ? 0: 1)  + 
+                (SceneCvariables.instance.NotesDoorCheck ? 0 : 1) + (SceneCvariables.instance.InternalNotesDoorCheck ? 0 :1));
+                errorMessage.text = "Resolved!";
+                errorMessage.color = Color.green;
+                var emission = p.emission; // Stores the module in a local variable
+                emission.enabled = true; // Applies the new value directly to the Particle System}
+                PointsManager.instance.waitLoadResultsScene();
+            
+            }else{
+                instructions.text = "Please find all loose doors and close it properly.";
+            }
         }
         else
         {
             SetDoorAngle(openAngle);
             isOpen = true;
+            SceneCvariables.instance.KioskDoorOpen = true;
         }
+
+        SceneCvariables.instance.start = false;
     }
 
     private void SetDoorAngle(float angle)
