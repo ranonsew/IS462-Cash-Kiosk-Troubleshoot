@@ -18,7 +18,7 @@ public class PointsManager : MonoBehaviour
     // }
     // public static PointsManager instance;
     public float[][] points;
-    public ParticleSystem p;
+    // public ParticleSystem p;
 
     public TextMeshPro pointsDisplay;
 
@@ -83,8 +83,8 @@ public class PointsManager : MonoBehaviour
          Debug.Log("this.instance.points:" + PointsManager.instance.points);
 
         // if (p != null){
-        var emission = p.emission; // Stores the module in a local variable
-        emission.enabled = false; // Applies the new value directly to the Particle System}
+        // var emission = p.emission; // Stores the module in a local variable
+        // emission.enabled = false; // Applies the new value directly to the Particle System}
     // }
     }
 
@@ -164,7 +164,8 @@ public class PointsManager : MonoBehaviour
         points[sceneIdx][metricIdx] = metricRate;
         // shower confetti if completion done:
         if (points[sceneIdx][0] >= 1){
-            StartConfetti();
+            loadResultsScene();
+            // StartConfetti();
         }
 
         pointsString = ArrayToString(points);
@@ -174,22 +175,22 @@ public class PointsManager : MonoBehaviour
     {}
 
 
-    public void StartConfetti()
-    {
-        StartCoroutine(createConfetti());
-    }
+    // public void StartConfetti()
+    // {
+    //     StartCoroutine(createConfetti());
+    // }
 
 
-    IEnumerator createConfetti(){
-            var emission = p.emission; // Stores the module in a local variable
-            emission.enabled = true; // Applies the new value directly to the Particle System
-            //Wait for 2 seconds
-            yield return new WaitForSeconds(6);
+    // IEnumerator createConfetti(){
+    //         var emission = p.emission; // Stores the module in a local variable
+    //         emission.enabled = true; // Applies the new value directly to the Particle System
+    //         //Wait for 2 seconds
+    //         yield return new WaitForSeconds(6);
             
-            emission.enabled = false; // Applies the new value directly to the Particle System
-            yield return new WaitForSeconds(2);
-            loadResultsScene();
-    }
+    //         emission.enabled = false; // Applies the new value directly to the Particle System
+    //         yield return new WaitForSeconds(2);
+
+    // }
 
 
 

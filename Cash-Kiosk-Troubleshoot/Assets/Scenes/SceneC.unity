@@ -534,6 +534,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Confetti - Star PS
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: c9f29912646488c438d328a9d5b54653, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: c9f29912646488c438d328a9d5b54653, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.444
@@ -16194,7 +16198,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1793911345
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16207,7 +16211,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13e893e1135854fd5b94f4019452ffa2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  p: {fileID: 1829012185}
   pointsDisplay: {fileID: 0}
   previousScene: 
   currentScene: 
@@ -16430,11 +16433,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!198 &1829012185 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 19800000, guid: c9f29912646488c438d328a9d5b54653, type: 3}
-  m_PrefabInstance: {fileID: 51661733}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1835542485
 GameObject:
   m_ObjectHideFlags: 0
