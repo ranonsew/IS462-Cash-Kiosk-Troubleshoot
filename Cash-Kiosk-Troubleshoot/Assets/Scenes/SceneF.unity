@@ -1939,12 +1939,16 @@ MonoBehaviour:
   rigidbody_kiosk_front_door: {fileID: 0}
   rigidbody_notes_front_door: {fileID: 0}
   rigidbody_notes_internal_door: {fileID: 0}
+  rigidbody_internal_slit: {fileID: 0}
   messageText: {fileID: 0}
   totalStepsSceneC: 7
   currentStepsSceneC: 0
   internalDoorOpen: 0
   notesDoorOpen: 0
   kioskDoorOpen: 0
+  internalSlitOpen: 0
+  originalKioskLocation: {fileID: 0}
+  originalNotesDoor: {fileID: 0}
 --- !u!23 &239886301
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -6419,12 +6423,16 @@ MonoBehaviour:
   rigidbody_kiosk_front_door: {fileID: 0}
   rigidbody_notes_front_door: {fileID: 0}
   rigidbody_notes_internal_door: {fileID: 0}
+  rigidbody_internal_slit: {fileID: 0}
   messageText: {fileID: 0}
   totalStepsSceneC: 7
   currentStepsSceneC: 0
   internalDoorOpen: 0
   notesDoorOpen: 0
   kioskDoorOpen: 0
+  internalSlitOpen: 0
+  originalKioskLocation: {fileID: 0}
+  originalNotesDoor: {fileID: 0}
 --- !u!23 &756044626
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -10562,7 +10570,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6598815579406187037, guid: 18ddb545287c546e19cc77dc9fbb2189, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

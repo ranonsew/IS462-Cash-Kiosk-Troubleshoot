@@ -584,7 +584,7 @@ Transform:
   m_GameObject: {fileID: 132963205}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -1.79, y: 2.47, z: 2.237}
+  m_LocalPosition: {x: -1.79, y: 0, z: 2.237}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3550,7 +3550,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6598815579406187037, guid: 18ddb545287c546e19cc77dc9fbb2189, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5451,12 +5451,16 @@ MonoBehaviour:
   rigidbody_kiosk_front_door: {fileID: 0}
   rigidbody_notes_front_door: {fileID: 0}
   rigidbody_notes_internal_door: {fileID: 0}
+  rigidbody_internal_slit: {fileID: 0}
   messageText: {fileID: 0}
   totalStepsSceneC: 7
   currentStepsSceneC: 0
   internalDoorOpen: 0
   notesDoorOpen: 0
   kioskDoorOpen: 0
+  internalSlitOpen: 0
+  originalKioskLocation: {fileID: 0}
+  originalNotesDoor: {fileID: 0}
 --- !u!1 &1893188562
 GameObject:
   m_ObjectHideFlags: 0
