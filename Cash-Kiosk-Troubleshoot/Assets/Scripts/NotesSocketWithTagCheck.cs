@@ -17,6 +17,8 @@ public class NotesSocketWithTagCheck : XRSocketInteractor
     private string objectTag;
     private int maxAccept = 0;
     private int maxReject = 2;
+    private static int numRejected = 0;
+    public static Dictionary<string, bool> rotationDict = new Dictionary<string, bool>() { { "base", false }, { "baseturn", false }, { "flip", false }, { "flipturn", false } };
 
 
     public override bool CanHover(IXRHoverInteractable interactable)
@@ -50,8 +52,27 @@ public class NotesSocketWithTagCheck : XRSocketInteractor
 
     private IEnumerator DelayAndDestroy(XRBaseInteractable objToDestroyXRBaseInteractable)
     {
-        // update score
+        float epsilon = 0.001f;
 
+        // check rotation
+        Vector3 rotation = objToDestroyXRBaseInteractable.gameObject.transform.rotation.eulerAngles;
+        Debug.Log("rotation: " + rotation);
+        if (rotation == Vector3.zero)
+        {
+            rotationDict["base"] = true;
+        }
+        else if (Mathf.Abs(rotation.z % 180) < epsilon && rotation.y == 0)
+        {
+            rotationDict["flip"] = true;
+        }
+        else if (rotation.z == 0 && Mathf.Abs(rotation.y % 180) < epsilon)
+        {
+            rotationDict["baseturn"] = true;
+        }
+        else
+        {
+            rotationDict["flipturn"] = true;
+        }
 
         yield return new WaitForSeconds(0.2f);
 
@@ -103,6 +124,8 @@ public class NotesSocketWithTagCheck : XRSocketInteractor
         {
             GameObject rejectedNote = Instantiate(rejectedNotePrefab, originalPosition, Quaternion.identity);
 
+            maxAccept++;
+
             // Remove XR Grab Interactable component from the instantiated object
             XRGrabInteractable grabInteractable = rejectedNote.GetComponent<XRGrabInteractable>();
             if (grabInteractable != null)
@@ -131,8 +154,6 @@ public class NotesSocketWithTagCheck : XRSocketInteractor
 
     IEnumerator MoveStackOfNotes(GameObject stackOfNotes)
     {
-        int numRejected = 0;
-
         // Iterate through each note in the stack
         for (int i = notes.Length - 1; i >= 0; i--)
         {
@@ -175,7 +196,7 @@ public class NotesSocketWithTagCheck : XRSocketInteractor
             yield return null;
         }
 
-        while (maxAccept <= 4)
+        if (maxAccept <= 4)
         {
             RejectNote(0.5f);
         }

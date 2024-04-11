@@ -9,7 +9,9 @@ public class SealNoteSocketManager : XRSocketInteractor
     public string[] targetTag;
     public GameObject rejectedNotePrefab;
     public Transform sealPosition;
+    public GameObject sealBag;
 
+    private bool sceneCompleted = false;
     private Vector3 originalPosition;
     private float noteDelay = 0.1f;
     private int sealedNoteCount = 0;
@@ -91,9 +93,67 @@ public class SealNoteSocketManager : XRSocketInteractor
     {
         // move to seal location
         rejectedNote.transform.position = sealPosition.position;
+        rejectedNote.transform.parent = sealBag.transform;
         sealedNoteCount++;
+
+        PointsManager.instance.updateScore("SceneD", "numErrors", countMistake());
+
+        // check if scene is complete, ie all rejected notes in seal bag
+        sceneCompleted = checkCompletion();
+
+        if (sceneCompleted)
+        {
+            PointsManager.instance.updateScore("SceneD", "completionRate", 100);
+        }
 
         // Delay before moving the next note
         yield return new WaitForSeconds(noteDelay);
+    }
+
+    private bool checkCompletion()
+    {
+        // check if all notes in seal bag
+        // Find all GameObjects with the name "rejectedNote" in the scene
+        GameObject[] rejectedNotes = GameObject.FindGameObjectsWithTag("rejectedNote");
+
+        // Iterate through each rejectedNote
+        foreach (GameObject note in rejectedNotes)
+        {
+            // Check if the note has no parent
+            if (note.transform.parent == null)
+            {
+                sceneCompleted = false;
+                break;
+            }
+            else
+            {
+                sceneCompleted = true;
+            }
+        }
+        return sceneCompleted;
+    }
+
+    private int countMistake()
+    {
+        int count = 0;
+
+        // Find all GameObjects with the name "StackOfNotesWSocket" in the scene
+        GameObject[] stackOfNotes = GameObject.FindGameObjectsWithTag("StackOfNotesWSocket");
+
+        if (stackOfNotes.Length > 0)
+        {
+            count++;
+        }
+
+        foreach (bool value in NotesSocketWithTagCheck.rotationDict.Values)
+        {
+            if (!value)
+            {
+                count++;
+                break;
+            }
+        }
+
+        return count;
     }
 }
