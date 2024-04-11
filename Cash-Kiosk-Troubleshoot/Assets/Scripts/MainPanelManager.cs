@@ -55,6 +55,16 @@ public class MainPanelManager : MonoBehaviour
 
     public void buttonClick(TextMeshProUGUI text)
     {
+
+        Debug.Log("Clicked text! view inventory?" + text.text);
+
+        if (text.text == "View Inventory"){
+            
+
+            return;
+        }
+
+
         if (checkNextPage(text.text))
         {
             screenManager.SwitchScreen(nextScreenPanel);

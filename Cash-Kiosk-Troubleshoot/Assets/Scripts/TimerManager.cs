@@ -10,6 +10,7 @@ using UnityEngine;
 public class TimerManager : MonoBehaviour
 {
     public float timeRemaining = 10;
+    public float totalTime = 0;
     public TMP_Text messageText;
     public bool WinnerTriggered = false;
     public GameObject npc;
@@ -26,6 +27,7 @@ public class TimerManager : MonoBehaviour
 
     void Update()
     {
+        PointsManager.instance.updateScore("SceneC", "timeInSec", (float) totalTime);
         if (timeRemaining > 0)
         {
             timeRemaining -= Time.deltaTime;
@@ -38,8 +40,10 @@ public class TimerManager : MonoBehaviour
                 TriggerWinner();
             }
         }else{
-            // Debug.Log("Time has run out!");
+            // Debug.Log("Updating time here for score!");
+            
         }
+        totalTime += Time.deltaTime;
     }
 
     void TriggerWinner(){
