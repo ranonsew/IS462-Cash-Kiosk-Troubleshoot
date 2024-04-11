@@ -30,14 +30,17 @@ public class ScenarioFNoteController : MonoBehaviour
     public TextMeshProUGUI screen2ErrorText;
     
     public InstructionManager instructionManager;
-    
+    public SceneLoader sceneLoader;
 
     /// <summary>
     /// Couldn't get regular note prefab to work, but can with RejectedNote prefab
     /// </summary>
     public RejectedNote noteStuck;
 
-    private static readonly float notePosMinX = -0.671f;
+    private bool noteInSeal = false;
+    private bool machineRebooted = false;
+
+    private static readonly float notePosMinX = -0.434f;
     private static readonly float notePosMaxX = 0.671f;
     private float maxRangeX = notePosMaxX - notePosMinX;
 
@@ -70,9 +73,24 @@ public class ScenarioFNoteController : MonoBehaviour
 
     private IEnumerator DelayedStartingInstructions()
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(10f);
 
         instructionManager.LoadSpecificInstructionIndex(1); // To start, login with ...
+    }
+
+    void Update()
+    {
+        if (machineRebooted & noteInSeal)
+        {
+            StartCoroutine(DelayToEnd());
+        }
+    }
+
+    private IEnumerator DelayToEnd()
+    {
+        Debug.Log("Ending Scenario F");
+        yield return new WaitForSeconds(6.9f);
+        sceneLoader.LoadScene("ModeSelection");
     }
 
     /// <summary>
@@ -105,7 +123,7 @@ public class ScenarioFNoteController : MonoBehaviour
     /// Wrapper function for UpdateKnobRotation()
     /// </summary>
     /// <param name="args"></param>
-    void UpdateKnobWrapper(SelectExitEventArgs args)
+    private void UpdateKnobWrapper(SelectExitEventArgs args)
     {
         UpdateKnobRotation();
     }
@@ -160,11 +178,13 @@ public class ScenarioFNoteController : MonoBehaviour
             allowLock = false; // prep for next lock/unlock cycle if there is
             StartCoroutine(FlashingLightsRebootEmulator());
             Debug.Log("Lock allowed, proceeding...");
-
-            // Add instruction manager step here
         }
     }
 
+    /// <summary>
+    /// Emulate the machine rebooting
+    /// </summary>
+    /// <returns></returns>
     IEnumerator FlashingLightsRebootEmulator()
     {
         changeLightColor.yellowToBlue(true, true);
@@ -179,6 +199,20 @@ public class ScenarioFNoteController : MonoBehaviour
 
         yield return new WaitForSeconds(0.5f);
 
-        instructionManager.LoadSpecificInstructionIndex(5); // Congratulations! The yellow lights returning ...
+        // as long as it is outside the position
+        if (!CheckNotePosition())
+        {
+            instructionManager.LoadSpecificInstructionIndex(5); // Congratulations! The yellow lights returning ...
+            machineRebooted = true;
+        }
+    }
+
+    /// <summary>
+    /// Select enter event on the rejected note
+    /// </summary>
+    /// <param name="args"></param>
+    public void ScenarioF_EndSceneLoader(SelectEnterEventArgs args)
+    {
+        noteInSeal = true;
     }
 }

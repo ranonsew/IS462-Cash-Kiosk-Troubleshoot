@@ -27,7 +27,6 @@ public class PhoneDialogManager : MonoBehaviour
         {
             dialogs.Add(entry.name, entry.dialogObject);
             entry.dialogObject.SetActive(false);
-            Debug.Log(entry.name);  
         }
     }
 

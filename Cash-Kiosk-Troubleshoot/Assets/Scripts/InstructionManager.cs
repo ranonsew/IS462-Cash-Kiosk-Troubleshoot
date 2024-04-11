@@ -32,9 +32,9 @@ public class InstructionManager : MonoBehaviour
             displayInstructionsUGUI.text = instructions[clipIndex];
         }
 
-        //audio = GetComponent<AudioSource>();
-        //audio.clip = clips[clipIndex];
-        //audio.Play();
+        audio = GetComponent<AudioSource>();
+        audio.clip = clips[clipIndex];
+        audio.Play();
         clipIndex++;
     }
 
@@ -55,9 +55,9 @@ public class InstructionManager : MonoBehaviour
             {
                 displayInstructionsUGUI.text = instructions[clipIndex];
             }
-            //audio = GetComponent<AudioSource>();
-            //audio.clip = clips[clipIndex];
-            //audio.Play();
+            audio = GetComponent<AudioSource>();
+            audio.clip = clips[clipIndex];
+            audio.Play();
 
             // change tooltip location here:
             // script = a.getComponent<Tooltip>();
@@ -85,8 +85,8 @@ public class InstructionManager : MonoBehaviour
             {
                 displayInstructionsUGUI.text = instructions[index];
             }
-            //audio.clip = clips[index];
-            //audio.Play();
+            audio.clip = clips[index];
+            audio.Play();
         }
     }
 }

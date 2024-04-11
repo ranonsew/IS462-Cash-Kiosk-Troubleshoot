@@ -6,18 +6,7 @@ using UnityEngine.XR.Content.Interaction;
 public class DrawerLockCollider : MonoBehaviour
 {
     public ScenarioFNoteController scenarioFController;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    private int instructionCounter = 0;
 
     /// <summary>
     /// On trigger enter stuff for unlocking/locking allowance
@@ -30,7 +19,12 @@ public class DrawerLockCollider : MonoBehaviour
         {
             scenarioFController.allowLock = true;
             scenarioFController.fillerCube.SetActive(false);
-            scenarioFController.instructionManager.LoadSpecificInstructionIndex(3); // If the note is hard to spot ...
+            // strange method, just to prevent multiple activation
+            if (instructionCounter == 0)
+            {
+                scenarioFController.instructionManager.LoadSpecificInstructionIndex(3); // If the note is hard to spot ...
+                instructionCounter++;
+            }
         }
         Debug.Log($"Lock state: {scenarioFController.allowLock}");
         if (other.gameObject.CompareTag("RecyclerDrawer"))
