@@ -1939,12 +1939,16 @@ MonoBehaviour:
   rigidbody_kiosk_front_door: {fileID: 0}
   rigidbody_notes_front_door: {fileID: 0}
   rigidbody_notes_internal_door: {fileID: 0}
+  rigidbody_internal_slit: {fileID: 0}
   messageText: {fileID: 0}
   totalStepsSceneC: 7
   currentStepsSceneC: 0
   internalDoorOpen: 0
   notesDoorOpen: 0
   kioskDoorOpen: 0
+  internalSlitOpen: 0
+  originalKioskLocation: {fileID: 0}
+  originalNotesDoor: {fileID: 0}
 --- !u!23 &239886301
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -6419,12 +6423,16 @@ MonoBehaviour:
   rigidbody_kiosk_front_door: {fileID: 0}
   rigidbody_notes_front_door: {fileID: 0}
   rigidbody_notes_internal_door: {fileID: 0}
+  rigidbody_internal_slit: {fileID: 0}
   messageText: {fileID: 0}
   totalStepsSceneC: 7
   currentStepsSceneC: 0
   internalDoorOpen: 0
   notesDoorOpen: 0
   kioskDoorOpen: 0
+  internalSlitOpen: 0
+  originalKioskLocation: {fileID: 0}
+  originalNotesDoor: {fileID: 0}
 --- !u!23 &756044626
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -12463,7 +12471,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4356456892009499901, guid: 4e660da2419d1614198b2c073ddf863d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.853
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4356456892009499901, guid: 4e660da2419d1614198b2c073ddf863d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -45595,8 +45603,8 @@ SceneRoots:
   m_Roots:
   - {fileID: 801058739}
   - {fileID: 2439801932182684547}
-  - {fileID: 1174905685}
   - {fileID: 1391635089}
+  - {fileID: 1174905685}
   - {fileID: 826229698}
   - {fileID: 1545583394}
   - {fileID: 876633607}
