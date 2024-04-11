@@ -32,7 +32,11 @@ public class MaterialManager : MonoBehaviour
     [SerializeField]
     Animator doorAnim;
 
+    [SerializeField]
+    Animator notesDoorAnim;
+
     bool canOpen;
+    bool canOpenNotes;
 
     InstructionManager m;
 
@@ -245,6 +249,11 @@ public class MaterialManager : MonoBehaviour
     public void SetKioskDoor(){
         canOpen = !canOpen;
         doorAnim.SetBool("isOpen", canOpen);
+    }
+
+    public void SetNotesDoor(){
+        canOpenNotes = !canOpenNotes;
+        notesDoorAnim.SetBool("isOpen", canOpenNotes);
     }
 
 
