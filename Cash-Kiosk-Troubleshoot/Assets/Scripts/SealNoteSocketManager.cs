@@ -96,13 +96,13 @@ public class SealNoteSocketManager : XRSocketInteractor
         rejectedNote.transform.parent = sealBag.transform;
         sealedNoteCount++;
 
-        PointsManager.instance.updateScore("SceneD", "numErrors", countMistake());
-
         // check if scene is complete, ie all rejected notes in seal bag
         sceneCompleted = checkCompletion();
 
         if (sceneCompleted)
         {
+
+            PointsManager.instance.updateScore("SceneD", "numErrors", countMistake());
             PointsManager.instance.updateScore("SceneD", "completionRate", 100);
         }
 
@@ -114,7 +114,7 @@ public class SealNoteSocketManager : XRSocketInteractor
     {
         // check if all notes in seal bag
         // Find all GameObjects with the name "rejectedNote" in the scene
-        GameObject[] rejectedNotes = GameObject.FindGameObjectsWithTag("rejectedNote");
+        GameObject[] rejectedNotes = GameObject.FindGameObjectsWithTag("RejectedNote");
 
         // Iterate through each rejectedNote
         foreach (GameObject note in rejectedNotes)
@@ -138,7 +138,7 @@ public class SealNoteSocketManager : XRSocketInteractor
         int count = 0;
 
         // Find all GameObjects with the name "StackOfNotesWSocket" in the scene
-        GameObject[] stackOfNotes = GameObject.FindGameObjectsWithTag("StackOfNotesWSocket");
+        GameObject[] stackOfNotes = GameObject.FindGameObjectsWithTag("Notes");
 
         if (stackOfNotes.Length > 0)
         {

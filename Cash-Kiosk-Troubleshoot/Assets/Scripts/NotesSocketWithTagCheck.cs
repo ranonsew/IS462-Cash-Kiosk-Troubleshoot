@@ -17,7 +17,6 @@ public class NotesSocketWithTagCheck : XRSocketInteractor
     private string objectTag;
     private int maxAccept = 0;
     private int maxReject = 2;
-    private static int numRejected = 0;
     public static Dictionary<string, bool> rotationDict = new Dictionary<string, bool>() { { "base", false }, { "baseturn", false }, { "flip", false }, { "flipturn", false } };
 
 
@@ -154,6 +153,8 @@ public class NotesSocketWithTagCheck : XRSocketInteractor
 
     IEnumerator MoveStackOfNotes(GameObject stackOfNotes)
     {
+        int numRejected = 0;
+
         // Iterate through each note in the stack
         for (int i = notes.Length - 1; i >= 0; i--)
         {
