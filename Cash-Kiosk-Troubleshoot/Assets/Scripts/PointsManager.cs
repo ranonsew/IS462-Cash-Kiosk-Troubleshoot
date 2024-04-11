@@ -161,7 +161,7 @@ public class PointsManager : MonoBehaviour
             metricIdx = 3;
         }
 
-        points[sceneIdx][metricIdx] = metricRate;
+        points[sceneIdx][metricIdx] += metricRate;
         // shower confetti if completion done:
         if (points[sceneIdx][0] >= 1){
             loadResultsScene();

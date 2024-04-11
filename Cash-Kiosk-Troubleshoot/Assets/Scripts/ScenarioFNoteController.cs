@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using UnityEditor.Localization.Plugins.XLIFF.V12;
 using UnityEngine;
 using UnityEngine.XR.Content.Interaction;
 
@@ -24,6 +26,9 @@ public class ScenarioFNoteController : MonoBehaviour
 
     public ChangeLightColour changeLightColor;
     public LightPulseManager lightPulseManager;
+
+    public InstructionManager instructionManager;
+    public TextMeshProUGUI screen2ErrorText;
 
     /// <summary>
     /// Couldn't get regular note prefab to work, but can with RejectedNote prefab
@@ -54,9 +59,7 @@ public class ScenarioFNoteController : MonoBehaviour
         float y = 0.535f;
         float z = 0f;
         noteStuck.transform.localPosition = new Vector3(x, y, z); // randomized X position
-        UpdateKnobRotation(x, y, z);
-        //Debug.Log($"Value: {dialKnob.value}");
-        //Debug.Log($"NoteX: {noteStuck.transform.position.x}");
+        UpdateKnobRotation();
     }
 
     // Update is called once per frame
@@ -66,16 +69,29 @@ public class ScenarioFNoteController : MonoBehaviour
     }
 
     /// <summary>
-    /// Update the knob rotation based on location of the note
+    /// Note within the bounds of the recycler internal drawer track
     /// </summary>
-    private void UpdateKnobRotation(float x, float y, float z)
+    /// <returns></returns>
+    public bool CheckNotePosition()
     {
+        float x = noteStuck.transform.localPosition.x;
+        float y = noteStuck.transform.localPosition.y;
+        float z = noteStuck.transform.localPosition.z;
+
         bool withinX = x >= notePosMinX & x <= notePosMaxX;
         bool withinY = y >= notePosMinY & y <= notePosMaxY;
         bool withinZ = z >= notePosMinZ & z <= notePosMaxZ;
 
+        return withinX & withinY & withinZ;
+    }
+
+    /// <summary>
+    /// Update the knob rotation based on location of the note
+    /// </summary>
+    private void UpdateKnobRotation()
+    {
         // if within X, Y, Z boundaries
-        if (withinX & withinY & withinZ)
+        if (CheckNotePosition())
         {
             float val = (noteStuck.transform.localPosition.x - notePosMinX) / maxRangeX;
             Debug.Log($"Updated Knob value: {val}");
@@ -106,6 +122,7 @@ public class ScenarioFNoteController : MonoBehaviour
     {
         drawerLock.GetComponent<BoxCollider>().isTrigger = true;
         allowLock = false;
+        screen2ErrorText.text = "Upper Unlocked";
     }
 
     /// <summary>
