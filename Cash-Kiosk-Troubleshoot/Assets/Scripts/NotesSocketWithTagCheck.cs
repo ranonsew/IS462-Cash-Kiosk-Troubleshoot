@@ -175,7 +175,7 @@ public class NotesSocketWithTagCheck : XRSocketInteractor
             yield return null;
         }
 
-        while (maxAccept <= 7)
+        while (maxAccept <= 4)
         {
             RejectNote(0.5f);
         }
