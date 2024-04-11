@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.XR.Interaction.Toolkit;
 
 public class NotesSocketWithTagCheck : XRSocketInteractor
@@ -18,7 +19,7 @@ public class NotesSocketWithTagCheck : XRSocketInteractor
     private int maxAccept = 0;
     private int maxReject = 2;
     public static Dictionary<string, bool> rotationDict = new Dictionary<string, bool>() { { "base", false }, { "baseturn", false }, { "flip", false }, { "flipturn", false } };
-
+    public InstructionManager i;
 
     public override bool CanHover(IXRHoverInteractable interactable)
     {
@@ -200,6 +201,10 @@ public class NotesSocketWithTagCheck : XRSocketInteractor
         if (maxAccept <= 4)
         {
             RejectNote(0.5f);
+            if (SceneManager.GetActiveScene().name == "SceneD")
+            {
+                i.LoadNextInstructions();
+            }
         }
 
         // Delay before moving the next note
