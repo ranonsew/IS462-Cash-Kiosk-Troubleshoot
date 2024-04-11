@@ -10,6 +10,14 @@ TagManager:
   - ScreenPanel
   - RecyclerDrawer
   - RecyclerHead
+  - button f4
+  - button f5
+  - button f3
+  - button f2
+  - button f1
+  - button f6
+  - Keyhole
+  - hole
   layers:
   - Default
   - TransparentFX
@@ -23,8 +31,8 @@ TagManager:
   - Post-Processing
   - Grab
   - Player
-  - 
-  - 
+  - Key
+  - Keyhole
   - 
   - 
   - 
