@@ -4,6 +4,7 @@ using TMPro;
 using UnityEditor.Localization.Plugins.XLIFF.V12;
 using UnityEngine;
 using UnityEngine.XR.Content.Interaction;
+using UnityEngine.XR.Interaction.Toolkit;
 
 /// <summary>
 /// Class to control the 
@@ -60,12 +61,7 @@ public class ScenarioFNoteController : MonoBehaviour
         float z = 0f;
         noteStuck.transform.localPosition = new Vector3(x, y, z); // randomized X position
         UpdateKnobRotation();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        noteStuck.GetComponent<XRGrabInteractable>().selectExited.AddListener(UpdateKnobWrapper);
     }
 
     /// <summary>
@@ -85,6 +81,11 @@ public class ScenarioFNoteController : MonoBehaviour
         return withinX & withinY & withinZ;
     }
 
+    void UpdateKnobWrapper(SelectExitEventArgs args)
+    {
+        UpdateKnobRotation();
+    }
+
     /// <summary>
     /// Update the knob rotation based on location of the note
     /// </summary>
@@ -97,22 +98,19 @@ public class ScenarioFNoteController : MonoBehaviour
             Debug.Log($"Updated Knob value: {val}");
             dialKnob.value = val; // update to match x position
         }
-
-        Debug.Log("Huh");
-        
     }
 
     /// <summary>
-    /// Updates note position
+    /// Updates note position via knob on change
     /// </summary>
     /// <param name="val">changed knob value</param>
     private void UpdateNotePosition(float val)
     {
-        Debug.Log($"Knob value: {val}");
-        float newX = (maxRangeX * val) + notePosMinX;
-        Debug.Log($"Note new X pos: {newX}");
-
-        noteStuck.transform.localPosition = new Vector3(newX, noteStuck.transform.localPosition.y, noteStuck.transform.localPosition.z);
+        if (CheckNotePosition())
+        {
+            float newX = (maxRangeX * val) + notePosMinX;
+            noteStuck.transform.localPosition = new Vector3(newX, noteStuck.transform.localPosition.y, noteStuck.transform.localPosition.z);
+        }
     }
 
     /// <summary>
@@ -123,6 +121,8 @@ public class ScenarioFNoteController : MonoBehaviour
         drawerLock.GetComponent<BoxCollider>().isTrigger = true;
         allowLock = false;
         screen2ErrorText.text = "Upper Unlocked";
+
+        // Add instruction manager step here
     }
 
     /// <summary>
@@ -130,13 +130,14 @@ public class ScenarioFNoteController : MonoBehaviour
     /// </summary>
     public void LockDrawer()
     {
-        Debug.Log(allowLock);
         if (allowLock)
         {
             drawerLock.GetComponent<BoxCollider>().isTrigger = false;
             allowLock = false; // prep for next lock/unlock cycle if there is
             StartCoroutine(FlashingLightsRebootEmulator());
             Debug.Log("Lock allowed, proceeding...");
+
+            // Add instruction manager step here
         }
     }
 
@@ -151,5 +152,7 @@ public class ScenarioFNoteController : MonoBehaviour
         lightPulseManager.StopPulsating();
 
         changeLightColor.blueToYellow(true, true);
+
+        // Add instruction manager step here
     }
 }

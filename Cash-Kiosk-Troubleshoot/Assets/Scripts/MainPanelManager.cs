@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Diagnostics;
+using System;
+//using System.Diagnostics;
 
 public class MainPanelManager : MonoBehaviour
 {
