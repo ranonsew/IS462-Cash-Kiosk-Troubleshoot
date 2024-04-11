@@ -27,9 +27,10 @@ public class ScenarioFNoteController : MonoBehaviour
 
     public ChangeLightColour changeLightColor;
     public LightPulseManager lightPulseManager;
-
-    public InstructionManager instructionManager;
     public TextMeshProUGUI screen2ErrorText;
+    
+    public InstructionManager instructionManager;
+    
 
     /// <summary>
     /// Couldn't get regular note prefab to work, but can with RejectedNote prefab
@@ -62,9 +63,25 @@ public class ScenarioFNoteController : MonoBehaviour
         noteStuck.transform.localPosition = new Vector3(x, y, z); // randomized X position
         UpdateKnobRotation();
         noteStuck.GetComponent<XRGrabInteractable>().selectExited.AddListener(UpdateKnobWrapper);
-        //noteStuck.GetComponent<XRGrabInteractable>().selectEntered.AddListener(); // add instruction manager wrapper bit here
+        noteStuck.GetComponent<XRGrabInteractable>().selectEntered.AddListener(OnNoteGrabbedInstructionWrapper); // add instruction manager wrapper bit here
 
-        // Add instruction manager step here
+        StartCoroutine(DelayedStartingInstructions()); // second instruction
+    }
+
+    private IEnumerator DelayedStartingInstructions()
+    {
+        yield return new WaitForSeconds(5f);
+
+        instructionManager.LoadSpecificInstructionIndex(1); // To start, login with ...
+    }
+
+    /// <summary>
+    /// Wrapper function for LoadSpecificInstruction at index 4
+    /// </summary>
+    /// <param name="args"></param>
+    private void OnNoteGrabbedInstructionWrapper(SelectEnterEventArgs args)
+    {
+        instructionManager.LoadSpecificInstructionIndex(4); // Make sure to put the note ...
     }
 
     /// <summary>
@@ -84,6 +101,10 @@ public class ScenarioFNoteController : MonoBehaviour
         return withinX & withinY & withinZ;
     }
 
+    /// <summary>
+    /// Wrapper function for UpdateKnobRotation()
+    /// </summary>
+    /// <param name="args"></param>
     void UpdateKnobWrapper(SelectExitEventArgs args)
     {
         UpdateKnobRotation();
@@ -125,7 +146,7 @@ public class ScenarioFNoteController : MonoBehaviour
         allowLock = false;
         screen2ErrorText.text = "Upper Unlocked";
 
-        // Add instruction manager step here
+        instructionManager.LoadSpecificInstructionIndex(2); // Nice work! The upper part ...
     }
 
     /// <summary>
@@ -156,6 +177,8 @@ public class ScenarioFNoteController : MonoBehaviour
 
         changeLightColor.blueToYellow(true, true);
 
-        // Add instruction manager step here
+        yield return new WaitForSeconds(0.5f);
+
+        instructionManager.LoadSpecificInstructionIndex(5); // Congratulations! The yellow lights returning ...
     }
 }

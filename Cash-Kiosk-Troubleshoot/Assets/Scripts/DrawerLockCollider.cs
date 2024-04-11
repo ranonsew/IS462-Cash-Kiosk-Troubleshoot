@@ -29,6 +29,8 @@ public class DrawerLockCollider : MonoBehaviour
         if (other.gameObject.CompareTag("RecyclerHead"))
         {
             scenarioFController.allowLock = true;
+            scenarioFController.fillerCube.SetActive(false);
+            scenarioFController.instructionManager.LoadSpecificInstructionIndex(3); // If the note is hard to spot ...
         }
         Debug.Log($"Lock state: {scenarioFController.allowLock}");
         if (other.gameObject.CompareTag("RecyclerDrawer"))
