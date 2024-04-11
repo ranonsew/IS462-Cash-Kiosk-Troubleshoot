@@ -199,8 +199,12 @@ public class ScenarioFNoteController : MonoBehaviour
 
         yield return new WaitForSeconds(0.5f);
 
-        instructionManager.LoadSpecificInstructionIndex(5); // Congratulations! The yellow lights returning ...
-        machineRebooted = true;
+        // as long as it is outside the position
+        if (!CheckNotePosition())
+        {
+            instructionManager.LoadSpecificInstructionIndex(5); // Congratulations! The yellow lights returning ...
+            machineRebooted = true;
+        }
     }
 
     /// <summary>
