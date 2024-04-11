@@ -15,6 +15,9 @@ public class NotesSocketWithTagCheck : XRSocketInteractor
     private Vector3 originalPosition;
     private GameObject[] notes;
     private string objectTag;
+    private int maxAccept = 0;
+    private int maxReject = 2;
+
 
     public override bool CanHover(IXRHoverInteractable interactable)
     {
@@ -42,12 +45,14 @@ public class NotesSocketWithTagCheck : XRSocketInteractor
     public void DestroyPlacedObject(SelectEnterEventArgs args)
     {
         // Start the coroutine for delaying
-        
         StartCoroutine(DelayAndDestroy(args.interactableObject as XRBaseInteractable));
     }
 
     private IEnumerator DelayAndDestroy(XRBaseInteractable objToDestroyXRBaseInteractable)
     {
+        // update score
+
+
         yield return new WaitForSeconds(0.2f);
 
         // Now continue with the destruction process
@@ -126,6 +131,8 @@ public class NotesSocketWithTagCheck : XRSocketInteractor
 
     IEnumerator MoveStackOfNotes(GameObject stackOfNotes)
     {
+        int numRejected = 0;
+
         // Iterate through each note in the stack
         for (int i = notes.Length - 1; i >= 0; i--)
         {
@@ -139,10 +146,18 @@ public class NotesSocketWithTagCheck : XRSocketInteractor
                 yield return null;
             }
 
-            RejectNote(0.1f);
+            if (numRejected < maxReject)
+            {
+                numRejected += RejectNote(0.1f);
+            }
 
             // Delay before moving the next note
             yield return new WaitForSeconds(noteDelay);
+        }
+
+        while (numRejected < maxReject)
+        {
+            numRejected += RejectNote(1f);
         }
 
         Destroy(stackOfNotes);
@@ -160,7 +175,10 @@ public class NotesSocketWithTagCheck : XRSocketInteractor
             yield return null;
         }
 
-        RejectNote(1f);
+        while (maxAccept <= 4)
+        {
+            RejectNote(0.5f);
+        }
 
         // Delay before moving the next note
         yield return new WaitForSeconds(noteDelay);
@@ -169,9 +187,8 @@ public class NotesSocketWithTagCheck : XRSocketInteractor
         Destroy(rejectedNote);
     }
 
-    private void RejectNote(float chance)
+    private int RejectNote(float chance)
     {
-        Debug.Log("rejection note spawn");
         if (Random.value <= chance)
         {
             GameObject rejectedNote = Instantiate(rejectedNotePrefab, rejectionPosition.position, rejectionPosition.rotation);
@@ -182,6 +199,10 @@ public class NotesSocketWithTagCheck : XRSocketInteractor
             {
                 rigidbody.isKinematic = true;
             }
+
+            return 1;
         }
+
+        return 0;
     }
 }

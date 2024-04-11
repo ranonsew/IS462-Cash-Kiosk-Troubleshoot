@@ -12,9 +12,7 @@ public class RejectedNote : MonoBehaviour
         Rigidbody rigidbody = note.GetComponent<Rigidbody>();
         if (rigidbody != null)
         {
-            Debug.Log("rigidbody");
             rigidbody.isKinematic = false;
-            Debug.Log("done");
         }
     }
 
