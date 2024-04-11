@@ -46,7 +46,7 @@ public class GunnyBagSocketManager : XRSocketInteractor
         Vector3 coinInstantiatePosition = coinInstantiateTransform.position;
 
         // Start coroutine for each coin
-        StartCoroutine(SpawnCoins(coinInstantiatePosition, 100));
+        StartCoroutine(SpawnCoins(coinInstantiatePosition, 29));
     }
 
     IEnumerator SpawnCoins(Vector3 startPosition, int numCoins)
