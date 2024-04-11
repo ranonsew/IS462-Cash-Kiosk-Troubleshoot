@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
-using System.Diagnostics;
+//using System.Diagnostics;
 
 public class MainPanelManager : MonoBehaviour
 {
