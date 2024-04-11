@@ -6405,6 +6405,7 @@ MonoBehaviour:
   lightPulseManager: {fileID: 0}
   screenManager: {fileID: 0}
   nextScreenPanel: {fileID: 0}
+  inventoryScreenPanel: {fileID: 0}
   loginPanel: {fileID: 0}
   rebootPanel: {fileID: 237536784}
   rebootActive: 0
@@ -6413,7 +6414,8 @@ MonoBehaviour:
   mainPanel2: {fileID: 256441637}
   mainPanel2Active: 1
   errorText: {fileID: 0}
-  errorActive: 0
+  loading: {fileID: 0}
+  receiptScript: {fileID: 0}
 --- !u!114 &256441640
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18046,7 +18048,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: SceneC
+          m_StringArgument: SceneC_2
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &757198987
@@ -36549,6 +36551,7 @@ MonoBehaviour:
   lightPulseManager: {fileID: 0}
   screenManager: {fileID: 0}
   nextScreenPanel: {fileID: 256441637}
+  inventoryScreenPanel: {fileID: 0}
   loginPanel: {fileID: 1349518175}
   rebootPanel: {fileID: 237536784}
   rebootActive: 0
@@ -36557,7 +36560,8 @@ MonoBehaviour:
   mainPanel2: {fileID: 256441637}
   mainPanel2Active: 0
   errorText: {fileID: 719579592}
-  errorActive: 0
+  loading: {fileID: 0}
+  receiptScript: {fileID: 0}
 --- !u!114 &1652704135
 MonoBehaviour:
   m_ObjectHideFlags: 0

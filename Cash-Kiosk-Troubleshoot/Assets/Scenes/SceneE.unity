@@ -4637,6 +4637,7 @@ MonoBehaviour:
   lightPulseManager: {fileID: 1008476970}
   screenManager: {fileID: 1956231761}
   nextScreenPanel: {fileID: 961200883}
+  inventoryScreenPanel: {fileID: 0}
   loginPanel: {fileID: 698807267}
   rebootPanel: {fileID: 306287634}
   rebootActive: 0
@@ -4646,6 +4647,7 @@ MonoBehaviour:
   mainPanel2Active: 0
   errorText: {fileID: 1833057788}
   loading: {fileID: 0}
+  receiptScript: {fileID: 0}
 --- !u!114 &1711607482
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5234,6 +5236,7 @@ MonoBehaviour:
   internalDoorOpen: 0
   notesDoorOpen: 0
   kioskDoorOpen: 0
+  originalKioskLocation: {fileID: 0}
 --- !u!1 &1893188562
 GameObject:
   m_ObjectHideFlags: 0
@@ -38400,6 +38403,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3737600161087720146, guid: 184e6ff1875724e459a0063bf6d78192, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5481107513968663056, guid: 184e6ff1875724e459a0063bf6d78192, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}

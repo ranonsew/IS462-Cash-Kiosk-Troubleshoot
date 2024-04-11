@@ -17,6 +17,7 @@ public class MaterialManager : MonoBehaviour
     public Rigidbody rigidbody_notes_front_door;
 
     public Rigidbody rigidbody_notes_internal_door;
+    public Rigidbody rigidbody_internal_slit;
     public TMPro.TMP_Text messageText;
 
     public int totalStepsSceneC = 7;
@@ -24,6 +25,10 @@ public class MaterialManager : MonoBehaviour
     public bool internalDoorOpen = false;
     public bool notesDoorOpen = false;
     public bool kioskDoorOpen = false;
+    public bool internalSlitOpen = false;
+    public Transform originalKioskLocation;
+    public Transform originalNotesDoor;
+
     InstructionManager m;
 
     void Start()
@@ -42,56 +47,7 @@ public class MaterialManager : MonoBehaviour
         
     }
 
-    public void operateKioskDoor2(){
-        Debug.Log("operateKioskDoor2");
-        // Debug.Log(rigidbody_kiosk_front_door.angularVelocity);
-         if (kioskDoorOpen){
-            closeKioskDoor2();
-            kioskDoorOpen = !kioskDoorOpen;
-        }else{
-            openKioskDoor2();
-            kioskDoorOpen = !kioskDoorOpen;
-        }
-    }
-
-        public void openKioskDoor2(){
-            m.LoadNextInstructions();
-        Debug.Log("openKioskDoor adding torque");
-        // rigidbody_kiosk_front_door.AddTorque(Vector3.up * 1000);
-        currentStepsSceneC += 1;
-    }
-
-    public void closeKioskDoor2(){
-        m.LoadNextInstructions();
-        Debug.Log("closeKioskDoor adding torque");
-        // rigidbody_kiosk_front_door.AddTorque(Vector3.down * 1000);
-        currentStepsSceneC += 1;
-        // Follow these stops at the end:
-        // SceneC, SceneD, SceneE, SceneF
-// // completionRate, numErrors, timeInSec, overall
-// updateScore(string sceneName, string metric, int metricRate)
-// currentStepsSceneC/totalStepsSceneC
-        PointsManager.instance.updateScore("SceneC", "completionRate",  100);
-        PointsManager.instance.updateScore("SceneC", "numErrors", 2);
-        // PointsManager.instance.updateScore("SceneC", "timeInSec", (float) 22.2);
-        
-        PointsManager.instance.updateScore("SceneC", "overall", 3000);
-        Debug.Log("completionRate: " + PointsManager.instance.points[0][0]);
-
-    }
-
-    public void goResultsPageTest(){
-    PointsManager.instance.updateScore("SceneC", "completionRate", 1);
-}
-
-    public void changeMaterial(){
-        Debug.Log("Change material triggered");
-        index = 1;
-        ballObject.GetComponent<MeshRenderer>().material = materials[1];
-        checkSteps();
-}
-
-
+    
     public void operateKioskDoor(){
         if (kioskDoorOpen){
             closeKioskDoor();
@@ -102,10 +58,16 @@ public class MaterialManager : MonoBehaviour
         }
     }
 
+    public void cubematch(){
+        Debug.Log("cubeematchhhh");
+        rigidbody_kiosk_front_door.AddTorque(Vector3.down * 1000);
+        Debug.Log("cubeematchhhh2");
+    }
+
 
     public void openKioskDoor(){
         Debug.Log("openKioskDoor adding torque");
-        rigidbody_kiosk_front_door.AddTorque(Vector3.up * 1000);
+        rigidbody_kiosk_front_door.AddTorque(Vector3.up * 3000);
         currentStepsSceneC += 1;
     }
 
@@ -119,7 +81,8 @@ public class MaterialManager : MonoBehaviour
         // SceneC, SceneD, SceneE, SceneF
 // // completionRate, numErrors, timeInSec, overall
 // updateScore(string sceneName, string metric, int metricRate)
-        PointsManager.instance.updateScore("SceneC", "completionRate", (currentStepsSceneC/totalStepsSceneC));
+// currentStepsSceneC/totalStepsSceneC
+        PointsManager.instance.updateScore("SceneC", "completionRate", (1));
         Debug.Log("completionRate: " + PointsManager.instance.points[0][0]);
 
     }
@@ -170,13 +133,113 @@ public class MaterialManager : MonoBehaviour
         currentStepsSceneC += 1;
     }
 
+        public void operateInternalSlit(){
+        if (internalSlitOpen){
+            closeInternalSlit();
+            notesDoorOpen = !notesDoorOpen;
+        }else{
+            openInternalSlit();
+            notesDoorOpen = !notesDoorOpen;
+        }
+    }
+
+    public void openInternalSlit(){
+        Debug.Log("openInternalSlit adding torque");
+        rigidbody_internal_slit.AddTorque(Vector3.up * 1000);
+        currentStepsSceneC += 1;
+    }
+
+    public void closeInternalSlit(){
+        Debug.Log("closeInternalSlit adding torque");
+        rigidbody_internal_slit.AddTorque(Vector3.down * 1000);
+        currentStepsSceneC += 1;
+    }
+
+
     public void checkSteps(){
         messageText.SetText("No errors");
         messageText.color = Color.green;
-        currentStepsSceneC += 1;
+        currentStepsSceneC += 8;
         
     }
 
+
+
+// end of all official closing mehtods:
+
+
+
+
+    public void operateKioskDoor2(){
+        originalKioskLocation = rigidbody_kiosk_front_door.transform;
+        Debug.Log("operateKioskDoor2 position: " + originalKioskLocation.position);
+        // Debug.Log(rigidbody_kiosk_front_door.angularVelocity);
+         if (kioskDoorOpen){
+
+            Debug.Log("originalKioskLocation.position: " + originalKioskLocation.position);
+            rigidbody_kiosk_front_door.transform.position = originalKioskLocation.position;
+            closeKioskDoor2();
+            kioskDoorOpen = !kioskDoorOpen;
+        }else{
+            openKioskDoor2();
+            kioskDoorOpen = !kioskDoorOpen;
+        }
+    }
+
+        public void openKioskDoor2(){
+            // originalKioskLocation = rigidbody_kiosk_front_door.transform;
+            m.LoadNextInstructions();
+        Debug.Log("openKioskDoor adding torque");
+        // rigidbody_kiosk_front_door.AddTorque(Vector3.up * 1000);
+        currentStepsSceneC += 1;
+    }
+
+    public void closeKioskDoor2(){
+        m.LoadNextInstructions();
+        Debug.Log("closeKioskDoor adding torque");
+        // rigidbody_kiosk_front_door.transform = originalKioskLocation;
+        // rigidbody_kiosk_front_door.AddTorque(Vector3.down * 1000);
+        currentStepsSceneC += 1;
+        // Follow these stops at the end:
+        // SceneC, SceneD, SceneE, SceneF
+// // completionRate, numErrors, timeInSec, overall
+// updateScore(string sceneName, string metric, int metricRate)
+// currentStepsSceneC/totalStepsSceneC
+        // PointsManager.instance.updateScore("SceneC", "completionRate",  100);
+        // PointsManager.instance.updateScore("SceneC", "numErrors", 2);
+        // // PointsManager.instance.updateScore("SceneC", "timeInSec", (float) 22.2);
+
+        // PointsManager.instance.updateScore("SceneC", "overall", 3000);
+        // Debug.Log("completionRate: " + PointsManager.instance.points[0][0]);
+
+    }
+
+    public void goResultsPageTest(){
+    PointsManager.instance.updateScore("SceneC", "completionRate", 1);
+}
+
+    public void changeMaterial(){
+        Debug.Log("Change material triggered");
+        index = 1;
+        ballObject.GetComponent<MeshRenderer>().material = materials[1];
+        checkSteps();
+}
+
+
+
+        public void operateNotesDoor2(){
+            originalNotesDoor = rigidbody_notes_front_door.transform;
+        if (notesDoorOpen){
+            rigidbody_notes_front_door.transform.position = originalNotesDoor.position;
+            // closeNotesDoor();
+            notesDoorOpen = !notesDoorOpen;
+        }else{
+            // openNotesDoor();
+            notesDoorOpen = !notesDoorOpen;
+        }
+    }
+
+    
 
 
 
