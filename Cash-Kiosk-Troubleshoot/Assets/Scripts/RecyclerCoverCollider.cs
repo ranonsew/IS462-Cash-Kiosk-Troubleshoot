@@ -12,9 +12,6 @@ public class RecyclerCoverCollider : MonoBehaviour
     /// <param name="collision"></param>
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log($"Cover Collision tag: {collision.gameObject.tag}");
-        Debug.Log("Drawer Collided with back");
-
         if (collision.gameObject.CompareTag("RejectedNote"))
         {
             Physics.IgnoreCollision(collision.collider, GetComponent<BoxCollider>());

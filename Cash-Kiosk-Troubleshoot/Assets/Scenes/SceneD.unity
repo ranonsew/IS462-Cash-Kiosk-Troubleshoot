@@ -13539,10 +13539,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeRemaining: 30
+  totalTime: 0
   messageText: {fileID: 2106163827}
   WinnerTriggered: 0
   npc: {fileID: 1644247558143830676, guid: 454b6a08b48ed4376bd3ebea2e6c6845, type: 3}
   npcSpawnLocation: {fileID: 2013378628}
+  sceneTitle: 
 --- !u!1 &2106265308 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3019568617730713240, guid: 5dd5a1ab6047d4848b7668734815016f, type: 3}
@@ -18189,6 +18191,10 @@ PrefabInstance:
       propertyPath: sealBag
       value: 
       objectReference: {fileID: 247974511}
+    - target: {fileID: 1353150158838525027, guid: 9da365d59cfc1ce44a974cf87c3e179f, type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3198689627437378685, guid: 9da365d59cfc1ce44a974cf87c3e179f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.01
