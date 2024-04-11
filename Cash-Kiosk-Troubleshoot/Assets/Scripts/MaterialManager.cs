@@ -28,6 +28,11 @@ public class MaterialManager : MonoBehaviour
     public bool internalSlitOpen = false;
     public Transform originalKioskLocation;
     public Transform originalNotesDoor;
+    
+    [SerializeField]
+    Animator doorAnim;
+
+    bool canOpen;
 
     InstructionManager m;
 
@@ -225,8 +230,6 @@ public class MaterialManager : MonoBehaviour
         checkSteps();
 }
 
-
-
         public void operateNotesDoor2(){
             originalNotesDoor = rigidbody_notes_front_door.transform;
         if (notesDoorOpen){
@@ -239,7 +242,10 @@ public class MaterialManager : MonoBehaviour
         }
     }
 
-    
+    public void SetKioskDoor(){
+        canOpen = !canOpen;
+        doorAnim.SetBool("isOpen", canOpen);
+    }
 
 
 

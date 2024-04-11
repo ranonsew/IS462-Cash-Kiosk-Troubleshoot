@@ -7,7 +7,7 @@ public class SceneC3DoorController : MonoBehaviour
 {
     private HingeJoint hingeJoint;
     private bool isOpen = false;
-    private float closedAngle = -90f;
+    private float closedAngle = 0f;
     private float openAngle = 90f;
     private XRSimpleInteractable xrInteractable;
 
@@ -31,10 +31,12 @@ public class SceneC3DoorController : MonoBehaviour
         if (isOpen)
         {
             SetDoorAngle(closedAngle);
+            isOpen = false;
         }
         else
         {
             SetDoorAngle(openAngle);
+            isOpen = true;
         }
     }
 
@@ -42,14 +44,13 @@ public class SceneC3DoorController : MonoBehaviour
     {
         JointMotor motor = hingeJoint.motor;
         motor.force = 100;
-        //motor.targetVelocity = isOpen ? -100 : 100;
-        motor.targetVelocity = 100;
+        motor.targetVelocity = isOpen ? -100 : 100;
         hingeJoint.motor = motor;
         hingeJoint.useMotor = true;
 
         JointLimits limits = hingeJoint.limits;
-        limits.min = angle - 5;
-        limits.max = angle + 5;
+        limits.min = angle - 10;
+        limits.max = angle + 10;
         hingeJoint.limits = limits;
         hingeJoint.useLimits = true;
     }

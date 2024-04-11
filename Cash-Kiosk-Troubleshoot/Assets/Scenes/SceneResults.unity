@@ -1096,7 +1096,7 @@ Transform:
   m_GameObject: {fileID: 132963205}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -1.444, y: 1.914, z: 2.555}
+  m_LocalPosition: {x: -1.444, y: 0, z: 2.555}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -9849,7 +9849,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6598815579406187037, guid: 18ddb545287c546e19cc77dc9fbb2189, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -14318,6 +14318,7 @@ MonoBehaviour:
   lightPulseManager: {fileID: 0}
   screenManager: {fileID: 0}
   nextScreenPanel: {fileID: 0}
+  inventoryScreenPanel: {fileID: 0}
   loginPanel: {fileID: 0}
   rebootPanel: {fileID: 63029565}
   rebootActive: 0
@@ -14326,7 +14327,8 @@ MonoBehaviour:
   mainPanel2: {fileID: 1736331587}
   mainPanel2Active: 1
   errorText: {fileID: 0}
-  errorActive: 0
+  loading: {fileID: 0}
+  receiptScript: {fileID: 0}
 --- !u!114 &1736331590
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16824,6 +16826,7 @@ MonoBehaviour:
   lightPulseManager: {fileID: 0}
   screenManager: {fileID: 0}
   nextScreenPanel: {fileID: 1736331587}
+  inventoryScreenPanel: {fileID: 0}
   loginPanel: {fileID: 841337108}
   rebootPanel: {fileID: 63029565}
   rebootActive: 0
@@ -16832,7 +16835,8 @@ MonoBehaviour:
   mainPanel2: {fileID: 1736331587}
   mainPanel2Active: 0
   errorText: {fileID: 1918613154}
-  errorActive: 0
+  loading: {fileID: 0}
+  receiptScript: {fileID: 0}
 --- !u!114 &2015480306
 MonoBehaviour:
   m_ObjectHideFlags: 0
