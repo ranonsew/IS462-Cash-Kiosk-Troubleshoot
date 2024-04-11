@@ -16,6 +16,7 @@ public class MainPanelManager : MonoBehaviour
 
     public ScreenManager screenManager;
     public GameObject nextScreenPanel;
+    public GameObject inventoryScreenPanel;
     public GameObject loginPanel;
 
     public GameObject rebootPanel; 
@@ -29,9 +30,14 @@ public class MainPanelManager : MonoBehaviour
 
     public TextMeshProUGUI errorText;
     public GameObject loading;
+
+
+    public ReceiptManager receiptScript;
     
     void Start()
     {
+
+        // receiptScript = GetComponent<ReceiptManager>();
         GameObject attachedGameObject = gameObject;
         bool errorActive = StorageManager.errorTextActive;
 
@@ -59,13 +65,29 @@ public class MainPanelManager : MonoBehaviour
     public void buttonClick(TextMeshProUGUI text)
     {
 
+        
+        // start of pre-scenario stuff
         UnityEngine.Debug.Log("Clicked text! view inventory?" + text.text);
-
         if (text.text == "View Inventory"){
-            
-
+            UnityEngine.Debug.Log("Clicked text! view inventory?" + text.text);
+            screenManager.SwitchScreen(inventoryScreenPanel);
             return;
         }
+
+        if (text.text == "Print"){
+            UnityEngine.Debug.Log("Clicked text! print?" + text.text);
+            receiptScript = GetComponent<ReceiptManager>();
+            receiptScript.InventoryReceipt();
+            return;
+        }
+
+        if (text.text == "Collect Notes"){
+            UnityEngine.Debug.Log("Clicked text! Collect Notes?" + text.text);
+            receiptScript = GetComponent<ReceiptManager>();
+            receiptScript.collectionReceipt("Notes");
+            return;
+        }
+
 
 
         if (checkNextPage(text.text))
