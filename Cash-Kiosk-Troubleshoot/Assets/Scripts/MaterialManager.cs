@@ -73,7 +73,8 @@ public class MaterialManager : MonoBehaviour
 // currentStepsSceneC/totalStepsSceneC
         PointsManager.instance.updateScore("SceneC", "completionRate",  100);
         PointsManager.instance.updateScore("SceneC", "numErrors", 2);
-        PointsManager.instance.updateScore("SceneC", "timeInSec", (float) 22.2);
+        // PointsManager.instance.updateScore("SceneC", "timeInSec", (float) 22.2);
+        
         PointsManager.instance.updateScore("SceneC", "overall", 3000);
         Debug.Log("completionRate: " + PointsManager.instance.points[0][0]);
 

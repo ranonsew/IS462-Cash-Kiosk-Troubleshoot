@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using System.Diagnostics;
 
 public class MainPanelManager : MonoBehaviour
 {
@@ -27,11 +28,11 @@ public class MainPanelManager : MonoBehaviour
     public bool mainPanel2Active = false;
 
     public TextMeshProUGUI errorText;
-    public bool errorActive = StorageManager.errorTextActive;
-
+    
     void Start()
     {
         GameObject attachedGameObject = gameObject;
+        bool errorActive = StorageManager.errorTextActive;
 
         if (attachedGameObject == mainPanel2)
         {
@@ -55,6 +56,16 @@ public class MainPanelManager : MonoBehaviour
 
     public void buttonClick(TextMeshProUGUI text)
     {
+
+        Debug.Log("Clicked text! view inventory?" + text.text);
+
+        if (text.text == "View Inventory"){
+            
+
+            return;
+        }
+
+
         if (checkNextPage(text.text))
         {
             screenManager.SwitchScreen(nextScreenPanel);
@@ -70,7 +81,7 @@ public class MainPanelManager : MonoBehaviour
         }
         else if (rebootActive & text.text == "Yes")
         {
-            Debug.Log("cycling machine time");
+            UnityEngine.Debug.Log("cycling machine time");
             rebootActive = false;
             rebootPanel.SetActive(rebootActive);
 
@@ -101,10 +112,12 @@ public class MainPanelManager : MonoBehaviour
 
         // wait for 10 to 15s, then stop and change to yellow
         float waitTime = UnityEngine.Random.Range(10f, 15f);
-        Debug.Log(waitTime);
+        UnityEngine.Debug.Log(waitTime);
         yield return new WaitForSeconds(waitTime);
 
         lightPulseManager.StopPulsating();
         changeLightColour.blueToYellow(true, true);
+
+        HeartbeatCheck.heartbeatFailure = false;
     }
 }
