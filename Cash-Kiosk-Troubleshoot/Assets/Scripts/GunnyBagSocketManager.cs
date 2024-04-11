@@ -41,7 +41,7 @@ public class GunnyBagSocketManager : XRSocketInteractor
         Destroy(XRBaseInteractable.gameObject);
     }
 
-    public void CollectCoins(SelectEnterEventArgs args)
+    public void CollectCoins()
     {
         Vector3 coinInstantiatePosition = coinInstantiateTransform.position;
 
