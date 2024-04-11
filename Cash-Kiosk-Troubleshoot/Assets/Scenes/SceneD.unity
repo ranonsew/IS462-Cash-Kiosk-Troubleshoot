@@ -18586,6 +18586,10 @@ PrefabInstance:
       propertyPath: sealBag
       value: 
       objectReference: {fileID: 247974511}
+    - target: {fileID: 1353150158838525027, guid: 9da365d59cfc1ce44a974cf87c3e179f, type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3198689627437378685, guid: 9da365d59cfc1ce44a974cf87c3e179f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.01

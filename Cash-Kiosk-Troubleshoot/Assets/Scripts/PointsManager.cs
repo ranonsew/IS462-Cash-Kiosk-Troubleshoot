@@ -164,7 +164,8 @@ public class PointsManager : MonoBehaviour
         points[sceneIdx][metricIdx] += metricRate;
         // shower confetti if completion done:
         if (points[sceneIdx][0] >= 1){
-            loadResultsScene();
+            waitLoadResultsScene();
+            // loadResultsScene();
             // StartConfetti();
         }
 
@@ -181,6 +182,11 @@ public class PointsManager : MonoBehaviour
     // }
 
 
+        void waitLoadResultsScene(){
+            StartCoroutine(loadResultsScene());
+        }
+
+
     // IEnumerator createConfetti(){
     //         var emission = p.emission; // Stores the module in a local variable
     //         emission.enabled = true; // Applies the new value directly to the Particle System
@@ -194,7 +200,8 @@ public class PointsManager : MonoBehaviour
 
 
 
-public void loadResultsScene(){
+IEnumerator loadResultsScene(){
+    yield return new WaitForSeconds(3);
     SceneManager.LoadScene("SceneResults");
 }
 
