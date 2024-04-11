@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
-public class SceneC3DoorController : MonoBehaviour
+public class SceneC3DoorControllerReverse : MonoBehaviour
 {
     private HingeJoint hingeJoint;
     private bool isOpen = false;
     private float closedAngle = 0f;
-    private float openAngle = 90f;
+    private float openAngle = -90f;
     private XRSimpleInteractable xrInteractable;
 
     // Start is called before the first frame update

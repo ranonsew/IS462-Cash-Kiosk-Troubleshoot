@@ -9286,7 +9286,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6598815579406187037, guid: 18ddb545287c546e19cc77dc9fbb2189, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -20836,6 +20836,7 @@ MonoBehaviour:
   errorText: {fileID: 320124754}
   loading: {fileID: 0}
   receiptScript: {fileID: 0}
+  i: {fileID: 0}
 --- !u!114 &946809847
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40189,6 +40190,7 @@ MonoBehaviour:
   errorText: {fileID: 0}
   loading: {fileID: 0}
   receiptScript: {fileID: 0}
+  i: {fileID: 0}
 --- !u!114 &1919573300
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45287,3 +45289,4 @@ SceneRoots:
   - {fileID: 334086817}
   - {fileID: 1024687800}
   - {fileID: 1804997686}
+  - {fileID: 460368588}
