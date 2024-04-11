@@ -62,6 +62,9 @@ public class ScenarioFNoteController : MonoBehaviour
         noteStuck.transform.localPosition = new Vector3(x, y, z); // randomized X position
         UpdateKnobRotation();
         noteStuck.GetComponent<XRGrabInteractable>().selectExited.AddListener(UpdateKnobWrapper);
+        //noteStuck.GetComponent<XRGrabInteractable>().selectEntered.AddListener(); // add instruction manager wrapper bit here
+
+        // Add instruction manager step here
     }
 
     /// <summary>

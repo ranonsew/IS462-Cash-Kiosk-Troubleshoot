@@ -5545,7 +5545,6 @@ MonoBehaviour:
   mainPanel2: {fileID: 425166205}
   mainPanel2Active: 1
   errorText: {fileID: 0}
-  errorActive: 0
 --- !u!114 &425166208
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10591,7 +10590,6 @@ MonoBehaviour:
   mainPanel2: {fileID: 425166205}
   mainPanel2Active: 0
   errorText: {fileID: 567788330}
-  errorActive: 0
 --- !u!114 &767838881
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27794,10 +27792,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeRemaining: 180
+  totalTime: 0
   messageText: {fileID: 2106163827}
   WinnerTriggered: 0
   npc: {fileID: 1644247558143830676, guid: 454b6a08b48ed4376bd3ebea2e6c6845, type: 3}
   npcSpawnLocation: {fileID: 2013378628}
+  sceneTitle: SceneF
 --- !u!1 &2115814182
 GameObject:
   m_ObjectHideFlags: 0

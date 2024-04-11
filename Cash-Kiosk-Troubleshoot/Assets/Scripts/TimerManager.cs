@@ -16,6 +16,8 @@ public class TimerManager : MonoBehaviour
     public GameObject npc;
     public Transform npcSpawnLocation;
 
+    public string sceneTitle; // for points manager instance
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,7 +29,7 @@ public class TimerManager : MonoBehaviour
 
     void Update()
     {
-        PointsManager.instance.updateScore("SceneC", "timeInSec", (float) totalTime);
+        PointsManager.instance.updateScore(sceneTitle, "timeInSec", (float) totalTime); // previously "SceneC"
         if (timeRemaining > 0)
         {
             timeRemaining -= Time.deltaTime;

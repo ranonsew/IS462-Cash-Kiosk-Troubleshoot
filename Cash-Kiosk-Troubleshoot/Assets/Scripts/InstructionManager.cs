@@ -39,8 +39,8 @@ public class InstructionManager : MonoBehaviour
 
         Debug.Log("loading next instructions");
         displayInstructions.text = instructions[clipIndex];
-        audio = GetComponent<AudioSource>();
-        audio.clip = clips[clipIndex];
+            //audio = GetComponent<AudioSource>();
+            audio.clip = clips[clipIndex];
         audio.Play();
 
         // change tooltip location here:
@@ -52,5 +52,18 @@ public class InstructionManager : MonoBehaviour
         }
     }
 
-
+    /// <summary>
+    /// Load specific instruction via array index
+    /// </summary>
+    /// <param name="index">array index</param>
+    public void LoadSpecificInstructionIndex(int index)
+    {
+        if (index >= 0 & index < instructions.Length)
+        {
+            Debug.Log($"Loading specified instruction at index: {index}");
+            displayInstructions.text = instructions[index];
+            audio.clip = clips[index];
+            audio.Play();
+        }
+    }
 }
