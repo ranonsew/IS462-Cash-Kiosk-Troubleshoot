@@ -9933,6 +9933,10 @@ PrefabInstance:
       propertyPath: rigidbody_notes_internal_door
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 4781657061633854218, guid: 184e6ff1875724e459a0063bf6d78192, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4798226676050936633, guid: 184e6ff1875724e459a0063bf6d78192, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0.713

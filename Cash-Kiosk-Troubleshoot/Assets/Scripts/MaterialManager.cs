@@ -57,12 +57,13 @@ public class MaterialManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (SceneCvariables.instance != null){
         if (SceneCvariables.instance.KioskDoorOpen == false & SceneCvariables.instance.NotesDoorOpen == false & 
             SceneCvariables.instance.InternalNotesDoorOpen == false & SceneCvariables.instance.start == false){
                 lights.GetComponent<MeshRenderer>().material = materials[1];
                 lights2.GetComponent<MeshRenderer>().material = materials[1];
             }
-        
+        }
     }
 
     

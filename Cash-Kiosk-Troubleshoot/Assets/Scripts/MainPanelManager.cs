@@ -91,6 +91,15 @@ public class MainPanelManager : MonoBehaviour
             return;
         }
 
+        if (text.text == "Unlock Coin")
+        {
+            CoinBinManager.unlocked = true;
+            CoinBinManager.UpdateGrabbableState();
+            receiptScript = GetComponent<ReceiptManager>();
+            receiptScript.collectionReceipt("Unlock Coin");
+            return;
+        }
+
 
 
         if (checkNextPage(text.text))
