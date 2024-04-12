@@ -54,6 +54,6 @@ public class TimerManager : MonoBehaviour
 
     void TriggerWinner(){
         // Debug.Log("WinnieTriggered");
-        // GameObject b = Instantiate(npc, npcSpawnLocation.position, npcSpawnLocation.rotation);
+        GameObject b = Instantiate(npc, npcSpawnLocation.position, npcSpawnLocation.rotation);
     }
 }
