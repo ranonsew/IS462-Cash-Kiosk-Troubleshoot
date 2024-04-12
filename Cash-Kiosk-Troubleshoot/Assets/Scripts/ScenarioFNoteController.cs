@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing.Text;
 using TMPro;
 using UnityEditor.Localization.Plugins.XLIFF.V12;
 using UnityEngine;
@@ -31,6 +32,7 @@ public class ScenarioFNoteController : MonoBehaviour
     
     public InstructionManager instructionManager;
     public SceneLoader sceneLoader;
+    private bool grabChecker = true;
 
     /// <summary>
     /// Couldn't get regular note prefab to work, but can with RejectedNote prefab
@@ -67,6 +69,7 @@ public class ScenarioFNoteController : MonoBehaviour
         UpdateKnobRotation();
         noteStuck.GetComponent<XRGrabInteractable>().selectExited.AddListener(UpdateKnobWrapper);
         noteStuck.GetComponent<XRGrabInteractable>().selectEntered.AddListener(OnNoteGrabbedInstructionWrapper); // add instruction manager wrapper bit here
+        noteStuck.GetComponent<XRGrabInteractable>().selectExited.AddListener(OnNoteReleasedInstructionWrapper);
 
         StartCoroutine(DelayedStartingInstructions()); // second instruction
     }
@@ -99,7 +102,26 @@ public class ScenarioFNoteController : MonoBehaviour
     /// <param name="args"></param>
     private void OnNoteGrabbedInstructionWrapper(SelectEnterEventArgs args)
     {
-        instructionManager.LoadSpecificInstructionIndex(4); // Make sure to put the note ...
+        if (CheckNotePosition()) // if in machine
+        {
+            instructionManager.LoadSpecificInstructionIndex(4); // Make sure to put the note ...
+        }
+        else if (grabChecker) // if outside machine
+        {
+            instructionManager.LoadSpecificInstructionIndex(6); // With this note grabbed, ...
+            grabChecker = false;
+        }
+    }
+
+    private void OnNoteReleasedInstructionWrapper(SelectExitEventArgs args)
+    {
+        StartCoroutine(delaytocheck());
+
+        IEnumerator delaytocheck()
+        {
+            yield return new WaitForSeconds(3f);
+            grabChecker = true;
+        }
     }
 
     /// <summary>
@@ -204,6 +226,10 @@ public class ScenarioFNoteController : MonoBehaviour
         {
             instructionManager.LoadSpecificInstructionIndex(5); // Congratulations! The yellow lights returning ...
             machineRebooted = true;
+        }
+        else
+        {
+            instructionManager.LoadSpecificInstructionIndex(7); // Uh oh, it looks like the machine ...
         }
     }
 
