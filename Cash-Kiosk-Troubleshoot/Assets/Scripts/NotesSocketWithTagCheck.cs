@@ -178,10 +178,14 @@ public class NotesSocketWithTagCheck : XRSocketInteractor
             yield return new WaitForSeconds(noteDelay);
         }
 
-        while (numRejected < maxReject)
+        if (SceneManager.GetActiveScene().name != "CashCollection")
         {
-            numRejected += RejectNote(1f);
+            while (numRejected < maxReject)
+            {
+                numRejected += RejectNote(1f);
+            }
         }
+        
 
         Destroy(stackOfNotes);
     }
@@ -216,7 +220,7 @@ public class NotesSocketWithTagCheck : XRSocketInteractor
 
     private int RejectNote(float chance)
     {
-        if (SceneManager.GetActiveScene().name == "CashCollection")
+        if (SceneManager.GetActiveScene().name != "CashCollection")
         {
             if (Random.value <= chance)
             {
