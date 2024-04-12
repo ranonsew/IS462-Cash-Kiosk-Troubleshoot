@@ -1949,6 +1949,11 @@ MonoBehaviour:
   internalSlitOpen: 0
   originalKioskLocation: {fileID: 0}
   originalNotesDoor: {fileID: 0}
+  lights: {fileID: 0}
+  lights2: {fileID: 0}
+  materials2: []
+  doorAnim: {fileID: 0}
+  notesDoorAnim: {fileID: 0}
 --- !u!23 &239886301
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3582,6 +3587,7 @@ MonoBehaviour:
   errorText: {fileID: 0}
   loading: {fileID: 0}
   receiptScript: {fileID: 0}
+  i: {fileID: 0}
 --- !u!114 &425166208
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6433,6 +6439,11 @@ MonoBehaviour:
   internalSlitOpen: 0
   originalKioskLocation: {fileID: 0}
   originalNotesDoor: {fileID: 0}
+  lights: {fileID: 0}
+  lights2: {fileID: 0}
+  materials2: []
+  doorAnim: {fileID: 0}
+  notesDoorAnim: {fileID: 0}
 --- !u!23 &756044626
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -6546,6 +6557,7 @@ MonoBehaviour:
   errorText: {fileID: 567788330}
   loading: {fileID: 0}
   receiptScript: {fileID: 0}
+  i: {fileID: 0}
 --- !u!114 &767838881
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6913,6 +6925,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 6fad404e70259c042b97c4cfd6664f13, type: 3}
   - {fileID: 8300000, guid: ef4f57eac273bcc498b8235385d04c75, type: 3}
   - {fileID: 8300000, guid: 955912049772ae3488e0a07141ef3045, type: 3}
+  - {fileID: 8300000, guid: 8f057d260acd48c4bb09fda9a859e549, type: 3}
+  - {fileID: 8300000, guid: 535ebadb3c5633e419e31009a58b5b42, type: 3}
   displayInstructions: {fileID: 0}
   displayInstructionsUGUI: {fileID: 669595082}
   instructions:
@@ -6939,6 +6953,12 @@ MonoBehaviour:
     on the transparent box on the table (labeled "seal") next to the machine.<br><br>Note:<br>In
     real life, instead of a box, there will be a transparent envelope that the note
     should be placed into.
+  - With this note grabbed, continue to hold it and find the transparent box labeled
+    "seal", and place it onto that box.<br><br>Note:<br>In real life, instead of
+    a box, there will be a transparent envelope that the note should be placed into.
+  - Uh oh, it looks like the machine has been locked before the note has been removed.
+    Using the screen, press "unlock upper" to re-unlock the upper section of the
+    machine and try again.
 --- !u!4 &794339569
 Transform:
   m_ObjectHideFlags: 0
@@ -8997,6 +9017,7 @@ MonoBehaviour:
   rejectionPosition: {fileID: 0}
   noteMoveSpeed: 10
   noteDelay: 0.1
+  i: {fileID: 0}
 --- !u!1 &1024871894
 GameObject:
   m_ObjectHideFlags: 0
