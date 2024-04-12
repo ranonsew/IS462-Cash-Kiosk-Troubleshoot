@@ -64,6 +64,14 @@ TOTAL       25         $ 162
 
             printReceipt(content);
         }
+        else if (collectionType == "Unlock Coin")
+        {
+            string content = @"Container Removed
+
+Total Value  :$0.00";
+
+            printReceipt(content);
+        }
     }
 
     // function to print receipt
