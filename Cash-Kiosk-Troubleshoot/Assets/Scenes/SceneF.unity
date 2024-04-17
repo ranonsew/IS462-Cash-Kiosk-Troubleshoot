@@ -7735,7 +7735,7 @@ PrefabInstance:
     - target: {fileID: -5728708086206781845, guid: 6c9957b64c957aa4580a2798a6115796, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: bf5b2b73d5c1efc4f8a76a7bf7ccc0fc, type: 2}
+      objectReference: {fileID: 2100000, guid: f52e5473ca121094492af06a201f3a37, type: 2}
     - target: {fileID: -3540246581603438366, guid: 6c9957b64c957aa4580a2798a6115796, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -7827,7 +7827,7 @@ PrefabInstance:
     - target: {fileID: 2722549385910692821, guid: 6c9957b64c957aa4580a2798a6115796, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: d29dd1762c01e1d49bd9ceb8654b5be2, type: 2}
+      objectReference: {fileID: 2100000, guid: f52e5473ca121094492af06a201f3a37, type: 2}
     - target: {fileID: 4378108185478091425, guid: 6c9957b64c957aa4580a2798a6115796, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -10538,6 +10538,7 @@ MonoBehaviour:
   screen2ErrorText: {fileID: 398687135}
   instructionManager: {fileID: 794339568}
   sceneLoader: {fileID: 1293725576}
+  pointsManager: {fileID: 0}
   noteStuck: {fileID: 639699405}
 --- !u!4 &1142078210
 Transform:
