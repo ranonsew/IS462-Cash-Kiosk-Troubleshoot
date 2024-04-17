@@ -8794,6 +8794,9 @@ MonoBehaviour:
   internalSlitOpen: 0
   originalKioskLocation: {fileID: 0}
   originalNotesDoor: {fileID: 0}
+  lights: {fileID: 0}
+  lights2: {fileID: 0}
+  materials2: []
   doorAnim: {fileID: 0}
   notesDoorAnim: {fileID: 0}
 --- !u!1 &1893188562
@@ -17446,7 +17449,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 551a322242ed2bb4ca53da420f240310, type: 3}
 --- !u!33 &1981495585215176186
@@ -42699,7 +42702,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &9111189025366478710
