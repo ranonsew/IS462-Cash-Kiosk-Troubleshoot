@@ -7834,6 +7834,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: f52e5473ca121094492af06a201f3a37, type: 2}
     - target: {fileID: 4474692805382379000, guid: 6c9957b64c957aa4580a2798a6115796, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4474692805382379000, guid: 6c9957b64c957aa4580a2798a6115796, type: 3}
       propertyPath: m_TagString
       value: RecyclerHead
       objectReference: {fileID: 0}
@@ -10930,7 +10934,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6598815579406187037, guid: 18ddb545287c546e19cc77dc9fbb2189, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11879,7 +11883,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0.000043942942, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -2.0468493, y: 0.4269457, z: 2.266294}
+  m_ConnectedAnchor: {x: -2.0468493, y: 0.8009457, z: 2.266294}
   serializedVersion: 2
   m_UseSpring: 0
   m_Spring:
@@ -13004,10 +13008,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 352925650785443997, guid: 4e660da2419d1614198b2c073ddf863d, type: 3}
+      propertyPath: m_Radius
+      value: 0.05
+      objectReference: {fileID: 0}
     - target: {fileID: 2118631063274299046, guid: 4e660da2419d1614198b2c073ddf863d, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 670224309865224971, guid: 307712b64e304ee4f80c53dc6d13c1d6, type: 3}
+    - target: {fileID: 3163938636408301405, guid: 4e660da2419d1614198b2c073ddf863d, type: 3}
+      propertyPath: m_HideControllerOnSelect
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3163938636408301405, guid: 4e660da2419d1614198b2c073ddf863d, type: 3}
+      propertyPath: m_PhysicsLayerMask.m_Bits
+      value: 1025
+      objectReference: {fileID: 0}
     - target: {fileID: 4356456892009499901, guid: 4e660da2419d1614198b2c073ddf863d, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.682
@@ -13056,6 +13072,14 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0.708
       objectReference: {fileID: 0}
+    - target: {fileID: 6468596499215505064, guid: 4e660da2419d1614198b2c073ddf863d, type: 3}
+      propertyPath: m_HideControllerOnSelect
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6468596499215505064, guid: 4e660da2419d1614198b2c073ddf863d, type: 3}
+      propertyPath: m_PhysicsLayerMask.m_Bits
+      value: 1025
+      objectReference: {fileID: 0}
     - target: {fileID: 6809578822545108714, guid: 4e660da2419d1614198b2c073ddf863d, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -13079,6 +13103,10 @@ PrefabInstance:
     - target: {fileID: 8059801596075752100, guid: 4e660da2419d1614198b2c073ddf863d, type: 3}
       propertyPath: m_Layer
       value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 8559191496046399848, guid: 4e660da2419d1614198b2c073ddf863d, type: 3}
+      propertyPath: m_Radius
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 9187096636178795251, guid: 4e660da2419d1614198b2c073ddf863d, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -14992,7 +15020,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0.005755164, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -2.1883798, y: 0.4503271, z: 2.2523868}
+  m_ConnectedAnchor: {x: -2.1883798, y: 0.8243271, z: 2.2523868}
   serializedVersion: 2
   m_UseSpring: 0
   m_Spring:
@@ -18740,7 +18768,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0.0057551637, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -2.2165878, y: 0.44891012, z: 2.2539868}
+  m_ConnectedAnchor: {x: -2.2165878, y: 0.82291013, z: 2.2539868}
   serializedVersion: 2
   m_UseSpring: 0
   m_Spring:
@@ -26939,6 +26967,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1064631893644146342, guid: 3092cc7885445cf4c98cf9325a80913c, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 1500298767338907819, guid: 3092cc7885445cf4c98cf9325a80913c, type: 3}
       propertyPath: m_Convex
       value: 1
@@ -26966,6 +26998,10 @@ PrefabInstance:
     - target: {fileID: 3475304878816164559, guid: 3092cc7885445cf4c98cf9325a80913c, type: 3}
       propertyPath: m_Name
       value: Knob_Upper
+      objectReference: {fileID: 0}
+    - target: {fileID: 3475304878816164559, guid: 3092cc7885445cf4c98cf9325a80913c, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3475304878816164559, guid: 3092cc7885445cf4c98cf9325a80913c, type: 3}
       propertyPath: m_IsActive
@@ -27010,6 +27046,10 @@ PrefabInstance:
     - target: {fileID: 5501414757996730199, guid: 3092cc7885445cf4c98cf9325a80913c, type: 3}
       propertyPath: m_TagString
       value: RecyclerDrawer
+      objectReference: {fileID: 0}
+    - target: {fileID: 5677954387132181950, guid: 3092cc7885445cf4c98cf9325a80913c, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6694132777653010837, guid: 3092cc7885445cf4c98cf9325a80913c, type: 3}
       propertyPath: m_Materials.Array.size
@@ -27078,6 +27118,10 @@ PrefabInstance:
     - target: {fileID: 8084158282472841687, guid: 3092cc7885445cf4c98cf9325a80913c, type: 3}
       propertyPath: m_Name
       value: Knob_Lower
+      objectReference: {fileID: 0}
+    - target: {fileID: 8084158282472841687, guid: 3092cc7885445cf4c98cf9325a80913c, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 9158966728822790781, guid: 3092cc7885445cf4c98cf9325a80913c, type: 3}
       propertyPath: m_Materials.Array.size
