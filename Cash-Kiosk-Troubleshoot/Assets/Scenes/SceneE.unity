@@ -369,6 +369,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1669798266344263937, guid: 184e6ff1875724e459a0063bf6d78192, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1669798266344263937, guid: 184e6ff1875724e459a0063bf6d78192, type: 3}
+      propertyPath: currentScreenPanel
+      value: 
+      objectReference: {fileID: 1384138326}
     - target: {fileID: 2036591951207996668, guid: 184e6ff1875724e459a0063bf6d78192, type: 3}
       propertyPath: m_ConnectedAnchor.y
       value: -0.0030243115
@@ -377,6 +385,14 @@ PrefabInstance:
       propertyPath: i
       value: 
       objectReference: {fileID: 1741378488}
+    - target: {fileID: 2073984598030255482, guid: 184e6ff1875724e459a0063bf6d78192, type: 3}
+      propertyPath: loginPanel
+      value: 
+      objectReference: {fileID: 1384138326}
+    - target: {fileID: 2073984598030255482, guid: 184e6ff1875724e459a0063bf6d78192, type: 3}
+      propertyPath: inventoryScreenPanel
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2403105549414276993, guid: 184e6ff1875724e459a0063bf6d78192, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -500,6 +516,14 @@ PrefabInstance:
     - target: {fileID: 6786705348548820763, guid: 184e6ff1875724e459a0063bf6d78192, type: 3}
       propertyPath: m_ConnectedAnchor.y
       value: -0.0009387384
+      objectReference: {fileID: 0}
+    - target: {fileID: 7147965165766946962, guid: 184e6ff1875724e459a0063bf6d78192, type: 3}
+      propertyPath: loginPanel
+      value: 
+      objectReference: {fileID: 1384138326}
+    - target: {fileID: 7147965165766946962, guid: 184e6ff1875724e459a0063bf6d78192, type: 3}
+      propertyPath: inventoryScreenPanel
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7467064774026640447, guid: 184e6ff1875724e459a0063bf6d78192, type: 3}
       propertyPath: m_ConnectedAnchor.y
