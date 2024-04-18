@@ -43,8 +43,7 @@ public class GunnyBagSocketManager : XRSocketInteractor
 
     public void CollectCoins()
     {
-        float spawnOffset = Random.Range(-0.1f, 0.1f);
-        Vector3 coinSpawnPosition = coinSpawnTransform.position + new Vector3(0f, spawnOffset, 0f);
+        Vector3 coinSpawnPosition = coinSpawnTransform.position;
 
         // Start coroutine for each coin
         StartCoroutine(SpawnCoins(coinSpawnPosition, 29));
