@@ -3679,11 +3679,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8669137971820048389, guid: 4e660da2419d1614198b2c073ddf863d, type: 3}
       propertyPath: m_RaycastMask.m_Bits
-      value: 2147483680
+      value: 2147484705
       objectReference: {fileID: 0}
     - target: {fileID: 8933070723566546062, guid: 4e660da2419d1614198b2c073ddf863d, type: 3}
       propertyPath: m_RaycastMask.m_Bits
-      value: 2147483680
+      value: 2147484705
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5831,6 +5831,54 @@ Camera:
   m_CorrespondingSourceObject: {fileID: 8650654345620415486, guid: 4e660da2419d1614198b2c073ddf863d, type: 3}
   m_PrefabInstance: {fileID: 442271449}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &778082611
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 778082613}
+  - component: {fileID: 778082612}
+  m_Layer: 0
+  m_Name: PointManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &778082612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 778082611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13e893e1135854fd5b94f4019452ffa2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pointsDisplay: {fileID: 0}
+  previousScene: 
+  currentScene: 
+  pointsString: 
+--- !u!4 &778082613
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 778082611}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 3.636465, y: 1.9776406, z: 8.103857}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &801058737
 GameObject:
   m_ObjectHideFlags: 0
@@ -14481,7 +14529,7 @@ MonoBehaviour:
   triggered: 0
   npc: {fileID: 1644247558143830676, guid: 454b6a08b48ed4376bd3ebea2e6c6845, type: 3}
   npcSpawnLocation: {fileID: 2013378628}
-  sceneTitle: 
+  sceneTitle: SceneD
 --- !u!1 &2106265308 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3019568617730713240, guid: 5dd5a1ab6047d4848b7668734815016f, type: 3}
@@ -19128,6 +19176,10 @@ PrefabInstance:
       propertyPath: sealBag
       value: 
       objectReference: {fileID: 247974511}
+    - target: {fileID: 271617198428259553, guid: 9da365d59cfc1ce44a974cf87c3e179f, type: 3}
+      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: beforeCreateObject
+      objectReference: {fileID: 0}
     - target: {fileID: 1353150158838525027, guid: 9da365d59cfc1ce44a974cf87c3e179f, type: 3}
       propertyPath: m_IsKinematic
       value: 1
@@ -42660,3 +42712,4 @@ SceneRoots:
   - {fileID: 210165844}
   - {fileID: 50037275}
   - {fileID: 1616905986}
+  - {fileID: 778082613}
