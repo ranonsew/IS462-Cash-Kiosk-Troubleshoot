@@ -202,7 +202,7 @@ public class NotesSocketWithTagCheck : XRSocketInteractor
             yield return null;
         }
 
-        if (maxAccept <= 4)
+        if (maxAccept <= 3)
         {
             RejectNote(0.5f);
             if (SceneManager.GetActiveScene().name == "SceneD")

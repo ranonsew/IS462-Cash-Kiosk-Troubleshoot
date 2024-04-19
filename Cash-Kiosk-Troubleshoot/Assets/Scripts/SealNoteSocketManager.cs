@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.SceneManagement;
+using UnityEditor.Localization.Plugins.XLIFF.V12;
 public class SealNoteSocketManager : XRSocketInteractor
 {
     public string[] targetTag;
@@ -145,7 +146,6 @@ public class SealNoteSocketManager : XRSocketInteractor
         sceneCompleted = checkCompletion();
         Debug.Log("Checking completion now!");
         if (sceneCompleted) {
-
             Debug.Log("Scene compelted~!");
             PointsManager.instance.updateScore("SceneD", "completionRate", (1));
             PointsManager.instance.updateScore("SceneD", "numErrors", (float) countMistake());
@@ -161,6 +161,14 @@ public class SealNoteSocketManager : XRSocketInteractor
         // check if all notes in seal bag
         // Find all GameObjects with the name "rejectedNote" in the scene
         GameObject[] rejectedNotes = GameObject.FindGameObjectsWithTag("RejectedNote");
+
+        // Find all GameObjects with the name "StackOfNotesWSocket" in the scene
+        GameObject[] stackOfNotes = GameObject.FindGameObjectsWithTag("Notes");
+        if (stackOfNotes.Length > 0)
+        {
+            PointsManager.instance.updateScore("SceneD", "numErrors", (float) 1);
+            return false;
+        }
 
         // Iterate through each rejectedNote
         foreach (GameObject note in rejectedNotes)
