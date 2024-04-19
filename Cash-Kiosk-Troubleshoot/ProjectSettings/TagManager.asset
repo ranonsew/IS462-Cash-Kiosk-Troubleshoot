@@ -14,6 +14,8 @@ TagManager:
   - CoinDoor
   - GunnyBag
   - NotesSocket
+  - CoinBag
+  - CoinsSocket
   layers:
   - Default
   - TransparentFX

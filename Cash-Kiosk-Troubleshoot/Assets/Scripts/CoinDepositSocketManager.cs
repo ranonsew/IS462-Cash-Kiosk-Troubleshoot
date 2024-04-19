@@ -3,14 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
-public class GunnyBagSocketManager : XRSocketInteractor
+public class CoinDepositManager : XRSocketInteractor
 {
     public string[] targetTag;
     public GameObject CoinPrefab;
-    public Transform coinSpawnTransform;
-    public GameObject CoinsInGunnyPrefab;
-    public Transform CoinsInGunnyTransform;
-    public Transform GunnyBagTransform;
 
     public override bool CanHover(IXRHoverInteractable interactable)
     {
@@ -41,15 +37,41 @@ public class GunnyBagSocketManager : XRSocketInteractor
         Destroy(XRBaseInteractable.gameObject);
     }
 
-    public void CollectCoins()
+    public void DepositCoins(SelectEnterEventArgs args)
     {
-        Vector3 coinSpawnPosition = coinSpawnTransform.position;
+        Vector3 coinSpawnPosition = new Vector3(-2.3738f, 1.9041f, 2.6045f);
 
-        // Start coroutine for each coin
-        StartCoroutine(SpawnCoins(coinSpawnPosition, 29));
+        // Trigger animation to tilt the coin bag
+        XRBaseInteractable XRBaseInteractable = args.interactableObject as XRBaseInteractable;
+        GameObject coin_bag = XRBaseInteractable.gameObject;
+        Animator coinBagAnimator = coin_bag.GetComponent<Animator>();
+        XRSocketInteractor socketInteractor = args.interactorObject as XRSocketInteractor;
+        socketInteractor.enabled = false;
+        if (coinBagAnimator != null)
+        {
+            Debug.Log("coin bag animation triggered");
+            // Play the animation
+            coinBagAnimator.SetTrigger("pour_coins");
+        }
+        else
+        {
+            Debug.LogError("Animator component not found on the coinBag prefab!");
+        }
+
+        // Wait for 1 second
+        StartCoroutine(WaitAndSpawnCoins(coinSpawnPosition, 29, coin_bag));
     }
 
-    IEnumerator SpawnCoins(Vector3 startPosition, int numCoins)
+    IEnumerator WaitAndSpawnCoins(Vector3 startPosition, int numCoins, GameObject coin_bag)
+    {
+        // Wait for 1 second
+        yield return new WaitForSeconds(0.49f);
+
+        // Start coroutine for each coin
+        StartCoroutine(SpawnCoins(startPosition, numCoins, coin_bag));
+    }
+
+    IEnumerator SpawnCoins(Vector3 startPosition, int numCoins, GameObject coin_bag)
     {
         for (int i = 0; i < numCoins; i++)
         {
@@ -63,7 +85,7 @@ public class GunnyBagSocketManager : XRSocketInteractor
             if (animator != null)
             {
                 // Play the animation
-                animator.SetTrigger("Gunny");
+                animator.SetTrigger("Float_Replenishment");
             }
             else
             {
@@ -77,11 +99,13 @@ public class GunnyBagSocketManager : XRSocketInteractor
             yield return new WaitForSeconds(0.01f); // Adjust as needed
         }
 
-        // Instantiate coin in gunny prefab
-        GameObject spawnCoinsInGunny = Instantiate(CoinsInGunnyPrefab, CoinsInGunnyTransform.position, Quaternion.identity);
+        yield return new WaitForSeconds(0.5f);
 
-        // Set spawnCoinsInGunny as the parent of the childObject
-        spawnCoinsInGunny.transform.SetParent(GunnyBagTransform);
+        Destroy(coin_bag);
     }
 
+    public void ActivateCoinSocket()
+    {
+        gameObject.SetActive(true);
+    }
 }

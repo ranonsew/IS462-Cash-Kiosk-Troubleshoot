@@ -32,6 +32,7 @@ public class ScenarioFNoteController : MonoBehaviour
     public InstructionManager instructionManager;
     public SceneLoader sceneLoader;
     private bool grabChecker = true;
+    public PointsManagerV2 pointsManager;
 
     /// <summary>
     /// Couldn't get regular note prefab to work, but can with RejectedNote prefab
@@ -91,8 +92,9 @@ public class ScenarioFNoteController : MonoBehaviour
     private IEnumerator DelayToEnd()
     {
         Debug.Log("Ending Scenario F");
-        yield return new WaitForSeconds(6.9f);
+        yield return new WaitForSeconds(4f);
         sceneLoader.LoadScene("ModeSelection");
+        //pointsManager.CheckResults();
     }
 
     /// <summary>
@@ -186,6 +188,7 @@ public class ScenarioFNoteController : MonoBehaviour
         screen2ErrorText.text = "Upper Unlocked";
 
         instructionManager.LoadSpecificInstructionIndex(2); // Nice work! The upper part ...
+        pointsManager.completionRate++;
     }
 
     /// <summary>
@@ -225,10 +228,12 @@ public class ScenarioFNoteController : MonoBehaviour
         {
             instructionManager.LoadSpecificInstructionIndex(5); // Congratulations! The yellow lights returning ...
             machineRebooted = true;
+            pointsManager.completionRate++;
         }
         else
         {
             instructionManager.LoadSpecificInstructionIndex(7); // Uh oh, it looks like the machine ...
+            pointsManager.numErrors++;
         }
     }
 
@@ -239,5 +244,6 @@ public class ScenarioFNoteController : MonoBehaviour
     public void ScenarioF_EndSceneLoader(SelectEnterEventArgs args)
     {
         noteInSeal = true;
+        pointsManager.completionRate++;
     }
 }

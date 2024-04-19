@@ -8,9 +8,6 @@ public class CoinKeySocketManager : XRSocketInteractor
 {
     public string[] targetTag;
 
-    [SerializeField]
-    Animator doorAnim;
-
     public override bool CanHover(IXRHoverInteractable interactable)
     {
         return base.CanHover(interactable) && MatchUsingTag(interactable);
@@ -38,11 +35,6 @@ public class CoinKeySocketManager : XRSocketInteractor
     {
         XRBaseInteractable XRBaseInteractable = args.interactableObject as XRBaseInteractable;
         Destroy(XRBaseInteractable.gameObject);
-    }
-
-    public void SetCoinDoor(bool canOpen)
-    {
-        doorAnim.SetBool("isOpen", canOpen);
     }
 
 }
