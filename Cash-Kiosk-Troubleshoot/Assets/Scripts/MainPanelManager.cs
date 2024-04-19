@@ -59,7 +59,7 @@ public class MainPanelManager : MonoBehaviour
         rebootPanel.SetActive(rebootActive);
         mainPanel1.SetActive(mainPanel1Active);
         mainPanel2.SetActive(mainPanel2Active);
-        errorText.gameObject.SetActive(errorActive);
+        if (errorText != null) errorText.gameObject.SetActive(errorActive);
 
         dateText.text = StorageManager.dateString;
         timeText.text = StorageManager.timeString;
@@ -72,6 +72,7 @@ public class MainPanelManager : MonoBehaviour
         // start of pre-scenario stuff
         UnityEngine.Debug.Log("Clicked text! view inventory?" + text.text);
         if (text.text == "View Inventory"){
+            mainPanel1.SetActive(false);
             UnityEngine.Debug.Log("Clicked text! view inventory?" + text.text);
             screenManager.SwitchScreen(inventoryScreenPanel);
             return;

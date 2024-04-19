@@ -49,7 +49,7 @@ public class PointsManager : MonoBehaviour
 
     public float fetchScores(string sceneName, string metric){
 
-        Debug.Log("getting score here: " + sceneName + " --- ");
+        // Debug.Log("getting score here: " + sceneName + " --- ");
         int sceneIdx = 0;
         int metricIdx = 0;
         if (sceneName == "SceneC"){
@@ -73,7 +73,7 @@ public class PointsManager : MonoBehaviour
             return (points[sceneIdx][0] * 500 + 500 / (points[sceneIdx][2]/1000)  - 500 * (points[sceneIdx][1])) / 10;
         }
 
-        Debug.Log("hereee: "+ sceneIdx.ToString() + ", otehr one: " + metricIdx.ToString() + " points: " + points);
+        // Debug.Log("hereee: "+ sceneIdx.ToString() + ", otehr one: " + metricIdx.ToString() + " points: " + points);
         return points[sceneIdx][metricIdx];
     }
 
@@ -123,10 +123,9 @@ public class PointsManager : MonoBehaviour
 
         points[sceneIdx][metricIdx] += metricRate;
         // shower confetti if completion done:
-        if (points[sceneIdx][0] >= 1){
-            waitLoadResultsScene();
-
-        }
+        // if (points[sceneIdx][0] >= 1){
+        //     waitLoadResultsScene();
+        // }
 
         pointsString = ArrayToString(points);
     }
@@ -134,14 +133,14 @@ public class PointsManager : MonoBehaviour
     void Update()
     {}
 
-        public void waitLoadResultsScene(){
-            StartCoroutine(loadResultsScene());
-        }
+//         public void waitLoadResultsScene(){
+//             StartCoroutine(loadResultsScene());
+//         }
 
-IEnumerator loadResultsScene(){
-    yield return new WaitForSeconds(6);
-    SceneManager.LoadScene("SceneResults");
-}
+// IEnumerator loadResultsScene(){
+//     yield return new WaitForSeconds(6);
+//     // SceneManager.LoadScene("SceneResults");
+// }
 
 
 

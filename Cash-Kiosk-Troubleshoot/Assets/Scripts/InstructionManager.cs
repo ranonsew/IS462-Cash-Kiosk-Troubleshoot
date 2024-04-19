@@ -11,6 +11,7 @@ public class InstructionManager : MonoBehaviour
     private int clipIndex = 0;
     public TextMeshPro displayInstructions;
     public TextMeshProUGUI displayInstructionsUGUI;
+
     public string[] instructions = new string[]{"Hello! There's an error. Please open the white kiosk door below and 2 more doors.", 
     "Remember to close all of the doors. Check the screen for errors and see if the blue lights are yellow."};
 
