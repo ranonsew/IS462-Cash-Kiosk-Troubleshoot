@@ -24,7 +24,6 @@ public class DrawerLockCollider : MonoBehaviour
             {
                 scenarioFController.instructionManager.LoadSpecificInstructionIndex(3); // If the note is hard to spot ...
                 instructionCounter++;
-                scenarioFController.pointsManager.completionRate++;
             }
         }
         Debug.Log($"Lock state: {scenarioFController.allowLock}");
