@@ -561,6 +561,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: machine_final
       objectReference: {fileID: 0}
+    - target: {fileID: 8680618104571003115, guid: 184e6ff1875724e459a0063bf6d78192, type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8767765213068935517, guid: 184e6ff1875724e459a0063bf6d78192, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -3708,7 +3712,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4356456892009499901, guid: 4e660da2419d1614198b2c073ddf863d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 7.069
+      value: 7.45
       objectReference: {fileID: 0}
     - target: {fileID: 4356456892009499901, guid: 4e660da2419d1614198b2c073ddf863d, type: 3}
       propertyPath: m_LocalRotation.w
@@ -5584,7 +5588,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6598815579406187037, guid: 18ddb545287c546e19cc77dc9fbb2189, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

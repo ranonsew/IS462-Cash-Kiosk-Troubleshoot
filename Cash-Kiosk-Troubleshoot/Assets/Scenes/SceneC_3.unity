@@ -1500,8 +1500,8 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
+  m_UseGravity: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -2078,6 +2078,10 @@ PrefabInstance:
     - target: {fileID: 8574887230593980963, guid: 6c93b07b2d8f6124cbdcd7226e313a56, type: 3}
       propertyPath: m_Name
       value: ToolTip
+      objectReference: {fileID: 0}
+    - target: {fileID: 8574887230593980963, guid: 6c93b07b2d8f6124cbdcd7226e313a56, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8574887230939293681, guid: 6c93b07b2d8f6124cbdcd7226e313a56, type: 3}
       propertyPath: m_Positions.Array.data[1].x
@@ -3276,10 +3280,10 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!23 &915646407
 MeshRenderer:
@@ -3967,7 +3971,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1282612236}
   - component: {fileID: 1282612238}
-  - component: {fileID: 1282612239}
   - component: {fileID: 1282612240}
   m_Layer: 0
   m_Name: FlowManager
@@ -4087,29 +4090,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1282612239
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1282612235}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b80c162c61bd5149a7516b1d47b454a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  clips:
-  - {fileID: 8300000, guid: 4f43dffe29f3aa64bb6ff09058cd2414, type: 3}
-  - {fileID: 8300000, guid: e9ff9e2b4424d47499b6b843f1956987, type: 3}
-  - {fileID: 8300000, guid: b9837e6a94f6fa547b0d01798cea03c1, type: 3}
-  displayInstructions: {fileID: 1770978690}
-  displayInstructionsUGUI: {fileID: 0}
-  instructions:
-  - Hello welcome to scene C. There's an error. Please fix!
-  - Open all the doors and check if all of them are closed inside
-  - 'Remember to close all of the doors. check the screen for errors and see if the
-    blue lights are yellow. '
 --- !u!114 &1282612240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6140,8 +6120,8 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
+  m_UseGravity: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
