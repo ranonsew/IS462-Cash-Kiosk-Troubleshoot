@@ -10,7 +10,7 @@ using UnityEngine.SceneManagement;
 public class SceneCvariables : MonoBehaviour
 {
     public bool KioskDoorOpen = true;
-    public bool NotesDoorOpen = false;
+    public bool NotesDoorOpen = true;
     public bool InternalNotesDoorOpen = false;
 
     public bool KioskDoorCheck = true;
@@ -28,7 +28,17 @@ public class SceneCvariables : MonoBehaviour
         else
             Destroy(gameObject);
 
+
+
+        // if (KioskDoorOpen == true){
+        //     Debug.Log("Helloooooo");
+        // }else{
+        //      Debug.Log("Nooooo");
+        // }
+
     }
+
+    
 
 
 }

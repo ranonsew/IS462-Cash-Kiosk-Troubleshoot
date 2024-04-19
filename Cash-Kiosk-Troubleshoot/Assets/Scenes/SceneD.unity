@@ -8495,7 +8495,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6598815579406187037, guid: 18ddb545287c546e19cc77dc9fbb2189, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -14477,7 +14477,7 @@ MonoBehaviour:
   timeRemaining: 180
   totalTime: 0
   messageText: {fileID: 2106163827}
-  WinnerTriggered: 0
+  triggered: 0
   npc: {fileID: 1644247558143830676, guid: 454b6a08b48ed4376bd3ebea2e6c6845, type: 3}
   npcSpawnLocation: {fileID: 2013378628}
   sceneTitle: 

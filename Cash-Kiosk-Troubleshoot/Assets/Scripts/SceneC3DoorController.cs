@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using TMPro;
+using UnityEngine.SceneManagement;
 public class SceneC3DoorController : MonoBehaviour
 {
     private HingeJoint hingeJoint;
@@ -13,6 +14,7 @@ public class SceneC3DoorController : MonoBehaviour
     public TextMeshPro errorMessage;
         public ParticleSystem p;
     public Transform pLocation;
+    public InstructionManager m;
     // public GameObject lights;
     // public Material[] materials;
     // public bool blueOrYellow = true;
@@ -53,7 +55,8 @@ public class SceneC3DoorController : MonoBehaviour
             // if all closed then trigger ending scene here and confetti!: IF not show on instruction to recheck all the doors
             if (SceneCvariables.instance.KioskDoorOpen == false & SceneCvariables.instance.NotesDoorOpen == false & 
             SceneCvariables.instance.InternalNotesDoorOpen == false){
-
+                // m.LoadNextInstructions();
+                // PointsManager.instance.waitLoadResultsScene();
                 Debug.Log("Yyyyyy");
                 PointsManager.instance.updateScore("SceneC", "completionRate", (1));
                 PointsManager.instance.updateScore("SceneC", "numErrors", (float) (SceneCvariables.instance.KioskDoorCheck ? 0: 1)  + 
@@ -62,9 +65,12 @@ public class SceneC3DoorController : MonoBehaviour
                 errorMessage.color = Color.green;
                 var emission = p.emission; // Stores the module in a local variable
                 emission.enabled = true; // Applies the new value directly to the Particle System}
-                PointsManager.instance.waitLoadResultsScene();
+
+                // PointsManager.instance.waitLoadResultsScene();
+                waitLoadResultsScene();
             
             }else{
+
                 instructions.text = "Please find all loose doors and close it properly.";
             }
         }
@@ -92,4 +98,14 @@ public class SceneC3DoorController : MonoBehaviour
         hingeJoint.limits = limits;
         hingeJoint.useLimits = true;
     }
+
+
+        public void waitLoadResultsScene(){
+            StartCoroutine(loadResultsScene());
+        }
+
+IEnumerator loadResultsScene(){
+    yield return new WaitForSeconds(6);
+    SceneManager.LoadScene("SceneResults");
+}
 }
