@@ -96,7 +96,7 @@ public class MainPanelManager : MonoBehaviour
             CoinBinManager.unlocked = true;
             CoinBinManager.UpdateGrabbableState();
             receiptScript = GetComponent<ReceiptManager>();
-            receiptScript.collectionReceipt("Unlock Coin");
+            receiptScript.collectionReceipt("UnlockCoin");
             return;
         }
 

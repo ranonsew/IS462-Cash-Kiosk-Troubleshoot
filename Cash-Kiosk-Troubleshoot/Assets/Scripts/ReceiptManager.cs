@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using TMPro;
+using System;
 
 public class ReceiptManager : MonoBehaviour
 {
@@ -64,11 +65,19 @@ TOTAL       25         $ 162
 
             printReceipt(content);
         }
-        else if (collectionType == "Unlock Coin")
+        else if (collectionType == "UnlockCoin")
         {
+            string dateTimeString = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss");
             string content = @"Container Removed
 
-Total Value  :$0.00";
+Kiosk           : Kiosk 1
+Date/Time       : " + dateTimeString + @"
+User ID         : 3333
+Customer ID     : 9999
+Store ID        : 9999999
+Machine ID      : 01
+
+Total Value     :$0.00";
 
             printReceipt(content);
         }
