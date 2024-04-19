@@ -98,12 +98,12 @@ public class SealNoteSocketManager : XRSocketInteractor
         // check if scene is complete, ie all rejected notes in seal bag
         sceneCompleted = checkCompletion();
 
-        if (sceneCompleted)
-        {
+        //if (sceneCompleted)
+        //{
 
-            PointsManager.instance.updateScore("SceneD", "numErrors", countMistake());
-            PointsManager.instance.updateScore("SceneD", "completionRate", 100);
-        }
+        //    PointsManager.instance.updateScore("SceneD", "numErrors", countMistake());
+        //    PointsManager.instance.updateScore("SceneD", "completionRate", 100);
+        //}
 
         // Delay before moving the next note
         yield return new WaitForSeconds(noteDelay);
