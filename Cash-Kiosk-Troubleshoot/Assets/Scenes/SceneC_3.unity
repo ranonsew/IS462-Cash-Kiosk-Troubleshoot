@@ -13557,6 +13557,10 @@ PrefabInstance:
       propertyPath: instructions
       value: 
       objectReference: {fileID: 1770978690}
+    - target: {fileID: 4231050976664937926, guid: 0650d4c717dc4f04bb9436e2cdbc825d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4828277733967123783, guid: 0650d4c717dc4f04bb9436e2cdbc825d, type: 3}
       propertyPath: m_Limits.max
       value: 80
@@ -13565,10 +13569,18 @@ PrefabInstance:
       propertyPath: m_Limits.min
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5732436607530406413, guid: 0650d4c717dc4f04bb9436e2cdbc825d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6083600337346506321, guid: 0650d4c717dc4f04bb9436e2cdbc825d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2045019303}
+    - target: {fileID: 7326750345433025022, guid: 0650d4c717dc4f04bb9436e2cdbc825d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7380197402286873801, guid: 0650d4c717dc4f04bb9436e2cdbc825d, type: 3}
       propertyPath: m_Limits.max
       value: 270
@@ -13582,7 +13594,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2045019303}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 5732436607530406413, guid: 0650d4c717dc4f04bb9436e2cdbc825d, type: 3}
+    - {fileID: 7326750345433025022, guid: 0650d4c717dc4f04bb9436e2cdbc825d, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 3853138408885146547, guid: 0650d4c717dc4f04bb9436e2cdbc825d, type: 3}

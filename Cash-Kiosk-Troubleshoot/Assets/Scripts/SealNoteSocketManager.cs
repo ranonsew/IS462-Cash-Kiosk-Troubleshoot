@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
-
+using UnityEngine.SceneManagement;
 public class SealNoteSocketManager : XRSocketInteractor
 {
     public string[] targetTag;
@@ -19,6 +19,8 @@ public class SealNoteSocketManager : XRSocketInteractor
     {
         return base.CanHover(interactable) && MatchUsingTag(interactable);
     }
+
+
 
     public override bool CanSelect(IXRSelectInteractable interactable)
     {
@@ -57,10 +59,39 @@ public class SealNoteSocketManager : XRSocketInteractor
         Destroy(objToDestroyXRBaseInteractable.gameObject);
     }
 
+
+        public void waitLoadResultsScene(){
+            StartCoroutine(loadResultsScene());
+        }
+
+        IEnumerator loadResultsScene(){
+            yield return new WaitForSeconds(6);
+            SceneManager.LoadScene("SceneResults");
+        }
+
+    public void beforeCreateObject(SelectEnterEventArgs args){
+        CreateObject(args);
+        // sceneCompleted = checkCompletion();
+        // Debug.Log("Checking completion now!");
+        // if (sceneCompleted) {
+
+        //     Debug.Log("Scene compelted~!");
+        //     PointsManager.instance.updateScore("SceneD", "completionRate", (1));
+        //     PointsManager.instance.updateScore("SceneD", "numErrors", (float) 0);
+        //     waitLoadResultsScene();
+        // }
+
+    }
+
     public void CreateObject(SelectEnterEventArgs args)
     {
+        // if (PointsManager.instance != null){
+        //     PointsManager.instance.sceneTitle = "SceneD";
+        // }
         // Start the coroutine for delaying
         StartCoroutine(DelayAndCreate(args));
+
+
     }
 
     public IEnumerator DelayAndCreate(SelectEnterEventArgs args)
@@ -83,8 +114,13 @@ public class SealNoteSocketManager : XRSocketInteractor
             rb.isKinematic = true;
         }
 
+
+
         // Start moving notes
         StartCoroutine(MoveRejectedNote(rejectedNote));
+
+
+
 
     }
 
@@ -94,9 +130,10 @@ public class SealNoteSocketManager : XRSocketInteractor
         rejectedNote.transform.position = sealPosition.position;
         rejectedNote.transform.parent = sealBag.transform;
         sealedNoteCount++;
+        Debug.Log("MoveRejectedNote!");
 
         // check if scene is complete, ie all rejected notes in seal bag
-        sceneCompleted = checkCompletion();
+        // sceneCompleted = checkCompletion();
 
         //if (sceneCompleted)
         //{
@@ -104,6 +141,16 @@ public class SealNoteSocketManager : XRSocketInteractor
         //    PointsManager.instance.updateScore("SceneD", "numErrors", countMistake());
         //    PointsManager.instance.updateScore("SceneD", "completionRate", 100);
         //}
+
+        sceneCompleted = checkCompletion();
+        Debug.Log("Checking completion now!");
+        if (sceneCompleted) {
+
+            Debug.Log("Scene compelted~!");
+            PointsManager.instance.updateScore("SceneD", "completionRate", (1));
+            PointsManager.instance.updateScore("SceneD", "numErrors", (float) countMistake());
+            waitLoadResultsScene();
+        }
 
         // Delay before moving the next note
         yield return new WaitForSeconds(noteDelay);
