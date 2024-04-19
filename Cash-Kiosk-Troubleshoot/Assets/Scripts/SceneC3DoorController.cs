@@ -104,8 +104,8 @@ public class SceneC3DoorController : MonoBehaviour
             StartCoroutine(loadResultsScene());
         }
 
-IEnumerator loadResultsScene(){
-    yield return new WaitForSeconds(6);
-    SceneManager.LoadScene("SceneResults");
-}
+        IEnumerator loadResultsScene(){
+            yield return new WaitForSeconds(6);
+            SceneManager.LoadScene("SceneResults");
+        }
 }

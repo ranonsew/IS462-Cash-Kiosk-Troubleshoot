@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class PhoneDialogManager : MonoBehaviour
 {
     public Canvas phoneDialogCanvas;
@@ -53,6 +53,13 @@ public class PhoneDialogManager : MonoBehaviour
             if (!HeartbeatCheck.heartbeatFailure)
             {
                 currentDialog = "heartbeatCheckSuccess";
+
+
+                PointsManager.instance.updateScore("SceneE", "completionRate", (1));
+                PointsManager.instance.updateScore("SceneE", "numErrors", (float) 0);
+                waitLoadResultsScene();
+
+
             } 
             else
             {
@@ -77,4 +84,14 @@ public class PhoneDialogManager : MonoBehaviour
         // end call for now
         EndCall();
     }
+
+    
+        public void waitLoadResultsScene(){
+            StartCoroutine(loadResultsScene());
+        }
+
+        IEnumerator loadResultsScene(){
+            yield return new WaitForSeconds(6);
+            SceneManager.LoadScene("SceneResults");
+        }
 }
