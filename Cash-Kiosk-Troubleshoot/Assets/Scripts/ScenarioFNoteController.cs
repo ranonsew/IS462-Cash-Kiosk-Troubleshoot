@@ -92,7 +92,7 @@ public class ScenarioFNoteController : MonoBehaviour
     private IEnumerator DelayToEnd()
     {
         Debug.Log("Ending Scenario F");
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(3f);
         sceneLoader.LoadScene("ModeSelection");
         //pointsManager.CheckResults();
     }
@@ -131,6 +131,11 @@ public class ScenarioFNoteController : MonoBehaviour
     /// <returns></returns>
     public bool CheckNotePosition()
     {
+        if (!noteStuck)
+        {
+            return false;
+        }
+
         float x = noteStuck.transform.localPosition.x;
         float y = noteStuck.transform.localPosition.y;
         float z = noteStuck.transform.localPosition.z;
