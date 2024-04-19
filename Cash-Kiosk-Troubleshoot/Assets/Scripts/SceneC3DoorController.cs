@@ -9,7 +9,7 @@ public class SceneC3DoorController : MonoBehaviour
     private HingeJoint hingeJoint;
     private bool isOpen = false;
     private float closedAngle = 0f;
-    public float openAngle = 110f;
+    public float openAngle = 160f;
     public TextMeshPro instructions;
     public TextMeshPro errorMessage;
         public ParticleSystem p;

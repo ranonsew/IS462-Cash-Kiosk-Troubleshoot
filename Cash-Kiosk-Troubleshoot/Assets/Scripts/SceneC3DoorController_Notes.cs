@@ -8,7 +8,7 @@ public class SceneC3DoorController_Notes : MonoBehaviour
     private HingeJoint hingeJoint;
     private bool isOpen = false;
     private float closedAngle = 0f;
-    public float openAngle = 110f;
+    public float openAngle = 150f;
     private XRSimpleInteractable xrInteractable;
 
     // Start is called before the first frame update
