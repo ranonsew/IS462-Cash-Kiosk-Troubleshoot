@@ -10737,7 +10737,6 @@ MonoBehaviour:
   screen2ErrorText: {fileID: 398687135}
   instructionManager: {fileID: 794339568}
   sceneLoader: {fileID: 1293725576}
-  pointsManager: {fileID: 0}
   noteStuck: {fileID: 639699405}
 --- !u!4 &1142078210
 Transform:
@@ -12423,6 +12422,54 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1315121280}
   m_CullTransparentMesh: 1
+--- !u!1 &1325217134
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1325217136}
+  - component: {fileID: 1325217135}
+  m_Layer: 0
+  m_Name: PointManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &1325217135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1325217134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13e893e1135854fd5b94f4019452ffa2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pointsDisplay: {fileID: 0}
+  previousScene: 
+  currentScene: 
+  pointsString: 
+--- !u!4 &1325217136
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1325217134}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 3.636465, y: 1.9776406, z: 8.103857}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1347015324
 GameObject:
   m_ObjectHideFlags: 0
@@ -46979,3 +47026,4 @@ SceneRoots:
   - {fileID: 1142078210}
   - {fileID: 1573666839}
   - {fileID: 1293725577}
+  - {fileID: 1325217136}

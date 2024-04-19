@@ -32,6 +32,7 @@ public class ScenarioFNoteController : MonoBehaviour
     public InstructionManager instructionManager;
     public SceneLoader sceneLoader;
     private bool grabChecker = true;
+    private bool completionCheck = false;
 
     /// <summary>
     /// Couldn't get regular note prefab to work, but can with RejectedNote prefab
@@ -80,11 +81,27 @@ public class ScenarioFNoteController : MonoBehaviour
         instructionManager.LoadSpecificInstructionIndex(1); // To start, login with ...
     }
 
+    public void waitLoadResultsScene(){
+            StartCoroutine(loadResultsScene());
+        }
+
+        IEnumerator loadResultsScene(){
+            yield return new WaitForSeconds(6);
+            sceneLoader.LoadScene("SceneResults");
+        }
+
+
     void Update()
     {
-        if (machineRebooted & noteInSeal)
+        if (machineRebooted & noteInSeal & !completionCheck)
         {
-            StartCoroutine(DelayToEnd());
+
+            completionCheck = true;
+            PointsManager.instance.updateScore("SceneF", "completionRate", 1f);
+            PointsManager.instance.updateScore("SceneF", "numErrors", 0f);
+            waitLoadResultsScene();
+
+            // StartCoroutine(DelayToEnd());
         }
     }
 

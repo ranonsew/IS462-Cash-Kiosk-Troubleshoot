@@ -85,7 +85,6 @@ public class PhoneDialogManager : MonoBehaviour
         EndCall();
     }
 
-    
         public void waitLoadResultsScene(){
             StartCoroutine(loadResultsScene());
         }

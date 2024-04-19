@@ -16,7 +16,7 @@ public class UpdateScoreManager : MonoBehaviour
         string previousSceneSet = "SceneC";
         if  (PointsManager.instance != null || PointsManager.instance.previousScene != null){
              previousSceneSet = PointsManager.instance.previousScene;}
-        completionRate.text = "Completed: " + PointsManager.instance.fetchScores(previousSceneSet, "completionRate").ToString();
+        completionRate.text = "Completed: " + (PointsManager.instance.fetchScores(previousSceneSet, "completionRate")*100).ToString();
         numErrors.text = "Total Errors: " + PointsManager.instance.fetchScores(previousSceneSet, "numErrors").ToString();
         timeInSecs.text = "Time Taken: " + PointsManager.instance.fetchScores(previousSceneSet, "timeInSec").ToString();
         overall.text = "Current Score: " + PointsManager.instance.fetchScores(previousSceneSet, "overall").ToString();
