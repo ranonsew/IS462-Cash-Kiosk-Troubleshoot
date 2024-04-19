@@ -73,5 +73,8 @@ public class PhoneDialogManager : MonoBehaviour
     public void ReturnToBase(bool isComplete)
     {
         // go to results page. if not complete, fail
+
+        // end call for now
+        EndCall();
     }
 }
