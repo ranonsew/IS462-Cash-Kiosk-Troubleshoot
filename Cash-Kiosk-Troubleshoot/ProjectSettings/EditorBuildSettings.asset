@@ -30,7 +30,7 @@ EditorBuildSettings:
     path: Assets/Scenes/SceneF.unity
     guid: dbd22e2f6192fd64196f5bf1fa6036b2
   - enabled: 1
-    path: Assets/Scenes/SceneC_3.unity
+    path: Assets/Scenes/SceneC_3_prob.unity
     guid: 497294d235d7cdd4ba4944aef539e943
   - enabled: 1
     path: Assets/Scenes/Main.unity
