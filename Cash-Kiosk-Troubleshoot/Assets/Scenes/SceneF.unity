@@ -2082,10 +2082,6 @@ MonoBehaviour:
   materials:
   - {fileID: 2100000, guid: b9f3efffcb68ce341b58cde328bc79ad, type: 2}
   - {fileID: 2100000, guid: 032b6fcd8e8521c4aa836405306d8a71, type: 2}
-  rigidbody_kiosk_front_door: {fileID: 0}
-  rigidbody_notes_front_door: {fileID: 0}
-  rigidbody_notes_internal_door: {fileID: 0}
-  rigidbody_internal_slit: {fileID: 0}
   messageText: {fileID: 0}
   totalStepsSceneC: 7
   currentStepsSceneC: 0
@@ -2093,13 +2089,9 @@ MonoBehaviour:
   notesDoorOpen: 0
   kioskDoorOpen: 0
   internalSlitOpen: 0
-  originalKioskLocation: {fileID: 0}
-  originalNotesDoor: {fileID: 0}
   lights: {fileID: 0}
   lights2: {fileID: 0}
   materials2: []
-  doorAnim: {fileID: 0}
-  notesDoorAnim: {fileID: 0}
 --- !u!23 &239886301
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -6865,10 +6857,6 @@ MonoBehaviour:
   materials:
   - {fileID: 2100000, guid: b9f3efffcb68ce341b58cde328bc79ad, type: 2}
   - {fileID: 2100000, guid: 032b6fcd8e8521c4aa836405306d8a71, type: 2}
-  rigidbody_kiosk_front_door: {fileID: 0}
-  rigidbody_notes_front_door: {fileID: 0}
-  rigidbody_notes_internal_door: {fileID: 0}
-  rigidbody_internal_slit: {fileID: 0}
   messageText: {fileID: 0}
   totalStepsSceneC: 7
   currentStepsSceneC: 0
@@ -6876,13 +6864,9 @@ MonoBehaviour:
   notesDoorOpen: 0
   kioskDoorOpen: 0
   internalSlitOpen: 0
-  originalKioskLocation: {fileID: 0}
-  originalNotesDoor: {fileID: 0}
   lights: {fileID: 0}
   lights2: {fileID: 0}
   materials2: []
-  doorAnim: {fileID: 0}
-  notesDoorAnim: {fileID: 0}
 --- !u!23 &756044626
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -11144,7 +11128,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6598815579406187037, guid: 18ddb545287c546e19cc77dc9fbb2189, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -19795,9 +19779,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeRemaining: 180
+  timeAllowed: 10
   totalTime: 0
   messageText: {fileID: 2106163827}
-  WinnerTriggered: 0
+  triggered: 0
   npc: {fileID: 1644247558143830676, guid: 454b6a08b48ed4376bd3ebea2e6c6845, type: 3}
   npcSpawnLocation: {fileID: 2013378628}
   sceneTitle: SceneF
