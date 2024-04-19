@@ -11128,7 +11128,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6598815579406187037, guid: 18ddb545287c546e19cc77dc9fbb2189, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -27674,6 +27674,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5501414757996730199, guid: 3092cc7885445cf4c98cf9325a80913c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2759851083049079423}
+    - targetCorrespondingSourceObject: {fileID: 5501414757996730199, guid: 3092cc7885445cf4c98cf9325a80913c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2759851083049079426}
   m_SourcePrefab: {fileID: 100100000, guid: 3092cc7885445cf4c98cf9325a80913c, type: 3}
 --- !u!4 &2759851083049079420 stripped
 Transform:
@@ -27814,6 +27817,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 124
   m_CollisionDetection: 0
+--- !u!138 &2759851083049079426
+FixedJoint:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2759851083049079421}
+  m_ConnectedBody: {fileID: 8264423447417119920}
+  m_ConnectedArticulationBody: {fileID: 0}
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_EnableCollision: 0
+  m_EnablePreprocessing: 1
+  m_MassScale: 1
+  m_ConnectedMassScale: 1
 --- !u!1 &2773647239771051307
 GameObject:
   m_ObjectHideFlags: 0
