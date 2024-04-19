@@ -7630,6 +7630,25 @@ MonoBehaviour:
   lights: {fileID: 0}
   lights2: {fileID: 0}
   materials2: []
+--- !u!1 &1886965600 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1249738377256370711, guid: 184e6ff1875724e459a0063bf6d78192, type: 3}
+  m_PrefabInstance: {fileID: 9128134093090943233}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1886965603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1886965600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e974546562bbde34a80c669b7ccb1c97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  receiptPrefab: {fileID: 6706574675826549933, guid: 0e6f5e80b1329cd4eacdd6161a6bb8c6, type: 3}
+  receiptDispenserPosition: {fileID: 1819401013}
 --- !u!1 &1893188562
 GameObject:
   m_ObjectHideFlags: 0
@@ -41836,6 +41855,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8860542864718404929, guid: 184e6ff1875724e459a0063bf6d78192, type: 3}
       insertIndex: -1
       addedObject: {fileID: 9128134093090943239}
+    - targetCorrespondingSourceObject: {fileID: 1249738377256370711, guid: 184e6ff1875724e459a0063bf6d78192, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1886965603}
     - targetCorrespondingSourceObject: {fileID: 5155800208531768673, guid: 184e6ff1875724e459a0063bf6d78192, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1527818245}
@@ -41884,7 +41906,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinPrefab: {fileID: 5103360262926765596, guid: d54c27c22a495c248bf07f7b258a3d8d, type: 3}
-  coinSpawnLocation: {fileID: 0}
+  coinSpawnLocation: {fileID: 1347533548}
 --- !u!114 &9128134093090943240
 MonoBehaviour:
   m_ObjectHideFlags: 0
