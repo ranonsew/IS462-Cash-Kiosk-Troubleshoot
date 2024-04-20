@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.SceneManagement;
-using UnityEditor.Localization.Plugins.XLIFF.V12;
+// using UnityEditor.Localization.Plugins.XLIFF.V12;
 public class SealNoteSocketManager : XRSocketInteractor
 {
     public string[] targetTag;
