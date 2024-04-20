@@ -3779,6 +3779,7 @@ MonoBehaviour:
   loading: {fileID: 0}
   receiptScript: {fileID: 0}
   i: {fileID: 0}
+  coinBinAnim: {fileID: 0}
 --- !u!114 &425166208
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3910,7 +3911,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.39215687}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -6428,7 +6429,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &730900300
 Transform:
   m_ObjectHideFlags: 0
@@ -6981,6 +6982,7 @@ MonoBehaviour:
   loading: {fileID: 0}
   receiptScript: {fileID: 0}
   i: {fileID: 0}
+  coinBinAnim: {fileID: 0}
 --- !u!114 &767838881
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12723,7 +12725,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1369146059
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13279,6 +13281,10 @@ PrefabInstance:
     - target: {fileID: 6947604102996551011, guid: 4e660da2419d1614198b2c073ddf863d, type: 3}
       propertyPath: m_Name
       value: Complete XR Origin Set Up Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 6947604102996551011, guid: 4e660da2419d1614198b2c073ddf863d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8047140479014348783, guid: 4e660da2419d1614198b2c073ddf863d, type: 3}
       propertyPath: m_LocalScale.x
@@ -18929,7 +18935,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2074379654
 Transform:
   m_ObjectHideFlags: 0
