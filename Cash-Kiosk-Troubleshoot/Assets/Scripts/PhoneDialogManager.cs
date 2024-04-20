@@ -10,6 +10,8 @@ public class PhoneDialogManager : MonoBehaviour
     private Dictionary<string, GameObject> dialogs = new Dictionary<string, GameObject>();
     private string currentDialog = "start";
 
+    public GameObject completedComponent;
+
     [System.Serializable]
     public struct DialogEntry
     {
@@ -81,8 +83,20 @@ public class PhoneDialogManager : MonoBehaviour
     {
         // go to results page. if not complete, fail
 
+        if (completedComponent != null & completedComponent.activeSelf){
+            PointsManager.instance.updateScore("CashCollection", "completionRate", (1));
+            PointsManager.instance.updateScore("CashCollection", "numErrors", (float)0);
+            waitLoadResultsScene();
+        }
+
         // end call for now
         EndCall();
+
+        // if (completedComponent != null & completedComponent.activeSelf){
+        //     Debug.Log("Go points page");
+        // }
+
+
     }
 
         public void waitLoadResultsScene(){

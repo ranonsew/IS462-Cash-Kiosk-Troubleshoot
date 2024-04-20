@@ -41,6 +41,7 @@ public class PointsManager : MonoBehaviour
             new float[]{0, 0, 0, 0},
             new float[]{0, 0, 0, 0},
             new float[]{0, 0, 0, 0},
+            new float[]{0, 0, 0, 0},
             new float[]{0, 0, 0, 0}
         };}
 
@@ -60,6 +61,8 @@ public class PointsManager : MonoBehaviour
             sceneIdx = 2;
         }else if(sceneName == "SceneF"){
             sceneIdx = 3;
+        }else if(sceneName == "CashCollection"){
+            sceneIdx = 4;
         }
         if (metric == "completionRate"){
             metricIdx = 0;
@@ -110,6 +113,8 @@ public class PointsManager : MonoBehaviour
             sceneIdx = 2;
         }else if(sceneName == "SceneF"){
             sceneIdx = 3;
+        }else if(sceneName == "CashCollection"){
+            sceneIdx = 4;
         }
         if (metric == "completionRate"){
             metricIdx = 0;
