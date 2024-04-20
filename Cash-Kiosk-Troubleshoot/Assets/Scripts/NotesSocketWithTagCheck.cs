@@ -188,6 +188,17 @@ public class NotesSocketWithTagCheck : XRSocketInteractor
         
 
         Destroy(stackOfNotes);
+
+
+        // check if any stacks of notes left. if not, load instructionsGameObject[] stackOfNotes = GameObject.FindGameObjectsWithTag("Notes");
+        GameObject[] stackOfNotesLeft = GameObject.FindGameObjectsWithTag("Notes");
+        if (stackOfNotesLeft.Length == 0)
+        {
+            if (SceneManager.GetActiveScene().name == "SceneD")
+            {
+                i.LoadSpecificInstructionIndex(2);
+            }
+        }
     }
 
     IEnumerator MoveRejectedNote(GameObject rejectedNote)
@@ -202,13 +213,13 @@ public class NotesSocketWithTagCheck : XRSocketInteractor
             yield return null;
         }
 
-        if (maxAccept <= 3)
+        if (maxAccept < 2)
         {
-            RejectNote(0.5f);
-            if (SceneManager.GetActiveScene().name == "SceneD")
-            {
-                i.LoadNextInstructions();
-            }
+            RejectNote(0.6f);
+        } 
+        else
+        {
+            RejectNote(1f);
         }
 
         // Delay before moving the next note
