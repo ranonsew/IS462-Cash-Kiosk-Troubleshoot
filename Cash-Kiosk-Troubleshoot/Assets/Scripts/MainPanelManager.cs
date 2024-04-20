@@ -37,6 +37,8 @@ public class MainPanelManager : MonoBehaviour
 
     public InstructionManager i;
 
+    [SerializeField] Animator coinBinAnim;
+
     void Start()
     {
 
@@ -95,13 +97,11 @@ public class MainPanelManager : MonoBehaviour
         if (text.text == "Unlock Coin")
         {
             CoinBinManager.unlocked = true;
-            CoinBinManager.UpdateGrabbableState();
             receiptScript = GetComponent<ReceiptManager>();
             receiptScript.collectionReceipt("UnlockCoin");
+            coinBinAnim.SetBool("isOpen", true);
             return;
         }
-
-
 
         if (checkNextPage(text.text))
         {
