@@ -16,6 +16,7 @@ TagManager:
   - NotesSocket
   - CoinBag
   - CoinsSocket
+  - BlueKey
   layers:
   - Default
   - TransparentFX
