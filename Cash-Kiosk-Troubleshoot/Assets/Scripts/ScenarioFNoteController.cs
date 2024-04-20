@@ -48,11 +48,9 @@ public class ScenarioFNoteController : MonoBehaviour
 
     private static readonly float notePosMinY = 0.521f;
     private static readonly float notePosMaxY = 0.983f;
-    private float maxRangeY = notePosMaxY - notePosMinY;
 
     private static readonly float notePosMinZ = -0.49f;
     private static readonly float notePosMaxZ = 0.49f;
-    private float maxRangeZ = notePosMaxZ - notePosMinZ;
 
     // Start is called before the first frame update
     void Start()
@@ -81,35 +79,26 @@ public class ScenarioFNoteController : MonoBehaviour
         instructionManager.LoadSpecificInstructionIndex(1); // To start, login with ...
     }
 
-    public void waitLoadResultsScene(){
-            StartCoroutine(loadResultsScene());
-        }
+    private void WaitLoadResultsScene() {
+        StartCoroutine(LoadResultsScene());
+    }
 
-        IEnumerator loadResultsScene(){
-            yield return new WaitForSeconds(6);
-            sceneLoader.LoadScene("SceneResults");
-        }
-
+    private IEnumerator LoadResultsScene(){
+        yield return new WaitForSeconds(6);
+        sceneLoader.LoadScene("SceneResults");
+    }
 
     void Update()
     {
         if (machineRebooted & noteInSeal & !completionCheck)
         {
-
             completionCheck = true;
             PointsManager.instance.updateScore("SceneF", "completionRate", 1f);
             PointsManager.instance.updateScore("SceneF", "numErrors", 0f);
-            waitLoadResultsScene();
+            WaitLoadResultsScene();
 
             // StartCoroutine(DelayToEnd());
         }
-    }
-
-    private IEnumerator DelayToEnd()
-    {
-        Debug.Log("Ending Scenario F");
-        yield return new WaitForSeconds(3f);
-        sceneLoader.LoadScene("ModeSelection");
     }
 
     /// <summary>
