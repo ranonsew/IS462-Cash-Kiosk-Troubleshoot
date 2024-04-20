@@ -1967,7 +1967,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5117564055370678847, guid: 184e6ff1875724e459a0063bf6d78192, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5356383349061628507, guid: 184e6ff1875724e459a0063bf6d78192, type: 3}
       propertyPath: m_Colliders.Array.size
@@ -2099,7 +2099,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8386609622311111923, guid: 184e6ff1875724e459a0063bf6d78192, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8526337369483108119, guid: 184e6ff1875724e459a0063bf6d78192, type: 3}
       propertyPath: m_Name
@@ -2163,6 +2163,7 @@ PrefabInstance:
     - {fileID: 5590330087039113811, guid: 184e6ff1875724e459a0063bf6d78192, type: 3}
     - {fileID: 6786705348548820763, guid: 184e6ff1875724e459a0063bf6d78192, type: 3}
     - {fileID: 3933721063688413202, guid: 184e6ff1875724e459a0063bf6d78192, type: 3}
+    - {fileID: 3090918664133205269, guid: 184e6ff1875724e459a0063bf6d78192, type: 3}
     m_RemovedGameObjects:
     - {fileID: 7520695760671754914, guid: 184e6ff1875724e459a0063bf6d78192, type: 3}
     - {fileID: 2403105549414276993, guid: 184e6ff1875724e459a0063bf6d78192, type: 3}
@@ -5027,7 +5028,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1612579989}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: AttachButtonGame, Assembly-CSharp
         m_MethodName: turnGreen
         m_Mode: 5
@@ -5810,7 +5811,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1612579989}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: AttachButtonGame, Assembly-CSharp
         m_MethodName: turnGreen
         m_Mode: 5
@@ -7070,7 +7071,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1612579989}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: AttachButtonGame, Assembly-CSharp
         m_MethodName: turnGreen
         m_Mode: 5
@@ -7202,7 +7203,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1612579989}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: AttachButtonGame, Assembly-CSharp
         m_MethodName: turnGreen
         m_Mode: 5
@@ -8102,7 +8103,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1612579989}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: AttachButtonGame, Assembly-CSharp
         m_MethodName: turnGreen
         m_Mode: 5
@@ -10148,7 +10149,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1612579989}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: AttachButtonGame, Assembly-CSharp
         m_MethodName: turnGreen
         m_Mode: 5
@@ -12910,13 +12911,10 @@ RectTransform:
   m_Children:
   - {fileID: 776222455}
   - {fileID: 1047294126}
-  - {fileID: 1805864851}
   - {fileID: 1498619469}
   - {fileID: 674693616}
   - {fileID: 941469924}
-  - {fileID: 486926589}
   - {fileID: 929615803}
-  - {fileID: 1612579988}
   - {fileID: 2093694666}
   m_Father: {fileID: 44971656}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -20428,10 +20426,46 @@ MonoBehaviour:
       m_Calls: []
   m_SelectEntered:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8184599739682719234}
+        m_TargetAssemblyTypeName: CoinDoorManager, Assembly-CSharp
+        m_MethodName: SetIsUnlocked
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 8184599739682719234}
+        m_TargetAssemblyTypeName: CoinDoorManager, Assembly-CSharp
+        m_MethodName: SetCoinDoor
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   m_SelectExited:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8184599739682719234}
+        m_TargetAssemblyTypeName: CoinDoorManager, Assembly-CSharp
+        m_MethodName: SetCoinDoor
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_StartingHoverFilters: []
   m_StartingSelectFilters: []
   m_OnHoverEntered:
@@ -48339,3 +48373,4 @@ SceneRoots:
   - {fileID: 51557137}
   - {fileID: 448998174}
   - {fileID: 1322677454}
+  - {fileID: 618826241}
