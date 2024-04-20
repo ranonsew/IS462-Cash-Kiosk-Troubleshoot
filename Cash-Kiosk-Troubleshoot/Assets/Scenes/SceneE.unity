@@ -392,7 +392,7 @@ PrefabInstance:
     - target: {fileID: 2073984598030255482, guid: 184e6ff1875724e459a0063bf6d78192, type: 3}
       propertyPath: i
       value: 
-      objectReference: {fileID: 1741378488}
+      objectReference: {fileID: 1180854486}
     - target: {fileID: 2073984598030255482, guid: 184e6ff1875724e459a0063bf6d78192, type: 3}
       propertyPath: loginPanel
       value: 
