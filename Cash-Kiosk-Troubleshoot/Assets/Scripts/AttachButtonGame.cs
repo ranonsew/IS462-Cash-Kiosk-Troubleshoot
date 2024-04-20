@@ -59,7 +59,7 @@ public class AttachButtonGame : MonoBehaviour
         if (gameOver == false){
         if (buttons["bagbutton1"] & buttons["bagbutton2"] & buttons["bagbutton3"] & buttons["bagbutton4"] & 
         buttons["bagbutton5"] & buttons["bagbutton6"] & buttons["bagbutton7"] & buttons["bagbutton8"]){
-            GameObject b = Instantiate(goodJobSign, goodJobSignLocation.position, goodJobSignLocation.rotation);
+            // GameObject b = Instantiate(goodJobSign, goodJobSignLocation.position, goodJobSignLocation.rotation);
             
             // wait();
             // Destroy(b);
@@ -75,8 +75,10 @@ public class AttachButtonGame : MonoBehaviour
     }
 
     public void disableGame(){
-                    Destroy(oldBag);
-            GameObject newbagcreated = Instantiate(newBag, newBagLocation.position, newBagLocation.rotation);
+        // DestroyImmediate(oldBag, true);
+        // oldBag.SetActive(false);
+        Destroy(oldBag);
+        GameObject newbagcreated = Instantiate(newBag, newBagLocation.position, newBagLocation.rotation);
         buttons["bagbutton1"] = false;
         buttons["bagbutton2"] = false;
         buttons["bagbutton3"] = false;
