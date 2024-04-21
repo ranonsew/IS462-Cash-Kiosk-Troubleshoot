@@ -14,4 +14,5 @@ public class StorageManager : MonoBehaviour
     public static string userString = string.Empty;
 
     public static bool armActive = true;
+    public static bool lockActive = true;
 }

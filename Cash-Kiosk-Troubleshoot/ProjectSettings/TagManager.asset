@@ -18,6 +18,7 @@ TagManager:
   - CoinsSocket
   - BlueKey
   - RedKey
+  - GreenKey
   layers:
   - Default
   - TransparentFX

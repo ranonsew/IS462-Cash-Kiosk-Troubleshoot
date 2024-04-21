@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
+
 public class AttachButtonGame : MonoBehaviour
 {
 
@@ -12,12 +14,22 @@ public class AttachButtonGame : MonoBehaviour
     public GameObject goodJobSign;
     public Transform goodJobSignLocation;
 
-    public GameObject oldBag;
-    public GameObject newBag;
+    public GameObject openBag;
+    public GameObject closeBag;
+
+    private GameObject activeBag;
+    private GameObject nonactiveBag;
+    
     public Transform newBagLocation;
     public bool gameOver;
+
+    public TextMeshProUGUI displayInstructions;
+    public GameObject completedPanel;
+    public TextMeshProUGUI completedPanelText;
+
+
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         // var sprite = Resources.Load<Sprite>("Dan 1");
         // Button.image.sprite = sprites[0];
@@ -29,7 +41,7 @@ public class AttachButtonGame : MonoBehaviour
         buttons.Add("bagbutton6", false);
         buttons.Add("bagbutton7", false);
         buttons.Add("bagbutton8", false);
-        
+
     }
 
 
@@ -55,6 +67,20 @@ public class AttachButtonGame : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (openBag.activeSelf)
+        {
+            activeBag = openBag;
+            nonactiveBag = closeBag;
+            displayInstructions.text = "Make all the circles green to zip the bag";
+            completedPanelText.text = "Good job, you have zipped the bag sucessfully";
+        }
+        else
+        {
+            activeBag = closeBag;
+            nonactiveBag = openBag;
+            displayInstructions.text = "Make all the circles green to unzip the bag";
+            completedPanelText.text = "Good job, you have unzipped the bag sucessfully";
+        }
 
         if (gameOver == false){
         if (buttons["bagbutton1"] & buttons["bagbutton2"] & buttons["bagbutton3"] & buttons["bagbutton4"] & 
@@ -65,10 +91,10 @@ public class AttachButtonGame : MonoBehaviour
             // Destroy(b);
             // gamePanel.SetActive(false);
             // newBagLocation newBagLocation = oldBag.transform;
-            if (gameOver == false){ 
-                disableGame();
-                gameOver = true;
-                }
+            //if (gameOver == false){ 
+            disableGame();
+            //    gameOver = true;
+            //    }
            
 }
         }
@@ -77,17 +103,29 @@ public class AttachButtonGame : MonoBehaviour
     public void disableGame(){
         // DestroyImmediate(oldBag, true);
         // oldBag.SetActive(false);
-        Destroy(oldBag);
-        GameObject newbagcreated = Instantiate(newBag, newBagLocation.position, newBagLocation.rotation);
-        buttons["bagbutton1"] = false;
-        buttons["bagbutton2"] = false;
-        buttons["bagbutton3"] = false;
-        buttons["bagbutton4"] = false;
-        buttons["bagbutton5"] = false;
-        buttons["bagbutton6"] = false;
-        buttons["bagbutton7"] = false;
-        buttons["bagbutton8"] = false;
-        gameOver = true;
+        activeBag.SetActive(false);
+        nonactiveBag.SetActive(true);
+
+        List<string> buttonsToModify = new List<string>();
+
+        // Add the keys of all buttons to the list
+        foreach (var kvp in buttons)
+        {
+            buttonsToModify.Add(kvp.Key);
+        }
+
+        // Reset button sprites to sprites[0]
+        foreach (string buttonName in buttonsToModify)
+        {
+            Button mybutton = GameObject.Find(buttonName).GetComponent<Button>();
+            mybutton.image.sprite = sprites[0];
+            buttons[buttonName] = false;
+        }
+
+        //gameOver = true;
+        gamePanel.SetActive(false);
+        completedPanel.SetActive(true);
+
     }
 
     public void turnGreen(string buttonName){
@@ -99,7 +137,4 @@ public class AttachButtonGame : MonoBehaviour
         buttons[buttonName] = !buttons[buttonName];
         
     }
-
-
-
 }

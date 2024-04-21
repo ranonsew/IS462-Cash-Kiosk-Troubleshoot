@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
 
@@ -8,16 +9,21 @@ public class LockManager : MonoBehaviour
     public string password = string.Empty;
     public int wrongAttempts = 0;
 
+    public GameObject panel;
+
     public AudioSource audioSource;
     public AudioClip alertSound; 
     public AudioClip warningSound;
     public AudioClip unlockedSound;
     public AudioClip lockedSound;
 
+    public TextMeshProUGUI armedText;
+    public TextMeshProUGUI unarmedText;
+
+
     public void getInput(GameObject go)
     {
         string character = go.name;
-        Debug.Log(character);
 
         if (int.TryParse(character, out int temp))
         {
@@ -32,20 +38,37 @@ public class LockManager : MonoBehaviour
         else if (character == "ARM" & checkInput(password))
         {
             StorageManager.armActive = true;
+            armedText.gameObject.SetActive(true);
+            unarmedText.gameObject.SetActive(false);
+
             clearInput();
             audioSource.clip = lockedSound;
             audioSource.Play();
+            panel.SetActive(false);
+
         }
         else if ((character == "OFF" || character == "#") & checkInput(password))
         {
-            StorageManager.armActive = false;
             clearInput();
             audioSource.clip = unlockedSound;
             audioSource.Play();
+            panel.SetActive(false);
+
+            if (character == "OFF")
+            {
+                StorageManager.armActive = false;
+                armedText.gameObject.SetActive(false);
+                unarmedText.gameObject.SetActive(true);
+            } 
+            else if (character == "#") {
+                StorageManager.lockActive = false;
+                Debug.Log(StorageManager.lockActive);
+            }
         }
 
         else if ((character == "ARM" || character == "OFF" || character == "#") & !checkInput(password))
         {
+            clearInput();
             wrongAttempts++;
 
             if (wrongAttempts < 3)
@@ -63,7 +86,7 @@ public class LockManager : MonoBehaviour
 
     public bool checkInput(string password)
     {
-        return password == "0000";
+        return password == "1234";
     }
 
     public void clearInput()
