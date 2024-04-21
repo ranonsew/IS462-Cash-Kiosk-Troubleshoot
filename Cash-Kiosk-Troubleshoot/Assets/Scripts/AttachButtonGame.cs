@@ -27,6 +27,7 @@ public class AttachButtonGame : MonoBehaviour
     public GameObject completedPanel;
     public TextMeshProUGUI completedPanelText;
 
+    public CashCollectionInstructions instructions;
 
     // Start is called before the first frame update
     void Awake()
@@ -73,6 +74,7 @@ public class AttachButtonGame : MonoBehaviour
             nonactiveBag = closeBag;
             displayInstructions.text = "Make all the circles green to zip the bag";
             completedPanelText.text = "Good job, you have zipped the bag sucessfully";
+            instructions.callInstruction();
         }
         else
         {
