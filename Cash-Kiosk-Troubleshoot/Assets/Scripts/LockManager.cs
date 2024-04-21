@@ -24,6 +24,8 @@ public class LockManager : MonoBehaviour
     public void getInput(GameObject go)
     {
         string character = go.name;
+        Debug.Log(character);
+        Debug.Log(password);
 
         if (int.TryParse(character, out int temp))
         {
