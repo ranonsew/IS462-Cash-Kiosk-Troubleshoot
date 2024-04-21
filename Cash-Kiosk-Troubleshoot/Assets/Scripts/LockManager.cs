@@ -1,3 +1,4 @@
+using Mono.Reflection;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -19,6 +20,8 @@ public class LockManager : MonoBehaviour
 
     public TextMeshProUGUI armedText;
     public TextMeshProUGUI unarmedText;
+
+    public CashCollectionInstructions instruction;
 
 
     public void getInput(GameObject go)
@@ -58,6 +61,8 @@ public class LockManager : MonoBehaviour
 
             if (character == "OFF")
             {
+                instruction.callInstruction();
+                instruction.callInstructionsAfterPassword();
                 StorageManager.armActive = false;
                 armedText.gameObject.SetActive(false);
                 unarmedText.gameObject.SetActive(true);
